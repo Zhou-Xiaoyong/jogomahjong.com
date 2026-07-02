@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mahjong Blitz - 60 Segundos de Ação Rápida</title>
+  <meta name="description" content="Mahjong Blitz: 60 segundos para fazer o máximo de pares! Jogo rápido de reflexo e velocidade com peças de mahjong tradicionais em português.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://jogomahjong.com/mahjong-blitz/">
+  <link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-blitz/">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Mahjong Blitz - 60 Segundos">
+  <meta property="og:description" content="Corra contra o tempo! 60 segundos para fazer o máximo de pares de mahjong. Desafio de velocidade e reflexo.">
+  <meta property="og:url" content="https://jogomahjong.com/mahjong-blitz/">
+  <meta name="theme-color" content="#0f6b58">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Mahjong Blitz Online Grátis",
+    "alternateName": ["Mahjong Blitz", "Mahjong Rápido"],
+    "url": "https://jogomahjong.com/mahjong-blitz/",
+    "description": "Mahjong Blitz: 60 segundos para fazer o máximo de pares. Desafio de velocidade em português do Brasil.",
+    "genre": ["Puzzle", "Mahjong", "Arcade", "Time Attack"],
+    "gamePlatform": "Web browser",
+    "operatingSystem": "Web",
+    "inLanguage": "pt-BR",
+    "isAccessibleForFree": true,
+    "applicationCategory": "Game"
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="logo" href="/" aria-label="Jogo Mahjong">
+        <span class="logo-mark">麻</span>
+        <span>Jogo Mahjong</span>
+      </a>
+      <nav class="nav-links" aria-label="Menu principal">
+        <a href="/jogar-mahjong/">Solitário</a>
+        <a href="/mahjong-connect/">Connect</a>
+        <a href="/mahjong-cadeia/">Cadeia</a>
+        <a href="/mahjong-piramide/">Pirâmide</a>
+        <a href="/mahjong-torre/">Torre</a>
+        <a href="/mahjong-blitz/">Blitz</a>
+        <a href="/memoria-mahjong/">Memória</a>
+        <a href="/como-jogar-mahjong/">Como jogar</a>
+        <a href="/politica-de-privacidade/">Privacidade</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap">
+        <span class="eyebrow">Modo corrida</span>
+        <h1>Mahjong Blitz: 60 segundos de pura velocidade</h1>
+        <p class="lead">Tá com pressa? Aqui o jogo é rápido! Em 60 segundos, faça o máximo de pares que conseguir. Cada par vale pontos, e o tabuleiro se renova automaticamente. Teste seus reflexos e bata seu recorde!</p>
+
+        <div class="ad-slot" aria-label="Espaço para anúncio superior">
+          Espaço reservado para anúncio responsivo. Recomendado: ativar somente após aprovação do AdSense.
+        </div>
+
+        <section class="game-shell" aria-labelledby="game-title">
+          <div class="game-toolbar">
+            <div>
+              <h2 id="game-title" style="font-size:1.45rem;margin:0;">Mahjong Blitz</h2>
+              <p style="margin:4px 0 0;color:var(--muted);font-family:Arial,sans-serif;">60 segundos, quantos pares você faz?</p>
+            </div>
+            <div class="game-stats" aria-label="Estatísticas do jogo">
+              <span class="stat">Pontos: <strong id="score">0</strong></span>
+              <span class="stat">Pares: <strong id="pairs">0</strong></span>
+              <span class="stat">Tempo: <strong id="time">60</strong>s</span>
+              <span class="stat">Recorde: <strong id="best">0</strong></span>
+            </div>
+            <div class="game-actions">
+              <button class="btn secondary" id="hint" type="button">Dica</button>
+              <button class="btn" id="new-game" type="button">Novo jogo</button>
+            </div>
+          </div>
+          <div class="board-wrap" aria-label="Tabuleiro de Mahjong Blitz">
+            <div id="blitz-board"></div>
+          </div>
+          <p class="message" id="game-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <div class="ad-slot" aria-label="Espaço para anúncio inferior">
+          Espaço reservado para anúncio abaixo do jogo. Evite anúncios que cubram o tabuleiro.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap content-grid">
+        <article class="article">
+          <h2>Como funciona o Mahjong Blitz</h2>
+          <p>O <strong>Mahjong Blitz</strong> é o modo mais rápido e emocionante do mahjong online. A regra é simples: você tem 60 segundos para fazer o máximo de pares possíveis. O tabuleiro tem 48 peças (24 pares) e, conforme você remove, novas peças aparecem para manter o ritmo.</p>
+          <h3>Regras básicas</h3>
+          <ul>
+            <li><strong>60 segundos</strong> no relógio — cada segundo conta!</li>
+            <li><strong>Combine pares iguais</strong> de peças que estão livres (sem peças acima e com um lado livre).</li>
+            <li><strong>Cada par vale 10 pontos</strong>. Quanto mais rápido, mais pontos no total.</li>
+            <li><strong>Tabuleiro se renova</strong>: quando sobram poucas peças, novas aparecem automaticamente.</li>
+            <li><strong>Recorde salvo</strong>: seu melhor score fica guardado no navegador.</li>
+          </ul>
+          <h3>Dicas para pontuar mais</h3>
+          <ul>
+            <li><strong>Olhe o todo</strong>: não fique só numa área — escaneie todo o tabuleiro rapidamente.</li>
+            <li><strong>Pares óbvios primeiro</strong>: comece pelos pares fáceis de ver para ganhar ritmo.</li>
+            <li><strong>Use a dica com moderação</strong>: ela ajuda mas gasta tempo precioso.</li>
+            <li><strong>Não hesite</strong>: se errar um clique, siga em frente — o tempo é o inimigo.</li>
+          </ul>
+          <h3>Para quem é este modo</h3>
+          <p>Perfeito para quem tem só 1 ou 2 minutos livres e quer uma descarga rápida de diversão. Ótimo também para treinar a velocidade de raciocínio e a percepção visual — habilidades que ajudam em todos os outros modos de mahjong!</p>
+          <a class="btn" href="/jogar-mahjong/">Jogar o solitário clássico</a>
+        </article>
+        <aside class="sidebox">
+          <h3>Outros jogos</h3>
+          <ul>
+            <li><a href="/jogar-mahjong/">Mahjong Solitário clássico</a></li>
+            <li><a href="/mahjong-connect/">Mahjong Connect</a></li>
+            <li><a href="/mahjong-cadeia/">Mahjong Cadeia</a></li>
+            <li><a href="/mahjong-piramide/">Mahjong Pirâmide</a></li>
+            <li><a href="/mahjong-torre/">Mahjong Torre</a></li>
+            <li><a href="/mahjong-cronometrado/">Mahjong Cronometrado</a></li>
+            <li><a href="/mahjong-relaxante/">Mahjong Relaxante</a></li>
+            <li><a href="/memoria-mahjong/">Memória Mahjong</a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="logo" href="/"><span class="logo-mark">麻</span><span>Jogo Mahjong</span></a>
+        <p>Jogue Mahjong online grátis em português do Brasil.</p>
+      </div>
+      <nav class="nav-links" aria-label="Links do rodapé">
+        <a href="/">Início</a>
+        <a href="/cultura-mahjong/">Cultura</a>
+        <a href="/como-jogar-mahjong/">Como jogar</a>
+        <a href="/politica-de-privacidade/">Privacidade</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/assets/sound.js"></script>
+  <script src="/assets/tiles-data.js"></script>
+  <script src="/assets/blitz.js"></script>
+</body>
+</html>

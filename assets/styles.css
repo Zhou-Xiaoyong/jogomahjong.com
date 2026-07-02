@@ -389,7 +389,7 @@ button {
 
 .board-wrap {
   position: relative;
-  min-height: 470px;
+  min-height: 700px;
   overflow: auto;
   border-radius: 22px;
   border: 1px solid rgba(220, 201, 169, .8);
@@ -402,8 +402,8 @@ button {
 
 #mahjong-board {
   position: relative;
-  width: 980px;
-  height: 600px;
+  width: 1380px;
+  height: 720px;
   margin: 20px auto;
 }
 
@@ -411,15 +411,15 @@ button {
    Fundo de marfim tradicional, símbolo colorido por naipe. */
 .tile {
   position: absolute;
-  width: 72px;
-  height: 98px;
+  width: 108px;
+  height: 147px;
   border: 0;
-  border-radius: 13px;
+  border-radius: 16px;
   background: linear-gradient(145deg, #fffdf5 0%, #f6eed9 42%, #efe2c7 100%);
   box-shadow:
-    inset 0 2px 0 rgba(255,255,255,.9),
-    0 6px 0 #9a7b4a,
-    0 14px 20px rgba(69, 40, 15, .24);
+    inset 0 3px 0 rgba(255,255,255,.9),
+    0 8px 0 #9a7b4a,
+    0 18px 26px rgba(69, 40, 15, .24);
   color: var(--ink);
   cursor: pointer;
   transition: transform .14s ease, filter .14s ease, box-shadow .14s ease, opacity .2s ease;
@@ -427,31 +427,31 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6px 4px;
+  padding: 10px 6px;
   overflow: hidden;
 }
 
 .tile::before {
   content: "";
   position: absolute;
-  inset: 4px;
-  border-radius: 8px;
+  inset: 6px;
+  border-radius: 10px;
   border: 1px solid rgba(160, 128, 80, .25);
   pointer-events: none;
 }
 
 .tile:hover:not(:disabled) {
-  transform: translateY(-4px) scale(1.03);
+  transform: translateY(-5px) scale(1.03);
   box-shadow:
-    inset 0 2px 0 rgba(255,255,255,.9),
-    0 10px 0 #9a7b4a,
-    0 22px 28px rgba(69, 40, 15, .28);
+    inset 0 3px 0 rgba(255,255,255,.9),
+    0 13px 0 #9a7b4a,
+    0 28px 34px rgba(69, 40, 15, .28);
 }
 
 .tile.selected {
-  outline: 3px solid var(--gold);
-  outline-offset: 2px;
-  transform: translateY(-5px) scale(1.05);
+  outline: 4px solid var(--gold);
+  outline-offset: 3px;
+  transform: translateY(-6px) scale(1.05);
 }
 
 .tile.hint {
@@ -474,10 +474,10 @@ button {
 
 @keyframes tileShake {
   0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-5px); }
-  40% { transform: translateX(5px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(4px); }
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(7px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
 }
 
 .tile:disabled {
@@ -487,45 +487,45 @@ button {
 }
 
 .tile-symbol {
-  font-size: 3.4rem;
+  font-size: 5rem;
   line-height: 1;
   font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
   display: block;
   filter: drop-shadow(0 1px 0 rgba(255,255,255,.5));
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 .tile-name {
   display: block;
-  padding: 1px 6px;
-  border-radius: 6px;
+  padding: 2px 10px;
+  border-radius: 8px;
   background: rgba(0, 0, 0, .06);
-  font: 800 .58rem Arial, sans-serif;
+  font: 800 .75rem Arial, sans-serif;
   color: rgba(0, 0, 0, .55);
   text-transform: uppercase;
   letter-spacing: .03em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 64px;
+  max-width: 96px;
   line-height: 1.2;
 }
 
 /* Cores do símbolo por naipe - tradição do Mahjong chinês */
-.tile[data-suit="vento"]     .tile-symbol { color: #1f4f8f; }
+.tile[data-suit="vento"]     .tile-symbol { color: #1f6feb; }
 .tile[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }
 .tile[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }
 .tile[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); }
-.tile[data-suit="círculo"]   .tile-symbol { color: #0c63a8; }
+.tile[data-suit="círculo"]   .tile-symbol { color: #d97706; }
 .tile[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
 .tile[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
 
 /* Nome em português segue a cor do naipe para consistência */
-.tile[data-suit="vento"]     .tile-name { color: #1f4f8f; background: rgba(31, 79, 143, .1); }
+.tile[data-suit="vento"]     .tile-name { color: #1f6feb; background: rgba(31, 111, 235, .1); }
 .tile[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
 .tile[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
 .tile[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .12); }
-.tile[data-suit="círculo"]   .tile-name { color: #0c63a8; background: rgba(12, 99, 168, .12); }
+.tile[data-suit="círculo"]   .tile-name { color: #d97706; background: rgba(217, 119, 6, .12); }
 .tile[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .12); }
 .tile[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .12); }
 
@@ -671,19 +671,19 @@ button {
 }
 
 /* ========== Memory game styles ========== */
-.memory-board {
+.memory-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 12px;
-  max-width: 600px;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 14px;
+  max-width: 1200px;
   margin: 20px auto;
   justify-items: center;
 }
 
 .memory-card {
-  width: 80px;
-  height: 100px;
-  perspective: 600px;
+  width: 110px;
+  height: 150px;
+  perspective: 800px;
   cursor: pointer;
   border: 0;
   background: transparent;
@@ -752,31 +752,31 @@ button {
 }
 
 .memory-card-back .tile-symbol {
-  font-size: 2.8rem;
-  margin-bottom: 2px;
+  font-size: 4.2rem;
+  margin-bottom: 4px;
 }
 
 .memory-card-back .tile-name {
-  font-size: .58rem;
-  max-width: 64px;
+  font-size: .72rem;
+  max-width: 96px;
   margin-top: 0;
-  padding: 1px 6px;
+  padding: 2px 10px;
 }
 
 /* Cores por naipe na memória também */
-.memory-card-back[data-suit="vento"]     .tile-symbol { color: #1f4f8f; }
+.memory-card-back[data-suit="vento"]     .tile-symbol { color: #1f6feb; }
 .memory-card-back[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }
 .memory-card-back[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }
 .memory-card-back[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); }
-.memory-card-back[data-suit="círculo"]   .tile-symbol { color: #0c63a8; }
+.memory-card-back[data-suit="círculo"]   .tile-symbol { color: #d97706; }
 .memory-card-back[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
 .memory-card-back[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
 
-.memory-card-back[data-suit="vento"]     .tile-name { color: #1f4f8f; background: rgba(31, 79, 143, .1); }
+.memory-card-back[data-suit="vento"]     .tile-name { color: #1f6feb; background: rgba(31, 111, 235, .1); }
 .memory-card-back[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
 .memory-card-back[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
 .memory-card-back[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .12); }
-.memory-card-back[data-suit="círculo"]   .tile-name { color: #0c63a8; background: rgba(12, 99, 168, .12); }
+.memory-card-back[data-suit="círculo"]   .tile-name { color: #d97706; background: rgba(217, 119, 6, .12); }
 .memory-card-back[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .12); }
 .memory-card-back[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .12); }
 
@@ -882,9 +882,86 @@ button {
 /* ========== Pyramid layout board ========== */
 #pyramid-board {
   position: relative;
-  width: 820px;
+  width: 1100px;
+  height: 620px;
+  margin: 20px auto;
+}
+
+/* ========== Tower layout board ========== */
+#tower-board {
+  position: relative;
+  width: 1180px;
+  height: 640px;
+  margin: 20px auto;
+}
+
+/* ========== Blitz layout board ========== */
+#blitz-board {
+  position: relative;
+  width: 1080px;
   height: 520px;
   margin: 20px auto;
+}
+
+/* ========== Slide game styles ========== */
+#slide-board {
+  padding: 40px 20px;
+  text-align: center;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.slide-track {
+  position: relative;
+  height: 170px;
+  margin: 10px auto;
+  border-bottom: 3px solid rgba(15, 107, 88, .3);
+}
+
+.slide-tile {
+  width: 108px;
+  height: 147px;
+}
+
+.slide-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.slide-btn {
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #d97706 0%, #b45309 100%);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #92400e, 0 6px 14px rgba(0, 0, 0, .2);
+  transition: transform .1s, box-shadow .1s;
+  font-family: Arial, sans-serif;
+}
+
+.slide-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #92400e, 0 8px 18px rgba(0, 0, 0, .25);
+}
+
+.slide-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #92400e, 0 3px 8px rgba(0, 0, 0, .2);
+}
+
+.slide-hint {
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size: .9rem;
 }
 
 /* ========== Tile legend (galeria de peças) ========== */

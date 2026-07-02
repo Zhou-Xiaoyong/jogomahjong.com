@@ -88,6 +88,9 @@ window.MAHJONG_TILES = (function () {
 
   const all = [].concat(winds, dragons, characters, bamboos, circles, flowers, seasons);
 
+  // Conjunto principal sem flores e estações — para jogos mais acessíveis
+  const core = [].concat(winds, dragons, characters, bamboos, circles);
+
   // Agrupa por naipe, útil para galerias e legendas
   const groups = [
     { suit: "vento",     label: "Ventos (风)",     hint: "Direções cardeais",      tiles: winds },
@@ -101,8 +104,6 @@ window.MAHJONG_TILES = (function () {
 
   return {
     winds, dragons, characters, bamboos, circles, flowers, seasons,
-    all, groups, backTile,
-    // Seleção enxuta para jogos que precisam de poucos tipos
-    core: [].concat(winds, dragons, characters.slice(0, 9), bamboos.slice(0, 9), circles.slice(0, 9))
+    all, groups, backTile, core
   };
 })();

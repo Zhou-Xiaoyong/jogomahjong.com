@@ -13,15 +13,20 @@
   const newGameBtn = document.querySelector("#new-game");
   const hintBtn = document.querySelector("#hint");
 
-  const ROWS = 8;
-  const COLS = 10;
-  const tileW = 72;
-  const tileH = 98;
-  const gap = 6;
+  const ROWS = 6;
+  const COLS = 8;
+  const tileW = 108;
+  const tileH = 147;
+  const gap = 8;
 
   const T = window.MAHJONG_TILES;
-  // Conjunto completo: inclui flores e estações para variar o visual.
-  const tileTypes = T.all;
+  const tileTypes = [
+    T.winds[0], T.winds[1], T.winds[2], T.winds[3],
+    T.dragons[0], T.dragons[1], T.dragons[2],
+    T.characters[0], T.characters[4], T.characters[8],
+    T.bamboos[0], T.bamboos[4], T.bamboos[8],
+    T.circles[0], T.circles[4], T.circles[8]
+  ];
 
   let grid = [];
   let selected = null;
@@ -193,10 +198,40 @@
         clearInterval(timer);
       } else {
         const pair = findHintPair();
-        setMessage(pair ? "Par conectado! Continue." : "Nenhum par disponível. Embaralhando...");
-        if (!pair) setTimeout(startGame, 1500);
+        if (pair) {
+          setMessage("Par conectado! Continue.");
+        } else {
+          setMessage("Sem pares conectáveis. Embaralhando as peças restantes...");
+          setTimeout(shuffleRemaining, 1000);
+        }
       }
     }, 320);
+  }
+
+  function shuffleRemaining() {
+    window.MAHJONG_SOUND?.shuffle();
+    const remaining = [];
+    const positions = [];
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        if (!grid[r][c].removed) {
+          remaining.push(grid[r][c].type);
+          positions.push({ r, c });
+        }
+      }
+    }
+    shuffle(remaining);
+    positions.forEach((pos, i) => {
+      grid[pos.r][pos.c].type = remaining[i];
+    });
+    selected = null;
+    renderGrid();
+    const pair = findHintPair();
+    if (!pair) {
+      setTimeout(shuffleRemaining, 800);
+    } else {
+      setMessage("Peças embaralhadas! Continue conectando.");
+    }
   }
 
   function clearSelection() {

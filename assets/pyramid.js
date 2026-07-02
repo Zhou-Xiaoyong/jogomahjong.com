@@ -16,18 +16,15 @@
   const hintBtn = document.querySelector("#hint");
   const shuffleBtn = document.querySelector("#shuffle");
 
-  const tileW = 72;
-  const tileH = 98;
-  const gapX = 8;
-  const gapY = 6;
-  const layerShift = 10;
+  const tileW = 108;
+  const tileH = 147;
+  const gapX = 10;
+  const gapY = 8;
+  const layerShift = 14;
   const rowFactor = 0.5;
 
   const T = window.MAHJONG_TILES;
   const tileTypes = T.core;
-  // Flores e estações combinam dentro do próprio grupo (regra tradicional).
-  const flowerTypes = T.flowers;
-  const seasonTypes = T.seasons;
 
   // Layout em pirâmide escalonada (zigurate):
   //   z=0  ->  8 col x 4 linhas  (base larga)
