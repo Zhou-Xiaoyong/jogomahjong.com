@@ -520,7 +520,7 @@ button {
 .tile[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }
 .tile[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }
 .tile[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); }
-.tile[data-suit="círculo"]   .tile-symbol { color: #d97706; }
+.tile[data-suit="círculo"]   .tile-symbol { color: #1a1a1a; }
 .tile[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
 .tile[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
 
@@ -529,7 +529,7 @@ button {
 .tile[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
 .tile[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
 .tile[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .12); }
-.tile[data-suit="círculo"]   .tile-name { color: #d97706; background: rgba(217, 119, 6, .12); }
+.tile[data-suit="círculo"]   .tile-name { color: #1a1a1a; background: rgba(0, 0, 0, .08); }
 .tile[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .12); }
 .tile[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .12); }
 
@@ -772,7 +772,7 @@ button {
 .memory-card-back[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }
 .memory-card-back[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }
 .memory-card-back[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); }
-.memory-card-back[data-suit="círculo"]   .tile-symbol { color: #d97706; }
+.memory-card-back[data-suit="círculo"]   .tile-symbol { color: #1a1a1a; }
 .memory-card-back[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
 .memory-card-back[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
 
@@ -780,7 +780,7 @@ button {
 .memory-card-back[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
 .memory-card-back[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
 .memory-card-back[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .12); }
-.memory-card-back[data-suit="círculo"]   .tile-name { color: #d97706; background: rgba(217, 119, 6, .12); }
+.memory-card-back[data-suit="círculo"]   .tile-name { color: #1a1a1a; background: rgba(0, 0, 0, .08); }
 .memory-card-back[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .12); }
 .memory-card-back[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .12); }
 
