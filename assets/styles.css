@@ -32,15 +32,15 @@ body {
     linear-gradient(135deg, #f7f0e3 0%, #f3e4c8 46%, #fff6e4 100%);
 }
 
-/* Chinese cloud pattern overlay — 传统如意祥云纹无缝底纹 */
+/* Chinese traditional pattern overlay — 传统回纹无缝底纹 */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: .15;
+  opacity: .4;
   background-image: url("/assets/cloud-pattern.svg");
-  background-size: 300px 300px;
+  background-size: 200px 200px;
 }
 
 
