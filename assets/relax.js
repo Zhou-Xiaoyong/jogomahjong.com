@@ -18,8 +18,8 @@
   const hintBtn = document.querySelector("#hint");
   const shuffleBtn = document.querySelector("#shuffle");
 
-  const tileW = 68;
-  const tileH = 92;
+  const tileW = 72;
+  const tileH = 98;
   const gapX = 10;
   const gapY = 8;
   const offsetX = 24;
@@ -159,6 +159,7 @@
     if (!selected) {
       selected = tile;
       markSelected();
+      window.MAHJONG_SOUND?.select();
       setMessage("Sem pressa. Encontre a peça igual quando quiser.");
       return;
     }
@@ -171,25 +172,44 @@
 
     moves++;
     if (matches(selected.type, tile.type)) {
+      const firstUid = selected.uid;
+      const secondUid = tile.uid;
       selected.removed = true;
       tile.removed = true;
       removedPairs++;
       selected = null;
-      render();
-      updateStats();
-      if (tiles.every(item => item.removed)) {
-        setMessage("Pronto! Tabuleiro limpo no seu ritmo. Que tal uma partida relaxante de Pirâmide agora?");
-        clearInterval(timer);
-      } else {
-        const pair = findHintPair();
-        if (!pair) {
-          setMessage("Sem pares livres. Vou embaralhar para você continuar relaxando...");
-          setTimeout(autoShuffle, 1200);
+      window.MAHJONG_SOUND?.match();
+
+      const firstEl = document.querySelector(`.tile[data-uid="${firstUid}"]`);
+      const secondEl = document.querySelector(`.tile[data-uid="${secondUid}"]`);
+      [firstEl, secondEl].forEach(el => {
+        if (el) el.classList.add("removing");
+      });
+
+      setTimeout(() => {
+        render();
+        updateStats();
+        if (tiles.every(item => item.removed)) {
+          window.MAHJONG_SOUND?.win();
+          setMessage("Pronto! Tabuleiro limpo no seu ritmo. Que tal uma partida relaxante de Pirâmide agora?");
+          clearInterval(timer);
         } else {
-          setMessage("Par removido. Continue no seu tempo.");
+          const pair = findHintPair();
+          if (!pair) {
+            setMessage("Sem pares livres. Vou embaralhar para você continuar relaxando...");
+            setTimeout(autoShuffle, 1200);
+          } else {
+            setMessage("Par removido. Continue no seu tempo.");
+          }
         }
-      }
+      }, 320);
     } else {
+      window.MAHJONG_SOUND?.error();
+      const el = document.querySelector(`.tile[data-uid="${tile.uid}"]`);
+      if (el) {
+        el.classList.add("shake");
+        setTimeout(() => el.classList.remove("shake"), 350);
+      }
       selected = tile;
       render();
       markSelected();
@@ -231,6 +251,7 @@
       setTimeout(autoShuffle, 800);
       return;
     }
+    window.MAHJONG_SOUND?.hint();
     pair.forEach(tile => {
       const el = document.querySelector(`.tile[data-uid="${tile.uid}"]`);
       if (el) el.classList.add("hint");
@@ -239,6 +260,7 @@
   }
 
   function shuffleRemaining() {
+    window.MAHJONG_SOUND?.shuffle();
     const active = tiles.filter(tile => !tile.removed);
     const types = shuffle(active.map(tile => tile.type));
     active.forEach((tile, index) => { tile.type = types[index]; });

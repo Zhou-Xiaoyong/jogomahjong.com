@@ -15,8 +15,8 @@
 
   const ROWS = 8;
   const COLS = 10;
-  const tileW = 68;
-  const tileH = 92;
+  const tileW = 72;
+  const tileH = 98;
   const gap = 6;
 
   const T = window.MAHJONG_TILES;
@@ -90,12 +90,13 @@
       for (let c = 0; c < COLS; c++) {
         const cell = grid[r][c];
         const btn = document.createElement("button");
-        btn.className = "connect-tile";
+        btn.className = "tile connect-tile";
         btn.type = "button";
         btn.dataset.r = r;
         btn.dataset.c = c;
-        btn.style.width = `${tileW}px`;
-        btn.style.height = `${tileH}px`;
+        btn.style.position = "relative";
+        btn.style.left = "auto";
+        btn.style.top = "auto";
         if (cell.removed) {
           btn.style.visibility = "hidden";
           btn.disabled = true;
@@ -127,6 +128,7 @@
       selected = cell;
       const el = getTileEl(r, c);
       if (el) el.classList.add("selected");
+      window.MAHJONG_SOUND?.select();
       setMessage("Agora clique na peça igual que possa ser conectada.");
       return;
     }
@@ -138,34 +140,55 @@
     }
 
     if (selected.type.id !== cell.type.id) {
-      selected = cell;
+      window.MAHJONG_SOUND?.error();
       const el = getTileEl(r, c);
-      if (el) el.classList.add("selected");
+      if (el) {
+        el.classList.add("shake");
+        setTimeout(() => el.classList.remove("shake"), 350);
+      }
+      selected = cell;
+      const el2 = getTileEl(r, c);
+      if (el2) el2.classList.add("selected");
       setMessage("Essas peças não são iguais. Tente outra.");
       return;
     }
 
     const path = findPath(selected.r, selected.c, r, c);
     if (!path) {
-      selected = cell;
+      window.MAHJONG_SOUND?.error();
       const el = getTileEl(r, c);
-      if (el) el.classList.add("selected");
+      if (el) {
+        el.classList.add("shake");
+        setTimeout(() => el.classList.remove("shake"), 350);
+      }
+      selected = cell;
+      const el2 = getTileEl(r, c);
+      if (el2) el2.classList.add("selected");
       setMessage("Não é possível conectar essas peças com até 2 cantos. Tente outra.");
       return;
     }
 
     // Par conectado!
     drawLine(path);
+    window.MAHJONG_SOUND?.match();
+    const sr = selected.r, sc = selected.c;
     selected.removed = true;
     cell.removed = true;
     removedPairs++;
     selected = null;
+
+    const elA = getTileEl(sr, sc);
+    const elB = getTileEl(r, c);
+    [elA, elB].forEach(el => {
+      if (el) el.classList.add("removing");
+    });
 
     setTimeout(() => {
       clearLine();
       renderGrid();
       updateStats();
       if (removedPairs >= totalPairs) {
+        window.MAHJONG_SOUND?.win();
         setMessage("Parabéns! Você limpou o tabuleiro!");
         clearInterval(timer);
       } else {
@@ -173,7 +196,7 @@
         setMessage(pair ? "Par conectado! Continue." : "Nenhum par disponível. Embaralhando...");
         if (!pair) setTimeout(startGame, 1500);
       }
-    }, 350);
+    }, 320);
   }
 
   function clearSelection() {
@@ -301,10 +324,11 @@
       setMessage("Não há pares conectáveis. Embaralhando em breve...");
       return;
     }
+    window.MAHJONG_SOUND?.hint();
     const el1 = getTileEl(pair[0].r, pair[0].c);
     const el2 = getTileEl(pair[1].r, pair[1].c);
-    if (el1) el1.classList.add("selected");
-    if (el2) el2.classList.add("selected");
+    if (el1) el1.classList.add("hint");
+    if (el2) el2.classList.add("hint");
     setMessage("Dica: essas duas peças podem ser conectadas.");
   }
 

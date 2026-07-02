@@ -18,8 +18,8 @@
 
   const ROWS = 8;
   const COLS = 10;
-  const tileW = 68;
-  const tileH = 92;
+  const tileW = 72;
+  const tileH = 98;
   const gap = 6;
 
   // Janela de tempo (em ms) para manter a cadeia viva entre um par e outro.
@@ -99,12 +99,13 @@
       for (let c = 0; c < COLS; c++) {
         const cell = grid[r][c];
         const btn = document.createElement("button");
-        btn.className = "connect-tile";
+        btn.className = "tile connect-tile";
         btn.type = "button";
         btn.dataset.r = r;
         btn.dataset.c = c;
-        btn.style.width = `${tileW}px`;
-        btn.style.height = `${tileH}px`;
+        btn.style.position = "relative";
+        btn.style.left = "auto";
+        btn.style.top = "auto";
         if (cell.removed) {
           btn.style.visibility = "hidden";
           btn.disabled = true;
@@ -135,6 +136,7 @@
       selected = cell;
       const el = getTileEl(r, c);
       if (el) el.classList.add("selected");
+      window.MAHJONG_SOUND?.select();
       setMessage("Agora clique na peça igual que possa ser conectada.");
       return;
     }
@@ -146,29 +148,49 @@
     }
 
     if (selected.type.id !== cell.type.id) {
-      // Erro quebra a cadeia.
+      window.MAHJONG_SOUND?.error();
+      const el = getTileEl(r, c);
+      if (el) {
+        el.classList.add("shake");
+        setTimeout(() => el.classList.remove("shake"), 350);
+      }
       breakCombo();
       selected = cell;
-      const el = getTileEl(r, c);
-      if (el) el.classList.add("selected");
+      const el2 = getTileEl(r, c);
+      if (el2) el2.classList.add("selected");
       setMessage("Peças diferentes — cadeia quebrada! Tente outra.");
       return;
     }
 
     const path = findPath(selected.r, selected.c, r, c);
     if (!path) {
+      window.MAHJONG_SOUND?.error();
+      const el = getTileEl(r, c);
+      if (el) {
+        el.classList.add("shake");
+        setTimeout(() => el.classList.remove("shake"), 350);
+      }
       breakCombo();
       selected = cell;
-      const el = getTileEl(r, c);
-      if (el) el.classList.add("selected");
+      const el2 = getTileEl(r, c);
+      if (el2) el2.classList.add("selected");
       setMessage("Não dá para conectar com até 2 cantos. Cadeia quebrada!");
       return;
     }
 
     drawLine(path);
+    window.MAHJONG_SOUND?.match();
+    const sr = selected.r, sc = selected.c;
     selected.removed = true;
     cell.removed = true;
     removedPairs++;
+
+    const elA = getTileEl(sr, sc);
+    const elB = getTileEl(r, c);
+    [elA, elB].forEach(el => {
+      if (el) el.classList.add("removing");
+    });
+
     registerMatch();
 
     setTimeout(() => {
@@ -176,6 +198,7 @@
       renderGrid();
       updateStats();
       if (removedPairs >= totalPairs) {
+        window.MAHJONG_SOUND?.win();
         setMessage(`Tabuleiro limpo! Pontuação final: ${score} (cadeia máxima: ${bestCombo}).`);
         clearInterval(timer);
         clearTimeout(comboTimer);
@@ -331,7 +354,6 @@
   }
 
   function showHint() {
-    // A dica quebra a cadeia (sem challenge externo).
     breakCombo();
     clearSelection();
     clearLine();
@@ -340,10 +362,11 @@
       setMessage("Não há pares conectáveis. Reiniciando...");
       return;
     }
+    window.MAHJONG_SOUND?.hint();
     const el1 = getTileEl(pair[0].r, pair[0].c);
     const el2 = getTileEl(pair[1].r, pair[1].c);
-    if (el1) el1.classList.add("selected");
-    if (el2) el2.classList.add("selected");
+    if (el1) el1.classList.add("hint");
+    if (el2) el2.classList.add("hint");
     setMessage("Dica: conecte essas duas peças. (A cadeia foi reiniciada.)");
   }
 

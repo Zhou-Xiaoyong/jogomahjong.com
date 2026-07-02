@@ -112,6 +112,7 @@
 
     card.flipped = true;
     flippedCards.push(card);
+    window.MAHJONG_SOUND?.select();
     renderBoard();
 
     if (flippedCards.length === 2) {
@@ -126,16 +127,21 @@
         matchedPairs++;
         flippedCards = [];
         isLocked = false;
-        renderBoard();
-        updateStats();
+        window.MAHJONG_SOUND?.match();
 
-        if (matchedPairs >= PAIR_COUNT) {
-          setMessage(`Parabéns! Você encontrou todos os pares em ${moves} movimentos!`);
-          clearInterval(timer);
-        } else {
-          setMessage("Par encontrado! Continue.");
-        }
+        setTimeout(() => {
+          renderBoard();
+          updateStats();
+          if (matchedPairs >= PAIR_COUNT) {
+            window.MAHJONG_SOUND?.win();
+            setMessage(`Parabéns! Você encontrou todos os pares em ${moves} movimentos!`);
+            clearInterval(timer);
+          } else {
+            setMessage("Par encontrado! Continue.");
+          }
+        }, 300);
       } else {
+        window.MAHJONG_SOUND?.error();
         setMessage("Não é par. Memorize as posições e os símbolos!");
         setTimeout(() => {
           first.flipped = false;

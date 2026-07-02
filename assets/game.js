@@ -15,8 +15,8 @@
   const hintBtn = document.querySelector("#hint");
   const shuffleBtn = document.querySelector("#shuffle");
 
-  const tileW = 68;
-  const tileH = 92;
+  const tileW = 72;
+  const tileH = 98;
   const gapX = 10;
   const gapY = 8;
   const offsetX = 24;
@@ -170,6 +170,7 @@
     if (!selected) {
       selected = tile;
       markSelected();
+      window.MAHJONG_SOUND?.select();
       setMessage("Agora encontre a peça igual que também esteja livre.");
       return;
     }
@@ -183,20 +184,39 @@
 
     moves++;
     if (matches(selected.type, tile.type)) {
+      const firstUid = selected.uid;
+      const secondUid = tile.uid;
       selected.removed = true;
       tile.removed = true;
       removedPairs++;
       selected = null;
-      render();
-      updateStats();
-      if (tiles.every(item => item.removed)) {
-        setMessage("Parabéns! Você limpou o tabuleiro! Que tal tentar vencer em menos tempo?");
-        clearInterval(timer);
-      } else {
-        const pair = findHintPair();
-        setMessage(pair ? "Par removido! Continue encontrando combinações." : "Sem pares livres agora. Use embaralhar para continuar.");
-      }
+      window.MAHJONG_SOUND?.match();
+
+      const firstEl = document.querySelector(`.tile[data-uid="${firstUid}"]`);
+      const secondEl = document.querySelector(`.tile[data-uid="${secondUid}"]`);
+      [firstEl, secondEl].forEach(el => {
+        if (el) el.classList.add("removing");
+      });
+
+      setTimeout(() => {
+        render();
+        updateStats();
+        if (tiles.every(item => item.removed)) {
+          window.MAHJONG_SOUND?.win();
+          setMessage("Parabéns! Você limpou o tabuleiro! Que tal tentar vencer em menos tempo?");
+          clearInterval(timer);
+        } else {
+          const pair = findHintPair();
+          setMessage(pair ? "Par removido! Continue encontrando combinações." : "Sem pares livres agora. Use embaralhar para continuar.");
+        }
+      }, 320);
     } else {
+      window.MAHJONG_SOUND?.error();
+      const el = document.querySelector(`.tile[data-uid="${tile.uid}"]`);
+      if (el) {
+        el.classList.add("shake");
+        setTimeout(() => el.classList.remove("shake"), 350);
+      }
       selected = tile;
       render();
       markSelected();
@@ -235,6 +255,7 @@
       setMessage("Não há pares livres neste momento. Embaralhe para continuar.");
       return;
     }
+    window.MAHJONG_SOUND?.hint();
     pair.forEach(tile => {
       const el = document.querySelector(`.tile[data-uid="${tile.uid}"]`);
       if (el) el.classList.add("hint");
@@ -243,6 +264,7 @@
   }
 
   function shuffleRemaining() {
+    window.MAHJONG_SOUND?.shuffle();
     const active = tiles.filter(tile => !tile.removed);
     const types = shuffle(active.map(tile => tile.type));
     active.forEach((tile, index) => {

@@ -16,8 +16,8 @@
   const hintBtn = document.querySelector("#hint");
   const shuffleBtn = document.querySelector("#shuffle");
 
-  const tileW = 68;
-  const tileH = 92;
+  const tileW = 72;
+  const tileH = 98;
   const gapX = 8;
   const gapY = 6;
   const layerShift = 10;
@@ -172,6 +172,7 @@
     if (!selected) {
       selected = tile;
       markSelected();
+      window.MAHJONG_SOUND?.select();
       setMessage("Peça selecionada. Encontre uma peça igual também livre.");
       return;
     }
@@ -185,20 +186,39 @@
 
     moves++;
     if (matches(selected.type, tile.type)) {
+      const firstUid = selected.uid;
+      const secondUid = tile.uid;
       selected.removed = true;
       tile.removed = true;
       removedPairs++;
       selected = null;
-      render();
-      updateStats();
-      if (tiles.every(item => item.removed)) {
-        setMessage("Pirâmide desmontada! Você venceu. Tente bater seu tempo na próxima.");
-        clearInterval(timer);
-      } else {
-        const pair = findHintPair();
-        setMessage(pair ? "Par removido! Continue subindo a pirâmide." : "Sem pares livres. Use embaralhar para destravar.");
-      }
+      window.MAHJONG_SOUND?.match();
+
+      const firstEl = document.querySelector(`.tile[data-uid="${firstUid}"]`);
+      const secondEl = document.querySelector(`.tile[data-uid="${secondUid}"]`);
+      [firstEl, secondEl].forEach(el => {
+        if (el) el.classList.add("removing");
+      });
+
+      setTimeout(() => {
+        render();
+        updateStats();
+        if (tiles.every(item => item.removed)) {
+          window.MAHJONG_SOUND?.win();
+          setMessage("Pirâmide desmontada! Você venceu. Tente bater seu tempo na próxima.");
+          clearInterval(timer);
+        } else {
+          const pair = findHintPair();
+          setMessage(pair ? "Par removido! Continue subindo a pirâmide." : "Sem pares livres. Use embaralhar para destravar.");
+        }
+      }, 320);
     } else {
+      window.MAHJONG_SOUND?.error();
+      const el = document.querySelector(`.tile[data-uid="${tile.uid}"]`);
+      if (el) {
+        el.classList.add("shake");
+        setTimeout(() => el.classList.remove("shake"), 350);
+      }
       selected = tile;
       render();
       markSelected();
@@ -237,6 +257,7 @@
       setMessage("Não há pares livres neste momento. Embaralhe para continuar.");
       return;
     }
+    window.MAHJONG_SOUND?.hint();
     pair.forEach(tile => {
       const el = document.querySelector(`.tile[data-uid="${tile.uid}"]`);
       if (el) el.classList.add("hint");
@@ -245,6 +266,7 @@
   }
 
   function shuffleRemaining() {
+    window.MAHJONG_SOUND?.shuffle();
     const active = tiles.filter(tile => !tile.removed);
     const types = shuffle(active.map(tile => tile.type));
     active.forEach((tile, index) => {

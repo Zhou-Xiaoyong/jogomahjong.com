@@ -402,17 +402,17 @@ button {
 
 #mahjong-board {
   position: relative;
-  width: 960px;
-  height: 580px;
+  width: 980px;
+  height: 600px;
   margin: 20px auto;
 }
 
 /* Traditional Chinese Mahjong tile styling.
-   Símbolo grande ocupando toda a face da peça, com tema de cor por naipe. */
+   Fundo de marfim tradicional, símbolo colorido por naipe. */
 .tile {
   position: absolute;
-  width: 68px;
-  height: 92px;
+  width: 72px;
+  height: 98px;
   border: 0;
   border-radius: 13px;
   background: linear-gradient(145deg, #fffdf5 0%, #f6eed9 42%, #efe2c7 100%);
@@ -422,7 +422,7 @@ button {
     0 14px 20px rgba(69, 40, 15, .24);
   color: var(--ink);
   cursor: pointer;
-  transition: transform .14s ease, filter .14s ease, box-shadow .14s ease;
+  transition: transform .14s ease, filter .14s ease, box-shadow .14s ease, opacity .2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -451,11 +451,33 @@ button {
 .tile.selected {
   outline: 3px solid var(--gold);
   outline-offset: 2px;
-  transform: translateY(-5px) scale(1.03);
+  transform: translateY(-5px) scale(1.05);
 }
 
 .tile.hint {
   animation: hintPulse 1s ease-in-out 3;
+}
+
+.tile.removing {
+  animation: tileRemove .35s ease-out forwards;
+}
+
+@keyframes tileRemove {
+  0%   { transform: scale(1); opacity: 1; }
+  50%  { transform: scale(1.15); opacity: .8; }
+  100% { transform: scale(0.4); opacity: 0; }
+}
+
+.tile.shake {
+  animation: tileShake .35s ease-in-out;
+}
+
+@keyframes tileShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
 }
 
 .tile:disabled {
@@ -465,7 +487,7 @@ button {
 }
 
 .tile-symbol {
-  font-size: 3rem;
+  font-size: 3.4rem;
   line-height: 1;
   font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
   display: block;
@@ -477,75 +499,35 @@ button {
   display: block;
   padding: 1px 6px;
   border-radius: 6px;
-  background: rgba(255,255,255,.7);
+  background: rgba(0, 0, 0, .06);
   font: 800 .58rem Arial, sans-serif;
-  color: var(--ink);
+  color: rgba(0, 0, 0, .55);
   text-transform: uppercase;
   letter-spacing: .03em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 60px;
+  max-width: 64px;
   line-height: 1.2;
-  box-shadow: 0 1px 3px rgba(0,0,0,.08);
 }
 
-/* Temas vibrantes por naipe - facilita reconhecimento rápido */
-.tile[data-suit="vento"] {
-  background: linear-gradient(145deg, #e8f4ff 0%, #c5d9f0 42%, #a8c4e5 100%);
-  border-color: #4a8dd8;
-}
-.tile[data-suit="vento"]::before { border-color: rgba(74, 141, 216, .4); }
-.tile[data-suit="vento"] .tile-symbol { color: #1f4f8f; }
-.tile[data-suit="vento"] .tile-name { background: rgba(74, 141, 216, .15); color: #1f4f8f; }
+/* Cores do símbolo por naipe - tradição do Mahjong chinês */
+.tile[data-suit="vento"]     .tile-symbol { color: #1f4f8f; }
+.tile[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }
+.tile[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }
+.tile[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); }
+.tile[data-suit="círculo"]   .tile-symbol { color: #0c63a8; }
+.tile[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
+.tile[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
 
-.tile[data-suit="dragão"] {
-  background: linear-gradient(145deg, #fff0f0 0%, #ffd4d4 42%, #ffa8a8 100%);
-  border-color: #c93030;
-}
-.tile[data-suit="dragão"]::before { border-color: rgba(201, 48, 48, .4); }
-.tile[data-suit="dragão"] .tile-symbol { color: var(--chinese-red); }
-.tile[data-suit="dragão"] .tile-name { background: rgba(201, 48, 48, .15); color: var(--chinese-red); }
-
-.tile[data-suit="caractere"] {
-  background: linear-gradient(145deg, #f0fff4 0%, #c8edd4 42%, #98d4b8 100%);
-  border-color: #2e8a5a;
-}
-.tile[data-suit="caractere"]::before { border-color: rgba(46, 138, 90, .4); }
-.tile[data-suit="caractere"] .tile-symbol { color: var(--brand); }
-.tile[data-suit="caractere"] .tile-name { background: rgba(46, 138, 90, .15); color: var(--brand); }
-
-.tile[data-suit="bambu"] {
-  background: linear-gradient(145deg, #e8ffeb 0%, #b8e8c4 42%, #88d498 100%);
-  border-color: #2d7a3a;
-}
-.tile[data-suit="bambu"]::before { border-color: rgba(45, 122, 58, .4); }
-.tile[data-suit="bambu"] .tile-symbol { color: var(--chinese-green); }
-.tile[data-suit="bambu"] .tile-name { background: rgba(45, 122, 58, .15); color: var(--chinese-green); }
-
-.tile[data-suit="círculo"] {
-  background: linear-gradient(145deg, #fffdf2 0%, #fff0cc 42%, #ffe099 100%);
-  border-color: #d9a028;
-}
-.tile[data-suit="círculo"]::before { border-color: rgba(217, 160, 40, .4); }
-.tile[data-suit="círculo"] .tile-symbol { color: #8a6212; }
-.tile[data-suit="círculo"] .tile-name { background: rgba(217, 160, 40, .18); color: #8a6212; }
-
-.tile[data-suit="flor"] {
-  background: linear-gradient(145deg, #fff0f7 0%, #ffd4e8 42%, #ff99c8 100%);
-  border-color: #d94f8a;
-}
-.tile[data-suit="flor"]::before { border-color: rgba(217, 79, 138, .4); }
-.tile[data-suit="flor"] .tile-symbol { color: #9c2f6b; }
-.tile[data-suit="flor"] .tile-name { background: rgba(217, 79, 138, .15); color: #9c2f6b; }
-
-.tile[data-suit="estação"] {
-  background: linear-gradient(145deg, #f5f0ff 0%, #dfd4f5 42%, #c8b8e8 100%);
-  border-color: #8b5cf6;
-}
-.tile[data-suit="estação"]::before { border-color: rgba(139, 92, 246, .4); }
-.tile[data-suit="estação"] .tile-symbol { color: #5a3f8f; }
-.tile[data-suit="estação"] .tile-name { background: rgba(139, 92, 246, .15); color: #5a3f8f; }
+/* Nome em português segue a cor do naipe para consistência */
+.tile[data-suit="vento"]     .tile-name { color: #1f4f8f; background: rgba(31, 79, 143, .1); }
+.tile[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
+.tile[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
+.tile[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .12); }
+.tile[data-suit="círculo"]   .tile-name { color: #0c63a8; background: rgba(12, 99, 168, .12); }
+.tile[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .12); }
+.tile[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .12); }
 
 .message {
   min-height: 28px;
@@ -651,64 +633,27 @@ button {
   justify-content: center;
 }
 
+/* Connect game: tile override para grid layout */
 .connect-tile {
-  width: 58px;
-  height: 76px;
-  border: 0;
-  border-radius: 10px;
-  background: linear-gradient(145deg, #fffdf5 0%, #f5ecd8 40%, #efe2c7 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.8),
-    0 4px 0 #a08050,
-    0 8px 12px rgba(69, 40, 15, .18);
-  cursor: pointer;
-  transition: transform .14s ease, box-shadow .14s ease, opacity .2s ease;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  align-items: center;
-  justify-items: center;
-  padding: 3px 2px 2px;
-  position: relative;
-  overflow: hidden;
-}
-
-.connect-tile::before {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border-radius: 6px;
-  border: 1px solid rgba(160, 128, 80, .25);
-  pointer-events: none;
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
 }
 
 .connect-tile:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.8),
-    0 6px 0 #a08050,
-    0 12px 16px rgba(69, 40, 15, .2);
+  transform: translateY(-2px) scale(1.03);
 }
 
 .connect-tile.selected {
   outline: 3px solid var(--gold);
-  transform: translateY(-2px);
+  outline-offset: 2px;
+  transform: translateY(-3px) scale(1.05);
 }
 
 .connect-tile.matched {
   opacity: 0;
   transform: scale(.6);
   pointer-events: none;
-}
-
-.connect-tile .tile-symbol {
-  font-size: 1.5rem;
-}
-
-.connect-tile .tile-name {
-  font-size: .44rem;
-  max-width: 54px;
-  margin-top: 2px;
-  padding: 0 3px;
 }
 
 .connect-line {
@@ -813,52 +758,27 @@ button {
 
 .memory-card-back .tile-name {
   font-size: .58rem;
-  max-width: 70px;
+  max-width: 64px;
   margin-top: 0;
   padding: 1px 6px;
 }
 
-.memory-card-back[data-suit="vento"] {
-  background: linear-gradient(145deg, #e8f4ff 0%, #c5d9f0 40%, #a8c4e5 100%);
-}
-.memory-card-back[data-suit="vento"] .tile-symbol { color: #1f4f8f; }
-.memory-card-back[data-suit="vento"] .tile-name { background: rgba(74, 141, 216, .15); color: #1f4f8f; }
+/* Cores por naipe na memória também */
+.memory-card-back[data-suit="vento"]     .tile-symbol { color: #1f4f8f; }
+.memory-card-back[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }
+.memory-card-back[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }
+.memory-card-back[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); }
+.memory-card-back[data-suit="círculo"]   .tile-symbol { color: #0c63a8; }
+.memory-card-back[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
+.memory-card-back[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
 
-.memory-card-back[data-suit="dragão"] {
-  background: linear-gradient(145deg, #fff0f0 0%, #ffd4d4 40%, #ffa8a8 100%);
-}
-.memory-card-back[data-suit="dragão"] .tile-symbol { color: var(--chinese-red); }
-.memory-card-back[data-suit="dragão"] .tile-name { background: rgba(201, 48, 48, .15); color: var(--chinese-red); }
-
-.memory-card-back[data-suit="caractere"] {
-  background: linear-gradient(145deg, #f0fff4 0%, #c8edd4 40%, #98d4b8 100%);
-}
-.memory-card-back[data-suit="caractere"] .tile-symbol { color: var(--brand); }
-.memory-card-back[data-suit="caractere"] .tile-name { background: rgba(46, 138, 90, .15); color: var(--brand); }
-
-.memory-card-back[data-suit="bambu"] {
-  background: linear-gradient(145deg, #e8ffeb 0%, #b8e8c4 40%, #88d498 100%);
-}
-.memory-card-back[data-suit="bambu"] .tile-symbol { color: var(--chinese-green); }
-.memory-card-back[data-suit="bambu"] .tile-name { background: rgba(45, 122, 58, .15); color: var(--chinese-green); }
-
-.memory-card-back[data-suit="círculo"] {
-  background: linear-gradient(145deg, #fffdf2 0%, #fff0cc 40%, #ffe099 100%);
-}
-.memory-card-back[data-suit="círculo"] .tile-symbol { color: #8a6212; }
-.memory-card-back[data-suit="círculo"] .tile-name { background: rgba(217, 160, 40, .18); color: #8a6212; }
-
-.memory-card-back[data-suit="flor"] {
-  background: linear-gradient(145deg, #fff0f7 0%, #ffd4e8 40%, #ff99c8 100%);
-}
-.memory-card-back[data-suit="flor"] .tile-symbol { color: #9c2f6b; }
-.memory-card-back[data-suit="flor"] .tile-name { background: rgba(217, 79, 138, .15); color: #9c2f6b; }
-
-.memory-card-back[data-suit="estação"] {
-  background: linear-gradient(145deg, #f5f0ff 0%, #dfd4f5 40%, #c8b8e8 100%);
-}
-.memory-card-back[data-suit="estação"] .tile-symbol { color: #5a3f8f; }
-.memory-card-back[data-suit="estação"] .tile-name { background: rgba(139, 92, 246, .15); color: #5a3f8f; }
+.memory-card-back[data-suit="vento"]     .tile-name { color: #1f4f8f; background: rgba(31, 79, 143, .1); }
+.memory-card-back[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
+.memory-card-back[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
+.memory-card-back[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .12); }
+.memory-card-back[data-suit="círculo"]   .tile-name { color: #0c63a8; background: rgba(12, 99, 168, .12); }
+.memory-card-back[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .12); }
+.memory-card-back[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .12); }
 
 .memory-card.matched .memory-card-back {
   background: linear-gradient(145deg, #d9eadf 0%, #b8d4c4 100%) !important;
@@ -962,8 +882,8 @@ button {
 /* ========== Pyramid layout board ========== */
 #pyramid-board {
   position: relative;
-  width: 780px;
-  height: 500px;
+  width: 820px;
+  height: 520px;
   margin: 20px auto;
 }
 

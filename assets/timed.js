@@ -18,8 +18,8 @@
   const hintBtn = document.querySelector("#hint");
   const shuffleBtn = document.querySelector("#shuffle");
 
-  const tileW = 68;
-  const tileH = 92;
+  const tileW = 72;
+  const tileH = 98;
   const gapX = 10;
   const gapY = 8;
   const offsetX = 24;
@@ -133,8 +133,10 @@
       bannerEl.classList.remove("urgent");
     }
     if (won) {
+      window.MAHJONG_SOUND?.win();
       setMessage(` Vitória! Você limpou o tabuleiro com ${timeLeft}s sobrando. Mandou bem!`);
     } else {
+      window.MAHJONG_SOUND?.error();
       setMessage(`Tempo esgotado! Você removeu ${removedPairs} de ${Math.floor(layout.length / 2)} pares. Tente de novo!`);
       document.querySelectorAll(".tile").forEach(el => { el.disabled = true; });
     }
@@ -193,6 +195,7 @@
     if (!selected) {
       selected = tile;
       markSelected();
+      window.MAHJONG_SOUND?.select();
       setMessage("Rápido! Encontre a peça igual que também esteja livre.");
       return;
     }
@@ -205,22 +208,38 @@
 
     moves++;
     if (matches(selected.type, tile.type)) {
-      // Bônus de tempo por acerto consecutivo.
       timeLeft = Math.min(TOTAL_TIME, timeLeft + 2);
+      const firstUid = selected.uid;
+      const secondUid = tile.uid;
       selected.removed = true;
       tile.removed = true;
       removedPairs++;
       selected = null;
-      render();
-      updateStats();
-      if (tiles.every(item => item.removed)) {
-        endGame(true);
-      } else {
-        setMessage("Par removido! +2 segundos. Continue rápido!");
-      }
+      window.MAHJONG_SOUND?.match();
+
+      const firstEl = document.querySelector(`.tile[data-uid="${firstUid}"]`);
+      const secondEl = document.querySelector(`.tile[data-uid="${secondUid}"]`);
+      [firstEl, secondEl].forEach(el => {
+        if (el) el.classList.add("removing");
+      });
+
+      setTimeout(() => {
+        render();
+        updateStats();
+        if (tiles.every(item => item.removed)) {
+          endGame(true);
+        } else {
+          setMessage("Par removido! +2 segundos. Continue rápido!");
+        }
+      }, 320);
     } else {
-      // Penalidade leve por erro.
       timeLeft = Math.max(0, timeLeft - 1);
+      window.MAHJONG_SOUND?.error();
+      const el = document.querySelector(`.tile[data-uid="${tile.uid}"]`);
+      if (el) {
+        el.classList.add("shake");
+        setTimeout(() => el.classList.remove("shake"), 350);
+      }
       selected = tile;
       render();
       markSelected();
@@ -255,7 +274,6 @@
   function showHint() {
     if (gameOver) return;
     clearHints();
-    // No modo cronometrado, a dica custa 3 segundos.
     timeLeft = Math.max(0, timeLeft - 3);
     updateStats();
     const pair = findHintPair();
@@ -263,6 +281,7 @@
       setMessage("Não há pares livres. Use embaralhar para continuar (-3s pela dica).");
       return;
     }
+    window.MAHJONG_SOUND?.hint();
     pair.forEach(tile => {
       const el = document.querySelector(`.tile[data-uid="${tile.uid}"]`);
       if (el) el.classList.add("hint");
@@ -272,6 +291,7 @@
 
   function shuffleRemaining() {
     if (gameOver) return;
+    window.MAHJONG_SOUND?.shuffle();
     const active = tiles.filter(tile => !tile.removed);
     const types = shuffle(active.map(tile => tile.type));
     active.forEach((tile, index) => { tile.type = types[index]; });
