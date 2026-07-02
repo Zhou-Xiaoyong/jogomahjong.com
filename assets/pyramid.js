@@ -16,8 +16,8 @@
   const hintBtn = document.querySelector("#hint");
   const shuffleBtn = document.querySelector("#shuffle");
 
-  const tileW = 62;
-  const tileH = 84;
+  const tileW = 68;
+  const tileH = 92;
   const gapX = 8;
   const gapY = 6;
   const layerShift = 10;

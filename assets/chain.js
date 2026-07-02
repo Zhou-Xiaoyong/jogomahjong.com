@@ -18,8 +18,8 @@
 
   const ROWS = 8;
   const COLS = 10;
-  const tileW = 58;
-  const tileH = 76;
+  const tileW = 68;
+  const tileH = 92;
   const gap = 6;
 
   // Janela de tempo (em ms) para manter a cadeia viva entre um par e outro.
