@@ -18,29 +18,46 @@
   const offsetY = 34;
   const layerShift = 8;
 
+  // Traditional Chinese Mahjong tiles (Unicode U+1F000 - U+1F021)
+  // Using authentic Mahjong tile characters for an immersive experience
   const tileTypes = [
-    { id: "bambu1", symbol: "一", name: "Bambu" },
-    { id: "bambu2", symbol: "二", name: "Bambu" },
-    { id: "bambu3", symbol: "三", name: "Bambu" },
-    { id: "bambu4", symbol: "四", name: "Bambu" },
-    { id: "circulo1", symbol: "●", name: "Círculo" },
-    { id: "circulo2", symbol: "◉", name: "Círculo" },
-    { id: "circulo3", symbol: "◎", name: "Círculo" },
-    { id: "dragao", symbol: "龍", name: "Dragão" },
-    { id: "vento", symbol: "風", name: "Vento" },
-    { id: "flor", symbol: "✿", name: "Flor" },
-    { id: "sol", symbol: "☀", name: "Sol" },
-    { id: "lua", symbol: "☾", name: "Lua" },
-    { id: "estrela", symbol: "★", name: "Estrela" },
-    { id: "chuva", symbol: "☂", name: "Chuva" },
-    { id: "folha", symbol: "♣", name: "Folha" },
-    { id: "mar", symbol: "≈", name: "Mar" },
-    { id: "montanha", symbol: "山", name: "Monte" },
-    { id: "rio", symbol: "川", name: "Rio" }
+    // Winds (4)
+    { id: "wind_east", symbol: "🀀", name: "Leste", suit: "wind" },
+    { id: "wind_south", symbol: "🀁", name: "Sul", suit: "wind" },
+    { id: "wind_west", symbol: "🀂", name: "Oeste", suit: "wind" },
+    { id: "wind_north", symbol: "🀃", name: "Norte", suit: "wind" },
+    // Dragons (3)
+    { id: "dragon_red", symbol: "🀄", name: "Dragão Verm.", suit: "dragon" },
+    { id: "dragon_green", symbol: "🀅", name: "Dragão Verde", suit: "dragon" },
+    { id: "dragon_white", symbol: "🀆", name: "Dragão Branco", suit: "dragon" },
+    // Characters / Wan (9)
+    { id: "char1", symbol: "🀇", name: "1 Caractere", suit: "character" },
+    { id: "char2", symbol: "🀈", name: "2 Caracteres", suit: "character" },
+    { id: "char3", symbol: "🀉", name: "3 Caracteres", suit: "character" },
+    { id: "char4", symbol: "🀊", name: "4 Caracteres", suit: "character" },
+    { id: "char5", symbol: "🀋", name: "5 Caracteres", suit: "character" },
+    { id: "char6", symbol: "🀌", name: "6 Caracteres", suit: "character" },
+    { id: "char7", symbol: "🀍", name: "7 Caracteres", suit: "character" },
+    { id: "char8", symbol: "🀎", name: "8 Caracteres", suit: "character" },
+    { id: "char9", symbol: "🀏", name: "9 Caracteres", suit: "character" },
+    // Bamboo / Sou (9)
+    { id: "bamboo1", symbol: "🀐", name: "1 Bambu", suit: "bamboo" },
+    { id: "bamboo2", symbol: "🀑", name: "2 Bambus", suit: "bamboo" },
+    { id: "bamboo3", symbol: "🀒", name: "3 Bambus", suit: "bamboo" },
+    { id: "bamboo4", symbol: "🀓", name: "4 Bambus", suit: "bamboo" },
+    { id: "bamboo5", symbol: "🀔", name: "5 Bambus", suit: "bamboo" },
+    { id: "bamboo6", symbol: "🀕", name: "6 Bambus", suit: "bamboo" },
+    { id: "bamboo7", symbol: "🀖", name: "7 Bambus", suit: "bamboo" },
+    { id: "bamboo8", symbol: "🀗", name: "8 Bambus", suit: "bamboo" },
+    { id: "bamboo9", symbol: "🀘", name: "9 Bambus", suit: "bamboo" },
+    // Circles / Pin (3 selected for 28 total types)
+    { id: "circle1", symbol: "🀙", name: "1 Círculo", suit: "circle" },
+    { id: "circle5", symbol: "🀝", name: "5 Círculos", suit: "circle" },
+    { id: "circle9", symbol: "🀡", name: "9 Círculos", suit: "circle" }
   ];
 
   const layout = [
-    // Camada base: formato inspirado na clássica "tartaruga", mas otimizado para navegador.
+    // Camada base: formato inspirado na clássica "tartaruga"
     ...rect(4, 0, 4, 1, 0),
     ...rect(2, 1, 8, 1, 0),
     ...rect(0, 2, 12, 4, 0),
@@ -83,6 +100,7 @@
   function buildDeck(count) {
     const pairsNeeded = Math.floor(count / 2);
     const deck = [];
+    // Each tile type appears 4 times (2 pairs) for authentic feel
     for (let i = 0; i < pairsNeeded; i++) {
       const type = tileTypes[i % tileTypes.length];
       deck.push(type, type);
@@ -110,7 +128,7 @@
 
     render();
     updateStats();
-    setMessage("Escolha duas peças livres com o mesmo símbolo para limpar o tabuleiro.");
+    setMessage("Combine duas peças iguais livres para remover. Boa sorte!");
     timer = setInterval(updateTime, 1000);
   }
 
@@ -162,7 +180,7 @@
     if (!selected) {
       selected = tile;
       markSelected();
-      setMessage("Boa escolha. Agora encontre a peça igual que também esteja livre.");
+      setMessage("Agora encontre a peça igual que também esteja livre.");
       return;
     }
 
@@ -182,18 +200,18 @@
       render();
       updateStats();
       if (tiles.every(item => item.removed)) {
-        setMessage("Parabéns! Você limpou o tabuleiro. Que tal tentar vencer com menos movimentos?");
+        setMessage("Parabéns! Você limpou o tabuleiro! Que tal tentar vencer em menos tempo?");
         clearInterval(timer);
       } else {
         const pair = findHintPair();
-        setMessage(pair ? "Par removido. O tabuleiro abriu novas possibilidades." : "Sem pares livres agora. Use embaralhar para continuar.");
+        setMessage(pair ? "Par removido! Continue encontrando combinações." : "Sem pares livres agora. Use embaralhar para continuar.");
       }
     } else {
       selected = tile;
       render();
       markSelected();
       updateStats();
-      setMessage("Essas peças não combinam. A nova peça ficou selecionada.");
+      setMessage("Essas peças não combinam. Tente outra.");
     }
   }
 
@@ -224,7 +242,7 @@
     clearHints();
     const pair = findHintPair();
     if (!pair) {
-      setMessage("Não há pares livres neste momento. Embaralhe as peças restantes para continuar.");
+      setMessage("Não há pares livres neste momento. Embaralhe para continuar.");
       return;
     }
     pair.forEach(tile => {
@@ -243,7 +261,7 @@
     selected = null;
     render();
     updateStats();
-    setMessage("Peças restantes embaralhadas. Use essa ajuda quando o tabuleiro travar.");
+    setMessage("Peças restantes embaralhadas. Boa sorte!");
   }
 
   function updateStats() {

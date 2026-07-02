@@ -1,0 +1,363 @@
+(function () {
+  const board = document.querySelector("#connect-board");
+  if (!board) return;
+
+  const pairsEl = document.querySelector("#pairs");
+  const timeEl = document.querySelector("#time");
+  const messageEl = document.querySelector("#game-message");
+  const newGameBtn = document.querySelector("#new-game");
+  const hintBtn = document.querySelector("#hint");
+
+  const ROWS = 8;
+  const COLS = 10;
+  const tileW = 52;
+  const tileH = 66;
+  const gap = 6;
+
+  const tileTypes = [
+    { id: "wind_east", symbol: "🀀", name: "Leste" },
+    { id: "wind_south", symbol: "🀁", name: "Sul" },
+    { id: "wind_west", symbol: "🀂", name: "Oeste" },
+    { id: "wind_north", symbol: "🀃", name: "Norte" },
+    { id: "dragon_red", symbol: "🀄", name: "Dragão Verm." },
+    { id: "dragon_green", symbol: "🀅", name: "Dragão Verde" },
+    { id: "dragon_white", symbol: "🀆", name: "Dragão Branco" },
+    { id: "char1", symbol: "🀇", name: "1 Caractere" },
+    { id: "char2", symbol: "🀈", name: "2 Caracteres" },
+    { id: "char3", symbol: "🀉", name: "3 Caracteres" },
+    { id: "char4", symbol: "🀊", name: "4 Caracteres" },
+    { id: "char5", symbol: "🀋", name: "5 Caracteres" },
+    { id: "char6", symbol: "🀌", name: "6 Caracteres" },
+    { id: "char7", symbol: "🀍", name: "7 Caracteres" },
+    { id: "char8", symbol: "🀎", name: "8 Caracteres" },
+    { id: "char9", symbol: "🀏", name: "9 Caracteres" },
+    { id: "bamboo1", symbol: "🀐", name: "1 Bambu" },
+    { id: "bamboo2", symbol: "🀑", name: "2 Bambus" },
+    { id: "bamboo3", symbol: "🀒", name: "3 Bambus" },
+    { id: "bamboo4", symbol: "🀓", name: "4 Bambus" },
+    { id: "bamboo5", symbol: "🀔", name: "5 Bambus" },
+    { id: "bamboo6", symbol: "🀕", name: "6 Bambus" },
+    { id: "bamboo7", symbol: "🀖", name: "7 Bambus" },
+    { id: "bamboo8", symbol: "🀗", name: "8 Bambus" },
+    { id: "bamboo9", symbol: "🀘", name: "9 Bambus" },
+    { id: "circle1", symbol: "🀙", name: "1 Círculo" },
+    { id: "circle5", symbol: "🀝", name: "5 Círculos" },
+    { id: "circle9", symbol: "🀡", name: "9 Círculos" },
+    { id: "flower1", symbol: "🀢", name: "Ameixa" },
+    { id: "flower2", symbol: "🀣", name: "Orquídea" },
+    { id: "flower3", symbol: "🀤", name: "Bambu" },
+    { id: "flower4", symbol: "🀥", name: "Crisântemo" },
+    { id: "season1", symbol: "🀦", name: "Primavera" },
+    { id: "season2", symbol: "🀧", name: "Verão" },
+    { id: "season3", symbol: "🀨", name: "Outono" },
+    { id: "season4", symbol: "🀩", name: "Inverno" }
+  ];
+
+  let grid = [];
+  let selected = null;
+  let removedPairs = 0;
+  let startedAt = null;
+  let timer = null;
+  let totalPairs = 0;
+  let lineEl = null;
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  function buildDeck() {
+    const totalCells = ROWS * COLS;
+    const pairsNeeded = totalCells / 2;
+    totalPairs = pairsNeeded;
+    const deck = [];
+    for (let i = 0; i < pairsNeeded; i++) {
+      const type = tileTypes[i % tileTypes.length];
+      deck.push(type, type);
+    }
+    return shuffle(deck);
+  }
+
+  function startGame() {
+    clearInterval(timer);
+    if (lineEl) { lineEl.remove(); lineEl = null; }
+    board.innerHTML = "";
+    selected = null;
+    removedPairs = 0;
+    startedAt = Date.now();
+    const deck = buildDeck();
+
+    grid = [];
+    for (let r = 0; r < ROWS; r++) {
+      const row = [];
+      for (let c = 0; c < COLS; c++) {
+        row.push({
+          r, c,
+          type: deck[r * COLS + c],
+          removed: false
+        });
+      }
+      grid.push(row);
+    }
+
+    renderGrid();
+    updateStats();
+    setMessage("Clique em duas peças iguais que possam ser conectadas por uma linha com até 2 cantos.");
+    timer = setInterval(updateTime, 1000);
+  }
+
+  function renderGrid() {
+    board.innerHTML = "";
+    const gridEl = document.createElement("div");
+    gridEl.className = "connect-grid";
+    gridEl.style.gridTemplateColumns = `repeat(${COLS}, ${tileW}px)`;
+    gridEl.style.gap = `${gap}px`;
+
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const cell = grid[r][c];
+        const btn = document.createElement("button");
+        btn.className = "connect-tile";
+        btn.type = "button";
+        btn.dataset.r = r;
+        btn.dataset.c = c;
+        btn.style.width = `${tileW}px`;
+        btn.style.height = `${tileH}px`;
+        if (cell.removed) {
+          btn.style.visibility = "hidden";
+          btn.disabled = true;
+        } else {
+          btn.innerHTML = `<span class="tile-symbol">${cell.type.symbol}</span>`;
+          btn.addEventListener("click", () => selectTile(r, c));
+        }
+        gridEl.appendChild(btn);
+      }
+    }
+    board.appendChild(gridEl);
+  }
+
+  function getTileEl(r, c) {
+    return document.querySelector(`.connect-tile[data-r="${r}"][data-c="${c}"]`);
+  }
+
+  function selectTile(r, c) {
+    const cell = grid[r][c];
+    if (cell.removed) return;
+    clearSelection();
+    clearLine();
+
+    if (!selected) {
+      selected = cell;
+      const el = getTileEl(r, c);
+      if (el) el.classList.add("selected");
+      setMessage("Agora clique na peça igual que possa ser conectada.");
+      return;
+    }
+
+    if (selected.r === r && selected.c === c) {
+      selected = null;
+      setMessage("Seleção removida. Escolha outra peça.");
+      return;
+    }
+
+    if (selected.type.id !== cell.type.id) {
+      selected = cell;
+      const el = getTileEl(r, c);
+      if (el) el.classList.add("selected");
+      setMessage("Essas peças não são iguais. Tente outra.");
+      return;
+    }
+
+    const path = findPath(selected.r, selected.c, r, c);
+    if (!path) {
+      selected = cell;
+      const el = getTileEl(r, c);
+      if (el) el.classList.add("selected");
+      setMessage("Não é possível conectar essas peças. Tente outra.");
+      return;
+    }
+
+    // Match found!
+    drawLine(path);
+    selected.removed = true;
+    cell.removed = true;
+    removedPairs++;
+    selected = null;
+
+    setTimeout(() => {
+      clearLine();
+      renderGrid();
+      updateStats();
+      if (removedPairs >= totalPairs) {
+        setMessage("Parabéns! Você limpou o tabuleiro!");
+        clearInterval(timer);
+      } else {
+        const pair = findHintPair();
+        setMessage(pair ? "Par conectado! Continue." : "Nenhum par disponível. Embaralhando...");
+        if (!pair) setTimeout(startGame, 1500);
+      }
+    }, 350);
+  }
+
+  function clearSelection() {
+    document.querySelectorAll(".connect-tile.selected").forEach(el => el.classList.remove("selected"));
+  }
+
+  function clearLine() {
+    if (lineEl) { lineEl.remove(); lineEl = null; }
+  }
+
+  function drawLine(path) {
+    clearLine();
+    if (path.length < 2) return;
+    const gridEl = document.querySelector(".connect-grid");
+    if (!gridEl) return;
+    const gridRect = gridEl.getBoundingClientRect();
+    const boardRect = board.getBoundingClientRect();
+
+    for (let i = 0; i < path.length - 1; i++) {
+      const a = path[i];
+      const b = path[i + 1];
+      const elA = getTileEl(a.r, a.c);
+      const elB = getTileEl(b.r, b.c);
+      if (!elA || !elB) continue;
+      const rectA = elA.getBoundingClientRect();
+      const rectB = elB.getBoundingClientRect();
+      const x1 = rectA.left + rectA.width / 2 - boardRect.left;
+      const y1 = rectA.top + rectA.height / 2 - boardRect.top;
+      const x2 = rectB.left + rectB.width / 2 - boardRect.left;
+      const y2 = rectB.top + rectB.height / 2 - boardRect.top;
+      const line = document.createElement("div");
+      line.className = "connect-line show";
+      const dx = x2 - x1;
+      const dy = y2 - y1;
+      const length = Math.sqrt(dx * dx + dy * dy);
+      const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+      line.style.width = `${length}px`;
+      line.style.height = "3px";
+      line.style.left = `${x1}px`;
+      line.style.top = `${y1 - 1}px`;
+      line.style.transform = `rotate(${angle}deg)`;
+      line.style.transformOrigin = "0 50%";
+      board.appendChild(line);
+      if (!lineEl) lineEl = document.createElement("div");
+    }
+  }
+
+  // BFS pathfinding with at most 2 turns
+  function findPath(r1, c1, r2, c2) {
+    if (r1 === r2 && c1 === c2) return null;
+    if (grid[r2][c2].removed) return null;
+
+    const directions = [
+      { dr: -1, dc: 0 }, { dr: 1, dc: 0 },
+      { dr: 0, dc: -1 }, { dr: 0, dc: 1 }
+    ];
+
+    // State: [r, c, dirIndex, turns, path]
+    // dirIndex: -1 = start (no direction yet), 0=up, 1=down, 2=left, 3=right
+    const queue = [];
+    const visited = new Set();
+
+    for (let d = 0; d < 4; d++) {
+      const nr = r1 + directions[d].dr;
+      const nc = c1 + directions[d].dc;
+      if (isValid(nr, nc)) {
+        queue.push({ r: nr, c: nc, dir: d, turns: 0, path: [{ r: r1, c: c1 }, { r: nr, c: nc }] });
+        visited.add(`${nr},${nc},${d},0`);
+      }
+    }
+
+    let head = 0;
+    while (head < queue.length) {
+      const cur = queue[head++];
+      if (cur.r === r2 && cur.c === c2) {
+        return cur.path;
+      }
+      if (cur.turns >= 2) continue;
+
+      for (let d = 0; d < 4; d++) {
+        const nr = cur.r + directions[d].dr;
+        const nc = cur.c + directions[d].dc;
+        const newTurns = cur.dir === d ? cur.turns : cur.turns + 1;
+        if (newTurns > 2) continue;
+        const key = `${nr},${nc},${d},${newTurns}`;
+        if (visited.has(key)) continue;
+        if (!isValid(nr, nc)) continue;
+        visited.add(key);
+        queue.push({
+          r: nr, c: nc, dir: d, turns: newTurns,
+          path: [...cur.path, { r: nr, c: nc }]
+        });
+      }
+    }
+    return null;
+  }
+
+  function isValid(r, c) {
+    if (r < 0 || r >= ROWS || c < 0 || c >= COLS) return false;
+    if (grid[r][c].removed) return false;
+    return true;
+  }
+
+  function findHintPair() {
+    const remaining = [];
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        if (!grid[r][c].removed) remaining.push(grid[r][c]);
+      }
+    }
+    for (let i = 0; i < remaining.length; i++) {
+      for (let j = i + 1; j < remaining.length; j++) {
+        if (remaining[i].type.id === remaining[j].type.id) {
+          const path = findPath(remaining[i].r, remaining[i].c, remaining[j].r, remaining[j].c);
+          if (path) return [remaining[i], remaining[j]];
+        }
+      }
+    }
+    return null;
+  }
+
+  function showHint() {
+    clearSelection();
+    clearLine();
+    const pair = findHintPair();
+    if (!pair) {
+      setMessage("Não há pares conectáveis. Embaralhando em breve...");
+      return;
+    }
+    const el1 = getTileEl(pair[0].r, pair[0].c);
+    const el2 = getTileEl(pair[1].r, pair[1].c);
+    if (el1) el1.classList.add("selected");
+    if (el2) el2.classList.add("selected");
+    setMessage("Dica: essas duas peças podem ser conectadas.");
+  }
+
+  function updateStats() {
+    pairsEl.textContent = `${removedPairs}/${totalPairs}`;
+    updateTime();
+  }
+
+  function updateTime() {
+    if (!startedAt) {
+      timeEl.textContent = "00:00";
+      return;
+    }
+    const total = Math.floor((Date.now() - startedAt) / 1000);
+    const minutes = String(Math.floor(total / 60)).padStart(2, "0");
+    const seconds = String(total % 60).padStart(2, "0");
+    timeEl.textContent = `${minutes}:${seconds}`;
+  }
+
+  function setMessage(text) {
+    messageEl.textContent = text;
+  }
+
+  newGameBtn?.addEventListener("click", startGame);
+  hintBtn?.addEventListener("click", showHint);
+
+  startGame();
+})();
