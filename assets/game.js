@@ -15,13 +15,13 @@
   const hintBtn = document.querySelector("#hint");
   const shuffleBtn = document.querySelector("#shuffle");
 
-  const tileW = 108;
-  const tileH = 147;
-  const gapX = 12;
-  const gapY = 10;
-  const offsetX = 30;
-  const offsetY = 40;
-  const layerShift = 12;
+  const tileW = 72;
+  const tileH = 98;
+  const gapX = 10;
+  const gapY = 8;
+  const offsetX = 24;
+  const offsetY = 30;
+  const layerShift = 8;
   // Fator de sobreposição vertical que cria o efeito de peças "inclinadas"
   // característico do Mahjong Solitário tradicional.
   const rowFactor = 0.46;

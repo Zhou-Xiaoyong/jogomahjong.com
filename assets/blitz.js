@@ -15,8 +15,8 @@
   const newGameBtn = document.querySelector("#new-game");
   const hintBtn = document.querySelector("#hint");
 
-  const tileW = 108;
-  const tileH = 147;
+  const tileW = 72;
+  const tileH = 98;
   const gapX = 10;
   const gapY = 8;
   const layerShift = 10;

@@ -16,11 +16,11 @@
   const hintBtn = document.querySelector("#hint");
   const shuffleBtn = document.querySelector("#shuffle");
 
-  const tileW = 108;
-  const tileH = 147;
+  const tileW = 72;
+  const tileH = 98;
   const gapX = 8;
   const gapY = 6;
-  const layerShift = 12;
+  const layerShift = 10;
   const rowFactor = 0.5;
 
   const T = window.MAHJONG_TILES;

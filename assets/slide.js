@@ -71,7 +71,7 @@
       el.dataset.suit = tile.type.suit;
       el.dataset.index = index;
       el.style.position = "absolute";
-      el.style.left = (index * 118) + "px";
+      el.style.left = (index * 80) + "px";
       el.style.transition = immediate ? "none" : "left .25s ease-out";
       el.innerHTML = `
         <div class="tile-face">
@@ -81,7 +81,7 @@
       `;
       trackEl.appendChild(el);
     });
-    trackEl.style.width = (MAX_SLOTS * 118 + 50) + "px";
+    trackEl.style.width = (MAX_SLOTS * 80 + 50) + "px";
   }
 
   function slide(direction) {

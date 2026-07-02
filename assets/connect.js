@@ -13,11 +13,11 @@
   const newGameBtn = document.querySelector("#new-game");
   const hintBtn = document.querySelector("#hint");
 
-  const ROWS = 6;
-  const COLS = 8;
-  const tileW = 108;
-  const tileH = 147;
-  const gap = 8;
+  const ROWS = 8;
+  const COLS = 10;
+  const tileW = 72;
+  const tileH = 98;
+  const gap = 6;
 
   const T = window.MAHJONG_TILES;
   const tileTypes = [
