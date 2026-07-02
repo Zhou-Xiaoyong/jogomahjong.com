@@ -490,6 +490,8 @@ button {
   font-size: 4rem;
   line-height: 1;
   font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
+  font-weight: normal;
+  font-variation-settings: 'wght' 400;
   display: block;
   filter: drop-shadow(0 1px 0 rgba(255,255,255,.5));
   margin-bottom: 2px;
@@ -625,7 +627,35 @@ button {
 .footer a { color: #ffe2a2; }
 .footer p { color: rgba(255, 246, 228, .76); margin: 8px 0 0; }
 
-/* ========== Connect game styles ========== */
+/* ========== Game page compact layout ========== */
+.game-page .section:first-of-type {
+  padding: 24px 0 32px;
+}
+
+.game-page .eyebrow {
+  display: none;
+}
+
+.game-page h1 {
+  font-size: 1.5rem;
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+.game-page .lead {
+  font-size: .95rem;
+  margin: 0 0 16px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.game-page .ad-slot {
+  display: none;
+}
+
+.game-page .article {
+  margin-top: 0;
+}
 .connect-board {
   position: relative;
   margin: 20px auto;
