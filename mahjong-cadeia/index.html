@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mahjong Cadeia Grátis Online - Conecte Pares em Sequência</title>
+  <meta name="description" content="Jogue Mahjong Cadeia grátis em português. Conecte pares iguais em sequência rápida para formar combo e multiplicar pontos. Adrenalina e estratégia.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://jogomahjong.com/mahjong-cadeia/">
+  <link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-cadeia/">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Mahjong Cadeia Grátis Online">
+  <meta property="og:description" content="Conecte pares em sequência rápida, monte combos e bata seu recorde de pontos.">
+  <meta property="og:url" content="https://jogomahjong.com/mahjong-cadeia/">
+  <meta name="theme-color" content="#0f6b58">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Mahjong Cadeia Online Grátis",
+    "alternateName": ["Mahjong Combo", "Mahjong Cadeia"],
+    "url": "https://jogomahjong.com/mahjong-cadeia/",
+    "description": "Modo de Mahjong Connect com sistema de combos (cadeia), em português do Brasil, que premia sequências rápidas de pares.",
+    "genre": ["Puzzle", "Mahjong", "Combo"],
+    "gamePlatform": "Web browser",
+    "operatingSystem": "Web",
+    "inLanguage": "pt-BR",
+    "isAccessibleForFree": true,
+    "applicationCategory": "Game"
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="logo" href="/" aria-label="Jogo Mahjong">
+        <span class="logo-mark">麻</span>
+        <span>Jogo Mahjong</span>
+      </a>
+      <nav class="nav-links" aria-label="Menu principal">
+        <a href="/jogar-mahjong/">Solitário</a>
+        <a href="/mahjong-connect/">Connect</a>
+        <a href="/mahjong-cadeia/">Cadeia</a>
+        <a href="/memoria-mahjong/">Memória</a>
+        <a href="/como-jogar-mahjong/">Como jogar</a>
+        <a href="/politica-de-privacidade/">Privacidade</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap">
+        <span class="eyebrow">Modo cadeia</span>
+        <h1>Mahjong Cadeia: conecte rápido e faça combos</h1>
+        <p class="lead">Cada par conectado dentro de 4,5 segundos estende a cadeia e multiplica seus pontos. Errou ou demorou demais? A cadeia zera. É o equilíbrio entre rapidez, memória visual e a coragem de arriscar o próximo par antes do tempo acabar.</p>
+
+        <div class="ad-slot" aria-label="Espaço para anúncio superior">
+          Espaço reservado para anúncio responsivo. Recomendado: ativar somente após aprovação do AdSense.
+        </div>
+
+        <div class="chain-progress">
+          <span>Pontuação: <strong id="score">0</strong></span>
+          <span class="chain-combo" id="combo">Cadeia x0</span>
+          <span>Tempo: <strong id="time">00:00</strong></span>
+        </div>
+
+        <section class="game-shell" aria-labelledby="game-title">
+          <div class="game-toolbar">
+            <div>
+              <h2 id="game-title" style="font-size:1.45rem;margin:0;">Mahjong Cadeia</h2>
+              <p style="margin:4px 0 0;color:var(--muted);font-family:Arial,sans-serif;">Conecte pares em sequência para somar combos. Erros quebram a cadeia.</p>
+            </div>
+            <div class="game-stats" aria-label="Estatísticas do jogo">
+              <span class="stat">Pares: <strong id="pairs">0/0</strong></span>
+            </div>
+            <div class="game-actions">
+              <button class="btn secondary" id="hint" type="button">Dica (zera cadeia)</button>
+              <button class="btn" id="new-game" type="button">Novo jogo</button>
+            </div>
+          </div>
+          <div class="board-wrap" aria-label="Tabuleiro de Mahjong Cadeia">
+            <div id="connect-board"></div>
+          </div>
+          <p class="message" id="game-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <div class="ad-slot" aria-label="Espaço para anúncio inferior">
+          Espaço reservado para anúncio abaixo do jogo. Evite anúncios que cubram o tabuleiro.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap content-grid">
+        <article class="article">
+          <h2>Como funciona o sistema de cadeia</h2>
+          <p>O <strong>Mahjong Cadeia</strong> é um modo de Connect com sabor competitivo. A mecânica básica é a mesma do Connect: conecte duas peças iguais por um caminho livre, com no máximo duas curvas. A diferença é o <strong>combo de cadeia</strong>.</p>
+          <h3>Regras de pontuação</h3>
+          <ul>
+            <li><strong>Par conectado:</strong> +10 pontos multiplicado pelo tamanho da cadeia atual.</li>
+            <li><strong>Cadeia x2:</strong> +20 pontos. <strong>x3:</strong> +30. <strong>x5:</strong> +50 por par.</li>
+            <li><strong>Janela de cadeia:</strong> 4,5 segundos entre um par e o próximo. Demorou mais? A cadeia zera.</li>
+            <li><strong>Erro:</strong> clicar em peças diferentes ou em par sem conexão possível zera a cadeia.</li>
+            <li><strong>Dica:</strong> revela um par válido, mas também reinicia a cadeia como penalidade.</li>
+          </ul>
+          <h3>Estratégia para brasileiros</h3>
+          <p>Quem gosta de jogos de ritmo intenso — como os arcades clássicos de fliperama que marcaram gerações no Brasil — vai se identificar com a tensão do cronômetro de combo. A dica é não pensar demais: memorize os símbolos chineses mais comuns (萬, 筒, 条, 風, 龍) e ataque primeiro os pares óbvios das bordas, deixando o centro para quando a cadeia já estiver quente. Quando a cadeia chega em <strong>x3 ou mais</strong>, o indicador fica destacado — é o sinal para acelerar.</p>
+          <h3>Símbolos tradicionais chineses</h3>
+          <p>Todas as peças usam os caracteres e desenhos tradicionais do Mahjong chinês: <strong>Wan</strong> (萬, caracteres de 1 a 9), <strong>Sou</strong> (条, bambus), <strong>Pin</strong> (筒, círculos), além dos ventos (東南西北) e dragões (中發白). Abaixo de cada símbolo aparece o nome em português, para você aprender enquanto joga.</p>
+          <a class="btn" href="/como-jogar-mahjong/">Aprenda todos os símbolos</a>
+        </article>
+        <aside class="sidebox">
+          <h3>Outros jogos</h3>
+          <ul>
+            <li><a href="/jogar-mahjong/">Mahjong Solitário clássico</a></li>
+            <li><a href="/mahjong-connect/">Mahjong Connect</a></li>
+            <li><a href="/mahjong-cronometrado/">Mahjong Cronometrado</a></li>
+            <li><a href="/mahjong-relaxante/">Mahjong Relaxante</a></li>
+            <li><a href="/mahjong-piramide/">Mahjong Pirâmide</a></li>
+            <li><a href="/memoria-mahjong/">Memória Mahjong</a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="logo" href="/"><span class="logo-mark">麻</span><span>Jogo Mahjong</span></a>
+        <p>Jogue Mahjong online grátis em português do Brasil.</p>
+      </div>
+      <nav class="nav-links" aria-label="Links do rodapé">
+        <a href="/">Início</a>
+        <a href="/cultura-mahjong/">Cultura</a>
+        <a href="/como-jogar-mahjong/">Como jogar</a>
+        <a href="/politica-de-privacidade/">Privacidade</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/assets/tiles-data.js"></script>
+  <script src="/assets/chain.js"></script>
+</body>
+</html>

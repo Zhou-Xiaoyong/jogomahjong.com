@@ -1,3 +1,8 @@
+/*
+ * Memória Mahjong — jogo da memória com peças tradicionais chinesas.
+ * Anotações em português do Brasil no verso de cada peça.
+ * Dependência: /assets/tiles-data.js (window.MAHJONG_TILES)
+ */
 (function () {
   const board = document.querySelector("#memory-board");
   if (!board) return;
@@ -8,27 +13,18 @@
   const messageEl = document.querySelector("#game-message");
   const newGameBtn = document.querySelector("#new-game");
 
-  const PAIR_COUNT = 18; // 36 cards total = 6x6 grid
+  const PAIR_COUNT = 18; // 36 cartas = grade 6x6
 
+  const T = window.MAHJONG_TILES;
+  // Seleção variada: ventos, dragões, números representativos, flores e estações.
   const tileTypes = [
-    { id: "wind_east", symbol: "🀀", name: "Leste" },
-    { id: "wind_south", symbol: "🀁", name: "Sul" },
-    { id: "wind_west", symbol: "🀂", name: "Oeste" },
-    { id: "wind_north", symbol: "🀃", name: "Norte" },
-    { id: "dragon_red", symbol: "🀄", name: "Dragão Verm." },
-    { id: "dragon_green", symbol: "🀅", name: "Dragão Verde" },
-    { id: "dragon_white", symbol: "🀆", name: "Dragão Branco" },
-    { id: "char1", symbol: "🀇", name: "1 Caractere" },
-    { id: "char5", symbol: "🀋", name: "5 Caracteres" },
-    { id: "char9", symbol: "🀏", name: "9 Caracteres" },
-    { id: "bamboo1", symbol: "🀐", name: "1 Bambu" },
-    { id: "bamboo5", symbol: "🀔", name: "5 Bambus" },
-    { id: "bamboo9", symbol: "🀘", name: "9 Bambus" },
-    { id: "circle1", symbol: "🀙", name: "1 Círculo" },
-    { id: "circle5", symbol: "🀝", name: "5 Círculos" },
-    { id: "circle9", symbol: "🀡", name: "9 Círculos" },
-    { id: "flower1", symbol: "🀢", name: "Ameixa" },
-    { id: "season1", symbol: "🀦", name: "Primavera" }
+    T.winds[0], T.winds[1], T.winds[2], T.winds[3],
+    T.dragons[0], T.dragons[1], T.dragons[2],
+    T.characters[0], T.characters[4], T.characters[8],
+    T.bamboos[0], T.bamboos[4], T.bamboos[8],
+    T.circles[0], T.circles[4], T.circles[8],
+    T.flowers[0], T.flowers[3],
+    T.seasons[0]
   ];
 
   let cards = [];
@@ -72,7 +68,7 @@
 
     renderBoard();
     updateStats();
-    setMessage("Vire duas peças para encontrar os pares. Boa sorte!");
+    setMessage("Vire duas peças para encontrar os pares. Memorize o símbolo chinês e o nome em português. Boa sorte!");
     timer = setInterval(updateTime, 1000);
   }
 
@@ -95,7 +91,11 @@
 
       const back = document.createElement("div");
       back.className = "memory-card-back";
-      back.innerHTML = `<span class="tile-symbol">${card.type.symbol}</span>`;
+      back.dataset.suit = card.type.suit;
+      back.setAttribute("aria-label", `${card.type.name} (${card.type.cn})`);
+      back.innerHTML =
+        `<span class="tile-symbol">${card.type.symbol}</span>` +
+        `<span class="tile-name">${card.type.name}</span>`;
 
       inner.appendChild(front);
       inner.appendChild(back);
@@ -136,7 +136,7 @@
           setMessage("Par encontrado! Continue.");
         }
       } else {
-        setMessage("Não é par. Memorize as posições!");
+        setMessage("Não é par. Memorize as posições e os símbolos!");
         setTimeout(() => {
           first.flipped = false;
           second.flipped = false;

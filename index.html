@@ -66,6 +66,58 @@
         "position": 3,
         "item": {
           "@type": "VideoGame",
+          "name": "Mahjong Cadeia",
+          "url": "https://jogomahjong.com/mahjong-cadeia/",
+          "description": "Conecte pares em sequência rápida e faça combos multiplicadores.",
+          "genre": ["Puzzle", "Mahjong", "Combo"],
+          "gamePlatform": "Web browser",
+          "isAccessibleForFree": true
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "VideoGame",
+          "name": "Mahjong Pirâmide",
+          "url": "https://jogomahjong.com/mahjong-piramide/",
+          "description": "Solitário em layout de pirâmide escalonada com 4 camadas.",
+          "genre": ["Puzzle", "Mahjong", "Solitário"],
+          "gamePlatform": "Web browser",
+          "isAccessibleForFree": true
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "item": {
+          "@type": "VideoGame",
+          "name": "Mahjong Cronometrado",
+          "url": "https://jogomahjong.com/mahjong-cronometrado/",
+          "description": "Mahjong contra o relógio com bônus por par e penalidade por erro.",
+          "genre": ["Puzzle", "Mahjong", "Arcade"],
+          "gamePlatform": "Web browser",
+          "isAccessibleForFree": true
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "item": {
+          "@type": "VideoGame",
+          "name": "Mahjong Relaxante",
+          "url": "https://jogomahjong.com/mahjong-relaxante/",
+          "description": "Modo zen, sem tempo, com dicas ilimitadas e reembaralhamento automático.",
+          "genre": ["Puzzle", "Mahjong", "Relaxante"],
+          "gamePlatform": "Web browser",
+          "isAccessibleForFree": true
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "item": {
+          "@type": "VideoGame",
           "name": "Memória Mahjong",
           "url": "https://jogomahjong.com/memoria-mahjong/",
           "description": "Jogo de memória com peças de Mahjong tradicionais.",
@@ -86,10 +138,12 @@
         <span>Jogo Mahjong</span>
       </a>
       <nav class="nav-links" aria-label="Menu principal">
-        <a href="/jogar-mahjong/">Jogar agora</a>
+        <a href="/jogar-mahjong/">Solitário</a>
+        <a href="/mahjong-connect/">Connect</a>
+        <a href="/mahjong-cadeia/">Cadeia</a>
+        <a href="/mahjong-piramide/">Pirâmide</a>
+        <a href="/cultura-mahjong/">Cultura</a>
         <a href="/como-jogar-mahjong/">Como jogar</a>
-        <a href="/#dicas">Dicas</a>
-        <a href="/politica-de-privacidade/">Privacidade</a>
       </nav>
     </div>
   </header>
@@ -99,11 +153,11 @@
       <div class="wrap hero-grid">
         <div>
           <span class="eyebrow">Mahjong grátis em português</span>
-          <h1>Jogo de Mahjong grátis online, sem cadastro e sem baixar nada.</h1>
-          <p class="lead">Abra o tabuleiro, combine as peças livres e limpe tudo no seu ritmo. O Jogo Mahjong foi feito para quem quer uma pausa rápida, bonita e leve, direto no navegador do celular ou computador.</p>
+          <h1>Mahjong chinês, jeito brasileiro: 7 modos de jogar grátis.</h1>
+          <p class="lead">Peças tradicionais chinesas com nomes em português, sete modos diferentes para cada momento &mdash; do relaxante ao cronometrado &mdash; e a cultura que liga Brasil e China à mesma mesa. Tudo direto no navegador, sem cadastro e sem download.</p>
           <div class="hero-actions">
-            <a class="btn" href="/jogar-mahjong/">Jogar Mahjong agora</a>
-            <a class="btn secondary" href="/como-jogar-mahjong/">Ver regras e dicas</a>
+            <a class="btn" href="/jogar-mahjong/">Jogar agora</a>
+            <a class="btn secondary" href="/cultura-mahjong/">Conhecer a cultura</a>
           </div>
         </div>
         <div class="hero-card" aria-hidden="true">
@@ -123,13 +177,14 @@
         </div>
 
         <h2>Escolha seu jogo de Mahjong</h2>
-        <p class="section-intro">Três jogos diferentes para você explorar o mundo do Mahjong. Todos usam peças tradicionais chinesas autênticas, são grátis e funcionam direto no navegador.</p>
+        <p class="section-intro">Sete modos diferentes para cada momento do dia. Do zen ao arcade, do solitário ao combo. Todos usam peças tradicionais chinesas autênticas, com nome em português, e rodam direto no navegador do celular ou computador.</p>
 
         <div class="game-gallery">
           <a class="game-card" href="/jogar-mahjong/">
             <img class="game-card-img" src="/assets/thumbs/mahjong-solitaire.jpg" alt="Mahjong Solitário Clássico" loading="lazy">
             <div class="game-card-body">
-              <h3>Mahjong Solitário Clássico</h3>
+              <span class="mode-pill">Clássico</span>
+              <h3>Mahjong Solitário</h3>
               <p>A versão tradicional de combinar peças. Encontre pares iguais, libere camadas e limpe o tabuleiro no seu ritmo.</p>
               <span class="game-card-badge">Jogar agora</span>
             </div>
@@ -138,8 +193,49 @@
           <a class="game-card" href="/mahjong-connect/">
             <img class="game-card-img" src="/assets/thumbs/mahjong-connect.jpg" alt="Mahjong Connect" loading="lazy">
             <div class="game-card-body">
+              <span class="mode-pill">Conexão</span>
               <h3>Mahjong Connect</h3>
               <p>Conecte duas peças iguais com uma linha que faz no máximo dois cantos. Rápido, dinâmico e viciante.</p>
+              <span class="game-card-badge">Jogar agora</span>
+            </div>
+          </a>
+
+          <a class="game-card" href="/mahjong-cadeia/">
+            <img class="game-card-img" src="/assets/thumbs/mahjong-connect.jpg" alt="Mahjong Cadeia" loading="lazy">
+            <div class="game-card-body">
+              <span class="mode-pill chain">Combo</span>
+              <h3>Mahjong Cadeia</h3>
+              <p>Conecte pares em sequência rápida dentro de 4,5 segundos e multiplique pontos com combos. Para quem ama adrenalina.</p>
+              <span class="game-card-badge">Jogar agora</span>
+            </div>
+          </a>
+
+          <a class="game-card" href="/mahjong-piramide/">
+            <img class="game-card-img" src="/assets/thumbs/mahjong-solitaire.jpg" alt="Mahjong Pirâmide" loading="lazy">
+            <div class="game-card-body">
+              <span class="mode-pill">Estratégia</span>
+              <h3>Mahjong Pirâmide</h3>
+              <p>Layout em pirâmide escalonada com 4 camadas. As peças do topo bloqueiam as de baixo &mdash; planeje antes de agir.</p>
+              <span class="game-card-badge">Jogar agora</span>
+            </div>
+          </a>
+
+          <a class="game-card" href="/mahjong-cronometrado/">
+            <img class="game-card-img" src="/assets/thumbs/mahjong-solitaire.jpg" alt="Mahjong Cronometrado" loading="lazy">
+            <div class="game-card-body">
+              <span class="mode-pill timed">Contra o relógio</span>
+              <h3>Mahjong Cronometrado</h3>
+              <p>5 minutos no relógio. Cada par certo dá +2s, cada erro tira 1s. Velocidade e precisão para vencer o tempo.</p>
+              <span class="game-card-badge">Jogar agora</span>
+            </div>
+          </a>
+
+          <a class="game-card" href="/mahjong-relaxante/">
+            <img class="game-card-img" src="/assets/thumbs/mahjong-solitaire.jpg" alt="Mahjong Relaxante" loading="lazy">
+            <div class="game-card-body">
+              <span class="mode-pill relax">Zen</span>
+              <h3>Mahjong Relaxante</h3>
+              <p>Sem cronômetro, sem penalidade, com dicas ilimitadas e reembaralhamento automático. A pausa perfeita para a mente.</p>
               <span class="game-card-badge">Jogar agora</span>
             </div>
           </a>
@@ -147,6 +243,7 @@
           <a class="game-card" href="/memoria-mahjong/">
             <img class="game-card-img" src="/assets/thumbs/mahjong-memory.jpg" alt="Memória Mahjong" loading="lazy">
             <div class="game-card-body">
+              <span class="mode-pill">Memória</span>
               <h3>Memória Mahjong</h3>
               <p>Teste sua memória virando as peças e encontrando os pares. Ótimo para relaxar e treinar o cérebro.</p>
               <span class="game-card-badge">Jogar agora</span>
@@ -170,9 +267,48 @@
             <p>Mostramos como identificar peças livres, quando usar dica e como evitar movimentos que travam o tabuleiro.</p>
           </article>
           <article class="card">
-            <h3>Feito com cuidado</h3>
-            <p>O jogo é implementado em HTML, CSS e JavaScript próprios, usando peças tradicionais chinesas autênticas.</p>
+            <h3>Peças autênticas</h3>
+            <p>Cada peça mostra o símbolo chinês tradicional e o nome em português &mdash; você aprende enquanto joga.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <h2>Brasil e China à mesa</h2>
+        <p class="section-intro">O Mahjong nasceu na China da dinastia Qing, mas bate na porta do jeitão brasileiro de se reunir em volta de uma mesa. Perto do churrasco e do dominó, o jogo chinês encontra eco &mdash; e aprende a sorrir em português.</p>
+
+        <div class="fact-grid">
+          <article class="fact-card">
+            <span class="fact-num">+250 mil</span>
+            <p class="fact-text">Chineses e descendentes no Brasil, com forte presença no bairro da Liberdade em São Paulo, onde o Mahjong ainda é jogado em clubes e restaurantes.</p>
+          </article>
+          <article class="fact-card">
+            <span class="fact-num">1850</span>
+            <p class="fact-text">Ano em que o Mahjong surgiu na China. Chegou ao Ocidente nos anos 1920 e hoje é jogado no mundo inteiro &mdash; agora em português.</p>
+          </article>
+          <article class="fact-card">
+            <span class="fact-num">144</span>
+            <p class="fact-text">Peças do conjunto tradicional &mdash; quase o dobro de um dominó, jogo que o brasileiro já domina. A lógica de combinar é parecida.</p>
+          </article>
+          <article class="fact-card">
+            <span class="fact-num">4</span>
+            <p class="fact-text">Jogadores na mesa original &mdash; o mesmo tamanho de uma mesa de truco ou buraco. O número perfeito para conversa e competição.</p>
+          </article>
+        </div>
+
+        <p style="margin-top:24px;"><a class="btn" href="/cultura-mahjong/">Ler mais sobre a cultura Mahjong</a></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <h2>Conheça as peças tradicionais</h2>
+        <p class="section-intro">O Mahjong chinês tem 7 grupos de peças. Cada uma mantém o desenho original (caracteres chineses e símbolos Unicode) e recebe uma anotação em português do Brasil. Passe o olho e familiarize-se antes de jogar.</p>
+
+        <div class="tile-legend" id="tile-legend">
+          <!-- Preenchido via JS a partir de tiles-data.js -->
         </div>
       </div>
     </section>
@@ -210,8 +346,16 @@
           <p>Sim. Você pode jogar grátis no navegador, sem cadastro e sem baixar aplicativo.</p>
         </details>
         <details>
+          <summary>Quantos modos de jogo existem?</summary>
+          <p>Sete: Solitário clássico, Connect, Cadeia (combo), Pirâmide, Cronometrado, Relaxante e Memória. Cada um atende um momento diferente &mdash; do zen à adrenalina.</p>
+        </details>
+        <details>
+          <summary>As peças têm nome em português?</summary>
+          <p>Sim. Cada peça mantém o símbolo chinês tradicional (caracteres e desenhos Unicode originais) e recebe o nome em português do Brasil logo abaixo, com cor por naipe para facilitar o reconhecimento.</p>
+        </details>
+        <details>
           <summary>Preciso conhecer Mahjong tradicional para jogar?</summary>
-          <p>Não. Esta é a versão solitária de combinar peças. Basta procurar pares iguais que estejam livres no tabuleiro.</p>
+          <p>Não. Estas são versões de combinar peças. Basta procurar pares iguais que estejam livres no tabuleiro. Para a história e o significado dos símbolos, visite a página de Cultura.</p>
         </details>
         <details>
           <summary>Funciona no celular?</summary>
@@ -232,12 +376,44 @@
         <p>Mahjong online grátis em português do Brasil. Jogue com calma, sem download e sem cadastro.</p>
       </div>
       <nav class="nav-links" aria-label="Links do rodapé">
-        <a href="/jogar-mahjong/">Jogar</a>
+        <a href="/">Início</a>
+        <a href="/cultura-mahjong/">Cultura</a>
         <a href="/como-jogar-mahjong/">Como jogar</a>
         <a href="/politica-de-privacidade/">Privacidade</a>
       </nav>
     </div>
   </footer>
+
+  <script src="/assets/tiles-data.js"></script>
+  <script>
+    // Renderiza a legenda de peças dinamicamente a partir do módulo compartilhado.
+    (function () {
+      const legend = document.querySelector("#tile-legend");
+      if (!legend || !window.MAHJONG_TILES) return;
+      const T = window.MAHJONG_TILES;
+      T.groups.forEach(group => {
+        const block = document.createElement("div");
+        block.className = "legend-group";
+        block.innerHTML =
+          `<h4>${group.label}</h4>` +
+          `<p class="legend-hint">${group.hint}</p>`;
+        const tilesWrap = document.createElement("div");
+        tilesWrap.className = "legend-tiles";
+        group.tiles.forEach(tile => {
+          const tileEl = document.createElement("div");
+          tileEl.className = "legend-tile";
+          tileEl.dataset.suit = tile.suit;
+          tileEl.innerHTML =
+            `<span class="tile-symbol">${tile.symbol}</span>` +
+            `<span class="legend-name">${tile.name}</span>` +
+            `<span class="legend-cn">${tile.cn}</span>`;
+          tilesWrap.appendChild(tileEl);
+        });
+        block.appendChild(tilesWrap);
+        legend.appendChild(block);
+      });
+    })();
+  </script>
 
   <script type="application/ld+json">
   {
@@ -251,8 +427,18 @@
       },
       {
         "@type": "Question",
+        "name": "Quantos modos de jogo existem?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sete: Solitário clássico, Connect, Cadeia (combo), Pirâmide, Cronometrado, Relaxante e Memória." }
+      },
+      {
+        "@type": "Question",
+        "name": "As peças têm nome em português?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sim. Cada peça mantém o símbolo chinês tradicional e recebe o nome em português do Brasil logo abaixo, com cor por naipe." }
+      },
+      {
+        "@type": "Question",
         "name": "Preciso conhecer Mahjong tradicional para jogar?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Não. Esta é a versão solitária de combinar peças. Basta procurar pares iguais que estejam livres no tabuleiro." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Não. Estas são versões de combinar peças. Basta procurar pares iguais que estejam livres no tabuleiro." }
       },
       {
         "@type": "Question",

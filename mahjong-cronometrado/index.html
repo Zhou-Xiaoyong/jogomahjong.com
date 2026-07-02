@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mahjong Cronometrado Grátis Online - Jogue Contra o Tempo</title>
+  <meta name="description" content="Jogue Mahjong Cronometrado grátis em português. Limpe o tabuleiro antes que o tempo acabe. Cada par certo ganha segundos extras. Rápido e viciante.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://jogomahjong.com/mahjong-cronometrado/">
+  <link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-cronometrado/">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Mahjong Cronometrado Grátis Online">
+  <meta property="og:description" content="Solitário de Mahjong contra o relógio, em português do Brasil.">
+  <meta property="og:url" content="https://jogomahjong.com/mahjong-cronometrado/">
+  <meta name="theme-color" content="#0f6b58">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Mahjong Cronometrado Online Grátis",
+    "alternateName": ["Mahjong Contra o Tempo", "Mahjong Cronometrado"],
+    "url": "https://jogomahjong.com/mahjong-cronometrado/",
+    "description": "Solitário de Mahjong contra o relógio, em português do Brasil, sem cadastro e sem download.",
+    "genre": ["Puzzle", "Mahjong", "Contra o tempo"],
+    "gamePlatform": "Web browser",
+    "operatingSystem": "Web",
+    "inLanguage": "pt-BR",
+    "isAccessibleForFree": true,
+    "applicationCategory": "Game"
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="logo" href="/" aria-label="Jogo Mahjong">
+        <span class="logo-mark">麻</span>
+        <span>Jogo Mahjong</span>
+      </a>
+      <nav class="nav-links" aria-label="Menu principal">
+        <a href="/jogar-mahjong/">Solitário</a>
+        <a href="/mahjong-connect/">Connect</a>
+        <a href="/mahjong-cadeia/">Cadeia</a>
+        <a href="/mahjong-piramide/">Pirâmide</a>
+        <a href="/cultura-mahjong/">Cultura</a>
+        <a href="/como-jogar-mahjong/">Como jogar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap">
+        <span class="eyebrow">Contra o tempo</span>
+        <h1>Mahjong Cronometrado: limpe o tabuleiro antes do relógio zerar</h1>
+        <p class="lead">Você tem 5 minutos. Cada par certo devolve 2 segundos, cada erro tira 1. Use dica e embaralhar com cuidado, porque também custam tempo. Para quem gosta de jogar com adrenalina.</p>
+
+        <div class="ad-slot" aria-label="Espaço para anúncio superior">
+          Espaço reservado para anúncio responsivo. Recomendado: ativar somente após aprovação do AdSense.
+        </div>
+
+        <div class="countdown-banner" id="countdown-banner">
+          <span class="cd-label">⏱ Tempo restante</span>
+          <span class="cd-time" id="cd-time">05:00</span>
+          <span style="color:var(--muted);font-size:.9rem;">+2s por par certo · −1s por erro</span>
+        </div>
+
+        <section class="game-shell" aria-labelledby="game-title">
+          <div class="game-toolbar">
+            <div>
+              <h2 id="game-title" style="font-size:1.45rem;margin:0;">Mahjong Cronometrado</h2>
+              <p style="margin:4px 0 0;color:var(--muted);font-family:Arial,sans-serif;">Solitário contra o relógio com peças tradicionais chinesas.</p>
+            </div>
+            <div class="game-stats" aria-label="Estatísticas do jogo">
+              <span class="stat">Movimentos: <strong id="moves">0</strong></span>
+              <span class="stat">Pares: <strong id="pairs">0/0</strong></span>
+              <span class="stat">Tempo: <strong id="time">05:00</strong></span>
+            </div>
+            <div class="game-actions">
+              <button class="btn secondary" id="hint" type="button">Dica (−3s)</button>
+              <button class="btn secondary" id="shuffle" type="button">Embaralhar (−5s)</button>
+              <button class="btn" id="new-game" type="button">Novo jogo</button>
+            </div>
+          </div>
+          <div class="board-wrap" aria-label="Tabuleiro de Mahjong Cronometrado">
+            <div id="mahjong-board"></div>
+          </div>
+          <p class="message" id="game-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <div class="ad-slot" aria-label="Espaço para anúncio inferior">
+          Espaço reservado para anúncio abaixo do jogo. Evite anúncios que cubram o tabuleiro.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap content-grid">
+        <article class="article">
+          <h2>Como funciona o Mahjong Cronometrado</h2>
+          <p>É o <strong>Mahjong Solitário</strong> com um cronômetro regressivo. O tabuleiro é o mesmo do modo clássico, mas agora o tempo é seu adversário. A ideia é simples: combine peças iguais e livres o mais rápido possível.</p>
+          <h3>Regras de tempo</h3>
+          <ul>
+            <li>Você começa com <strong>5 minutos</strong>.</li>
+            <li>Cada par certo <strong>devolve 2 segundos</strong>.</li>
+            <li>Cada par errado <strong>tira 1 segundo</strong>.</li>
+            <li>A <strong>dica custa 3 segundos</strong> e o <strong>embaralhar custa 5 segundos</strong>.</li>
+            <li>Se o tempo zerar, o jogo acaba.</li>
+          </ul>
+          <h3>Estratégia para vencer o relógio</h3>
+          <p>Não clique no primeiro par que aparecer. Reserve alguns segundos para olhar o tabuleiro inteiro e planejar uma sequência de dois ou três movimentos. Comece pelas camadas de cima e pelas laterais, que liberam mais peças. Guarde a dica para quando travar de verdade — ela é cara em modo cronometrado.</p>
+          <p>Como o bônus de tempo acumula, uma sequência de acertos seguidos pode recuperar o tempo perdido. O segredo é manter o ritmo sem tropeçar.</p>
+        </article>
+        <aside class="sidebox">
+          <h3>Outros jogos</h3>
+          <ul>
+            <li><a href="/jogar-mahjong/">Mahjong Solitário clássico</a></li>
+            <li><a href="/mahjong-relaxante/">Mahjong Relaxante (sem pressa)</a></li>
+            <li><a href="/mahjong-connect/">Mahjong Connect</a></li>
+            <li><a href="/mahjong-cadeia/">Mahjong Cadeia</a></li>
+            <li><a href="/mahjong-piramide/">Mahjong Pirâmide</a></li>
+            <li><a href="/memoria-mahjong/">Memória Mahjong</a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="logo" href="/"><span class="logo-mark">麻</span><span>Jogo Mahjong</span></a>
+        <p>Jogue Mahjong online grátis em português do Brasil.</p>
+      </div>
+      <nav class="nav-links" aria-label="Links do rodapé">
+        <a href="/">Início</a>
+        <a href="/cultura-mahjong/">Cultura</a>
+        <a href="/como-jogar-mahjong/">Como jogar</a>
+        <a href="/politica-de-privacidade/">Privacidade</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/assets/tiles-data.js"></script>
+  <script src="/assets/timed.js"></script>
+</body>
+</html>

@@ -1,10 +1,11 @@
 /*
- * Mahjong Solitário — versão clássica em HTML5.
- * Usa peças tradicionais chinesas (Unicode) com anotações em português.
+ * Mahjong Pirâmide — solitário com layout em pirâmide escalonada.
+ * Quatro camadas centradas formam uma pirâmide (zigurate) clássica.
+ * Peças tradicionais chinesas com anotações em português do Brasil.
  * Dependência: /assets/tiles-data.js (window.MAHJONG_TILES)
  */
 (function () {
-  const board = document.querySelector("#mahjong-board");
+  const board = document.querySelector("#pyramid-board");
   if (!board) return;
 
   const movesEl = document.querySelector("#moves");
@@ -17,36 +18,30 @@
 
   const tileW = 62;
   const tileH = 84;
-  const gapX = 10;
-  const gapY = 8;
-  const offsetX = 24;
-  const offsetY = 30;
-  const layerShift = 8;
-  // Fator de sobreposição vertical que cria o efeito de peças "inclinadas"
-  // característico do Mahjong Solitário tradicional.
-  const rowFactor = 0.46;
+  const gapX = 8;
+  const gapY = 6;
+  const layerShift = 10;
+  const rowFactor = 0.5;
 
   const T = window.MAHJONG_TILES;
-  // Conjunto principal: ventos, dragões, caracteres, bambus e círculos.
   const tileTypes = T.core;
   // Flores e estações combinam dentro do próprio grupo (regra tradicional).
   const flowerTypes = T.flowers;
   const seasonTypes = T.seasons;
 
+  // Layout em pirâmide escalonada (zigurate):
+  //   z=0  ->  8 col x 4 linhas  (base larga)
+  //   z=1  ->  6 col x 3 linhas  (camada intermediária)
+  //   z=2  ->  4 col x 2 linhas  (camada superior)
+  //   z=3  ->  2 col x 1 linha   (topo)
+  // Total = 32 + 18 + 8 + 2 = 60 peças (30 pares).
+  // Cada camada é centrada horizontalmente em relação à base.
+  const BASE_COLS = 8;
   const layout = [
-    // Camada base: formato inspirado na clássica "tartaruga"
-    ...rect(4, 0, 4, 1, 0),
-    ...rect(2, 1, 8, 1, 0),
-    ...rect(0, 2, 12, 4, 0),
-    ...rect(2, 6, 8, 1, 0),
-    ...rect(4, 7, 4, 1, 0),
-    // Camada intermediária.
-    ...rect(3, 2, 6, 1, 1),
-    ...rect(2, 3, 8, 2, 1),
-    ...rect(3, 5, 6, 1, 1),
-    // Topo.
-    ...rect(4, 3, 4, 2, 2),
-    ...rect(5, 3, 2, 2, 3)
+    ...rect(0, 0, 8, 4, 0),
+    ...rect(1, 0, 6, 3, 1),
+    ...rect(2, 0, 4, 2, 2),
+    ...rect(3, 0, 2, 1, 3)
   ];
 
   let tiles = [];
@@ -74,8 +69,8 @@
     return array;
   }
 
-  // Duas peças combinam se têm o mesmo id, ou se ambas são flores, ou se ambas
-  // são estações (regra clássica chinesa para os grupos especiais).
+  // Mesmas regras do solitário clássico: flores combinam entre si,
+  // estações combinam entre si, demais peças exigem id igual.
   function matches(a, b) {
     if (a.id === b.id) return true;
     if (a.suit === "flor" && b.suit === "flor") return true;
@@ -86,7 +81,8 @@
   function buildDeck(count) {
     const pairsNeeded = Math.floor(count / 2);
     const deck = [];
-    // Cada tipo aparece em quantidade suficiente para formar pares.
+    // Para a pirâmide usamos só o conjunto core (sem flores/estações),
+    // mantendo a symetria e facilitando a resolução.
     for (let i = 0; i < pairsNeeded; i++) {
       const type = tileTypes[i % tileTypes.length];
       deck.push(type, type);
@@ -114,12 +110,18 @@
 
     render();
     updateStats();
-    setMessage("Combine duas peças iguais e livres para remover. Flores combinam entre si, estações entre si. Boa sorte!");
+    setMessage("Estrutura em pirâmide! As peças do topo bloqueiam as de baixo. Comece pelas bordas livres.");
     timer = setInterval(updateTime, 1000);
   }
 
   function render() {
     board.innerHTML = "";
+    // Centraliza horizontalmente a pirâmide dentro do board (720px).
+    const colStride = tileW + gapX;
+    const pyramidWidth = BASE_COLS * tileW + (BASE_COLS - 1) * gapX;
+    const offsetX = Math.max(20, (720 - pyramidWidth) / 2);
+    const offsetY = 40;
+
     tiles
       .filter(tile => !tile.removed)
       .sort((a, b) => a.z - b.z || a.y - b.y || a.x - b.x)
@@ -129,7 +131,7 @@
         button.type = "button";
         button.dataset.uid = tile.uid;
         button.dataset.suit = tile.type.suit;
-        button.style.left = `${offsetX + tile.x * (tileW + gapX) + tile.z * layerShift}px`;
+        button.style.left = `${offsetX + tile.x * colStride + tile.z * layerShift}px`;
         button.style.top = `${offsetY + tile.y * (tileH * rowFactor + gapY) - tile.z * layerShift}px`;
         button.style.zIndex = `${tile.z * 100 + tile.y * 10 + tile.x}`;
         button.disabled = !isFree(tile);
@@ -170,14 +172,14 @@
     if (!selected) {
       selected = tile;
       markSelected();
-      setMessage("Agora encontre a peça igual que também esteja livre.");
+      setMessage("Peça selecionada. Encontre uma peça igual também livre.");
       return;
     }
 
     if (selected.uid === tile.uid) {
       selected = null;
       markSelected();
-      setMessage("Seleção removida. Continue com calma.");
+      setMessage("Seleção removida. Continue explorando a pirâmide.");
       return;
     }
 
@@ -190,11 +192,11 @@
       render();
       updateStats();
       if (tiles.every(item => item.removed)) {
-        setMessage("Parabéns! Você limpou o tabuleiro! Que tal tentar vencer em menos tempo?");
+        setMessage("Pirâmide desmontada! Você venceu. Tente bater seu tempo na próxima.");
         clearInterval(timer);
       } else {
         const pair = findHintPair();
-        setMessage(pair ? "Par removido! Continue encontrando combinações." : "Sem pares livres agora. Use embaralhar para continuar.");
+        setMessage(pair ? "Par removido! Continue subindo a pirâmide." : "Sem pares livres. Use embaralhar para destravar.");
       }
     } else {
       selected = tile;
@@ -239,7 +241,7 @@
       const el = document.querySelector(`.tile[data-uid="${tile.uid}"]`);
       if (el) el.classList.add("hint");
     });
-    setMessage("Dica: tente combinar as duas peças destacadas.");
+    setMessage("Dica: combine as duas peças destacadas.");
   }
 
   function shuffleRemaining() {
@@ -251,7 +253,7 @@
     selected = null;
     render();
     updateStats();
-    setMessage("Peças restantes embaralhadas. Boa sorte!");
+    setMessage("Peças restantes embaralhadas. Continue!");
   }
 
   function updateStats() {

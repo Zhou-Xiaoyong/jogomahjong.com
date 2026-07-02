@@ -1,6 +1,8 @@
 /*
- * Mahjong Solitário — versão clássica em HTML5.
- * Usa peças tradicionais chinesas (Unicode) com anotações em português.
+ * Mahjong Relaxante — modo zen do Solitário.
+ * Sem pressão de tempo, dicas ilimitadas e reembaralhamento automático
+ * quando não há mais movimentos. Peças tradicionais chinesas com
+ * anotações em português do Brasil.
  * Dependência: /assets/tiles-data.js (window.MAHJONG_TILES)
  */
 (function () {
@@ -11,6 +13,7 @@
   const pairsEl = document.querySelector("#pairs");
   const timeEl = document.querySelector("#time");
   const messageEl = document.querySelector("#game-message");
+  const hintsEl = document.querySelector("#hints-used");
   const newGameBtn = document.querySelector("#new-game");
   const hintBtn = document.querySelector("#hint");
   const shuffleBtn = document.querySelector("#shuffle");
@@ -22,37 +25,25 @@
   const offsetX = 24;
   const offsetY = 30;
   const layerShift = 8;
-  // Fator de sobreposição vertical que cria o efeito de peças "inclinadas"
-  // característico do Mahjong Solitário tradicional.
   const rowFactor = 0.46;
 
   const T = window.MAHJONG_TILES;
-  // Conjunto principal: ventos, dragões, caracteres, bambus e círculos.
   const tileTypes = T.core;
-  // Flores e estações combinam dentro do próprio grupo (regra tradicional).
-  const flowerTypes = T.flowers;
-  const seasonTypes = T.seasons;
 
+  // Layout mais plano e gentil: duas camadas, sem ápice alto.
   const layout = [
-    // Camada base: formato inspirado na clássica "tartaruga"
-    ...rect(4, 0, 4, 1, 0),
-    ...rect(2, 1, 8, 1, 0),
-    ...rect(0, 2, 12, 4, 0),
-    ...rect(2, 6, 8, 1, 0),
-    ...rect(4, 7, 4, 1, 0),
-    // Camada intermediária.
-    ...rect(3, 2, 6, 1, 1),
-    ...rect(2, 3, 8, 2, 1),
-    ...rect(3, 5, 6, 1, 1),
-    // Topo.
-    ...rect(4, 3, 4, 2, 2),
-    ...rect(5, 3, 2, 2, 3)
+    ...rect(1, 0, 10, 1, 0),
+    ...rect(0, 1, 12, 5, 0),
+    ...rect(1, 6, 10, 1, 0),
+    ...rect(2, 2, 8, 3, 1),
+    ...rect(4, 3, 4, 1, 2)
   ];
 
   let tiles = [];
   let selected = null;
   let moves = 0;
   let removedPairs = 0;
+  let hintsUsed = 0;
   let startedAt = null;
   let timer = null;
 
@@ -74,8 +65,6 @@
     return array;
   }
 
-  // Duas peças combinam se têm o mesmo id, ou se ambas são flores, ou se ambas
-  // são estações (regra clássica chinesa para os grupos especiais).
   function matches(a, b) {
     if (a.id === b.id) return true;
     if (a.suit === "flor" && b.suit === "flor") return true;
@@ -86,7 +75,6 @@
   function buildDeck(count) {
     const pairsNeeded = Math.floor(count / 2);
     const deck = [];
-    // Cada tipo aparece em quantidade suficiente para formar pares.
     for (let i = 0; i < pairsNeeded; i++) {
       const type = tileTypes[i % tileTypes.length];
       deck.push(type, type);
@@ -100,6 +88,7 @@
     selected = null;
     moves = 0;
     removedPairs = 0;
+    hintsUsed = 0;
     startedAt = Date.now();
     const deck = buildDeck(layout.length);
 
@@ -114,7 +103,7 @@
 
     render();
     updateStats();
-    setMessage("Combine duas peças iguais e livres para remover. Flores combinam entre si, estações entre si. Boa sorte!");
+    setMessage("Modo relaxante: sem pressa, sem erro fatal. Use quantas dicas quiser e respire fundo.");
     timer = setInterval(updateTime, 1000);
   }
 
@@ -170,14 +159,13 @@
     if (!selected) {
       selected = tile;
       markSelected();
-      setMessage("Agora encontre a peça igual que também esteja livre.");
+      setMessage("Sem pressa. Encontre a peça igual quando quiser.");
       return;
     }
 
     if (selected.uid === tile.uid) {
       selected = null;
       markSelected();
-      setMessage("Seleção removida. Continue com calma.");
       return;
     }
 
@@ -190,18 +178,23 @@
       render();
       updateStats();
       if (tiles.every(item => item.removed)) {
-        setMessage("Parabéns! Você limpou o tabuleiro! Que tal tentar vencer em menos tempo?");
+        setMessage("Pronto! Tabuleiro limpo no seu ritmo. Que tal uma partida relaxante de Pirâmide agora?");
         clearInterval(timer);
       } else {
         const pair = findHintPair();
-        setMessage(pair ? "Par removido! Continue encontrando combinações." : "Sem pares livres agora. Use embaralhar para continuar.");
+        if (!pair) {
+          setMessage("Sem pares livres. Vou embaralhar para você continuar relaxando...");
+          setTimeout(autoShuffle, 1200);
+        } else {
+          setMessage("Par removido. Continue no seu tempo.");
+        }
       }
     } else {
       selected = tile;
       render();
       markSelected();
       updateStats();
-      setMessage("Essas peças não combinam. Tente outra.");
+      setMessage("Não combinam, mas sem problema — no modo relaxante não há penalidade.");
     }
   }
 
@@ -230,33 +223,39 @@
 
   function showHint() {
     clearHints();
+    hintsUsed++;
+    updateStats();
     const pair = findHintPair();
     if (!pair) {
-      setMessage("Não há pares livres neste momento. Embaralhe para continuar.");
+      setMessage("Não há pares livres agora. Embaralhando automaticamente...");
+      setTimeout(autoShuffle, 800);
       return;
     }
     pair.forEach(tile => {
       const el = document.querySelector(`.tile[data-uid="${tile.uid}"]`);
       if (el) el.classList.add("hint");
     });
-    setMessage("Dica: tente combinar as duas peças destacadas.");
+    setMessage("Dica grátis: combine as duas peças destacadas. Sem limite de uso.");
   }
 
   function shuffleRemaining() {
     const active = tiles.filter(tile => !tile.removed);
     const types = shuffle(active.map(tile => tile.type));
-    active.forEach((tile, index) => {
-      tile.type = types[index];
-    });
+    active.forEach((tile, index) => { tile.type = types[index]; });
     selected = null;
     render();
     updateStats();
-    setMessage("Peças restantes embaralhadas. Boa sorte!");
+    setMessage("Peças embaralhadas. Respire e continue.");
+  }
+
+  function autoShuffle() {
+    shuffleRemaining();
   }
 
   function updateStats() {
     movesEl.textContent = moves;
     pairsEl.textContent = `${removedPairs}/${Math.floor(layout.length / 2)}`;
+    if (hintsEl) hintsEl.textContent = hintsUsed;
     updateTime();
   }
 

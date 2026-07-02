@@ -1,6 +1,7 @@
 /*
- * Mahjong Connect — conecte duas peças iguais com uma linha de no máximo
- * dois cantos. Peças tradicionais chinesas com anotações em português.
+ * Mahjong Cadeia — Connect com sistema de combo (cadeia).
+ * Conecte pares em sequência rápida para multiplicar pontos.
+ * Peças tradicionais chinesas com anotações em português do Brasil.
  * Dependência: /assets/tiles-data.js (window.MAHJONG_TILES)
  */
 (function () {
@@ -9,6 +10,8 @@
 
   const pairsEl = document.querySelector("#pairs");
   const timeEl = document.querySelector("#time");
+  const scoreEl = document.querySelector("#score");
+  const comboEl = document.querySelector("#combo");
   const messageEl = document.querySelector("#game-message");
   const newGameBtn = document.querySelector("#new-game");
   const hintBtn = document.querySelector("#hint");
@@ -19,17 +22,23 @@
   const tileH = 76;
   const gap = 6;
 
+  // Janela de tempo (em ms) para manter a cadeia viva entre um par e outro.
+  const COMBO_WINDOW = 4500;
+
   const T = window.MAHJONG_TILES;
-  // Conjunto completo: inclui flores e estações para variar o visual.
   const tileTypes = T.all;
 
   let grid = [];
   let selected = null;
   let removedPairs = 0;
+  let totalPairs = 0;
+  let score = 0;
+  let combo = 0;
+  let bestCombo = 0;
+  let lastMatchAt = 0;
+  let comboTimer = null;
   let startedAt = null;
   let timer = null;
-  let totalPairs = 0;
-  let lineEl = null;
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -53,10 +62,14 @@
 
   function startGame() {
     clearInterval(timer);
-    if (lineEl) { lineEl.remove(); lineEl = null; }
+    clearTimeout(comboTimer);
     board.innerHTML = "";
     selected = null;
     removedPairs = 0;
+    score = 0;
+    combo = 0;
+    bestCombo = 0;
+    lastMatchAt = 0;
     startedAt = Date.now();
     const deck = buildDeck();
 
@@ -64,18 +77,14 @@
     for (let r = 0; r < ROWS; r++) {
       const row = [];
       for (let c = 0; c < COLS; c++) {
-        row.push({
-          r, c,
-          type: deck[r * COLS + c],
-          removed: false
-        });
+        row.push({ r, c, type: deck[r * COLS + c], removed: false });
       }
       grid.push(row);
     }
 
     renderGrid();
     updateStats();
-    setMessage("Clique em duas peças iguais que possam ser conectadas por uma linha com até 2 cantos.");
+    setMessage("Conecte pares em sequência rápida para formar uma cadeia. Quanto maior a cadeia, mais pontos!");
     timer = setInterval(updateTime, 1000);
   }
 
@@ -121,7 +130,6 @@
     const cell = grid[r][c];
     if (cell.removed) return;
     clearSelection();
-    clearLine();
 
     if (!selected) {
       selected = cell;
@@ -138,42 +146,82 @@
     }
 
     if (selected.type.id !== cell.type.id) {
+      // Erro quebra a cadeia.
+      breakCombo();
       selected = cell;
       const el = getTileEl(r, c);
       if (el) el.classList.add("selected");
-      setMessage("Essas peças não são iguais. Tente outra.");
+      setMessage("Peças diferentes — cadeia quebrada! Tente outra.");
       return;
     }
 
     const path = findPath(selected.r, selected.c, r, c);
     if (!path) {
+      breakCombo();
       selected = cell;
       const el = getTileEl(r, c);
       if (el) el.classList.add("selected");
-      setMessage("Não é possível conectar essas peças com até 2 cantos. Tente outra.");
+      setMessage("Não dá para conectar com até 2 cantos. Cadeia quebrada!");
       return;
     }
 
-    // Par conectado!
     drawLine(path);
     selected.removed = true;
     cell.removed = true;
     removedPairs++;
-    selected = null;
+    registerMatch();
 
     setTimeout(() => {
       clearLine();
       renderGrid();
       updateStats();
       if (removedPairs >= totalPairs) {
-        setMessage("Parabéns! Você limpou o tabuleiro!");
+        setMessage(`Tabuleiro limpo! Pontuação final: ${score} (cadeia máxima: ${bestCombo}).`);
         clearInterval(timer);
+        clearTimeout(comboTimer);
       } else {
         const pair = findHintPair();
-        setMessage(pair ? "Par conectado! Continue." : "Nenhum par disponível. Embaralhando...");
-        if (!pair) setTimeout(startGame, 1500);
+        if (!pair) {
+          setMessage("Sem pares disponíveis. Reiniciando o tabuleiro...");
+          setTimeout(startGame, 1500);
+        }
       }
-    }, 350);
+    }, 300);
+  }
+
+  function registerMatch() {
+    const now = Date.now();
+    if (lastMatchAt && now - lastMatchAt <= COMBO_WINDOW) {
+      combo++;
+    } else {
+      combo = 1;
+    }
+    lastMatchAt = now;
+    bestCombo = Math.max(bestCombo, combo);
+    // Pontos: base 10 multiplicada pelo tamanho da cadeia.
+    const gained = 10 * combo;
+    score += gained;
+    const msg = combo > 1
+      ? `Cadeia x${combo}! +${gained} pontos. Continue rápido para aumentar!`
+      : `Par conectado! +${gained} pontos.`;
+    setMessage(msg);
+
+    clearTimeout(comboTimer);
+    comboTimer = setTimeout(() => {
+      if (combo > 0) {
+        combo = 0;
+        updateStats();
+        setMessage("Cadeia expirou. Conecte um par para começar outra.");
+      }
+    }, COMBO_WINDOW);
+  }
+
+  function breakCombo() {
+    if (combo > 0) {
+      combo = 0;
+      clearTimeout(comboTimer);
+      updateStats();
+    }
   }
 
   function clearSelection() {
@@ -181,16 +229,13 @@
   }
 
   function clearLine() {
-    if (lineEl) { lineEl.remove(); lineEl = null; }
+    document.querySelectorAll(".connect-line").forEach(el => el.remove());
   }
 
   function drawLine(path) {
     clearLine();
     if (path.length < 2) return;
-    const gridEl = document.querySelector(".connect-grid");
-    if (!gridEl) return;
     const boardRect = board.getBoundingClientRect();
-
     for (let i = 0; i < path.length - 1; i++) {
       const a = path[i];
       const b = path[i + 1];
@@ -219,7 +264,6 @@
     }
   }
 
-  // Busca de caminho com no máximo 2 curvas.
   function findPath(r1, c1, r2, c2) {
     if (r1 === r2 && c1 === c2) return null;
     if (grid[r2][c2].removed) return null;
@@ -244,11 +288,8 @@
     let head = 0;
     while (head < queue.length) {
       const cur = queue[head++];
-      if (cur.r === r2 && cur.c === c2) {
-        return cur.path;
-      }
+      if (cur.r === r2 && cur.c === c2) return cur.path;
       if (cur.turns >= 2) continue;
-
       for (let d = 0; d < 4; d++) {
         const nr = cur.r + directions[d].dr;
         const nc = cur.c + directions[d].dc;
@@ -258,16 +299,12 @@
         if (visited.has(key)) continue;
         if (!isValid(nr, nc, r2, c2)) continue;
         visited.add(key);
-        queue.push({
-          r: nr, c: nc, dir: d, turns: newTurns,
-          path: [...cur.path, { r: nr, c: nc }]
-        });
+        queue.push({ r: nr, c: nc, dir: d, turns: newTurns, path: [...cur.path, { r: nr, c: nc }] });
       }
     }
     return null;
   }
 
-  // Uma célula é válida para o caminho se estiver vazia (removida) ou se for o destino.
   function isValid(r, c, destR, destC) {
     if (r < 0 || r >= ROWS || c < 0 || c >= COLS) return false;
     if (r === destR && c === destC) return true;
@@ -294,22 +331,30 @@
   }
 
   function showHint() {
+    // A dica quebra a cadeia (sem challenge externo).
+    breakCombo();
     clearSelection();
     clearLine();
     const pair = findHintPair();
     if (!pair) {
-      setMessage("Não há pares conectáveis. Embaralhando em breve...");
+      setMessage("Não há pares conectáveis. Reiniciando...");
       return;
     }
     const el1 = getTileEl(pair[0].r, pair[0].c);
     const el2 = getTileEl(pair[1].r, pair[1].c);
     if (el1) el1.classList.add("selected");
     if (el2) el2.classList.add("selected");
-    setMessage("Dica: essas duas peças podem ser conectadas.");
+    setMessage("Dica: conecte essas duas peças. (A cadeia foi reiniciada.)");
   }
 
   function updateStats() {
     pairsEl.textContent = `${removedPairs}/${totalPairs}`;
+    if (scoreEl) scoreEl.textContent = score;
+    if (comboEl) {
+      comboEl.textContent = `Cadeia x${combo}`;
+      if (combo >= 3) comboEl.classList.add("hot");
+      else comboEl.classList.remove("hot");
+    }
     updateTime();
   }
 

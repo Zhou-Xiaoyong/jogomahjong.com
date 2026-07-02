@@ -1,6 +1,7 @@
 /*
- * Mahjong Solitário — versão clássica em HTML5.
- * Usa peças tradicionais chinesas (Unicode) com anotações em português.
+ * Mahjong Cronometrado — Solitário contra o tempo.
+ * Limpe o tabuleiro antes que o cronômetro zere. Peças tradicionais
+ * chinesas com anotações em português do Brasil.
  * Dependência: /assets/tiles-data.js (window.MAHJONG_TILES)
  */
 (function () {
@@ -11,6 +12,8 @@
   const pairsEl = document.querySelector("#pairs");
   const timeEl = document.querySelector("#time");
   const messageEl = document.querySelector("#game-message");
+  const bannerEl = document.querySelector("#countdown-banner");
+  const cdTimeEl = document.querySelector("#cd-time");
   const newGameBtn = document.querySelector("#new-game");
   const hintBtn = document.querySelector("#hint");
   const shuffleBtn = document.querySelector("#shuffle");
@@ -22,29 +25,24 @@
   const offsetX = 24;
   const offsetY = 30;
   const layerShift = 8;
-  // Fator de sobreposição vertical que cria o efeito de peças "inclinadas"
-  // característico do Mahjong Solitário tradicional.
   const rowFactor = 0.46;
 
   const T = window.MAHJONG_TILES;
-  // Conjunto principal: ventos, dragões, caracteres, bambus e círculos.
   const tileTypes = T.core;
-  // Flores e estações combinam dentro do próprio grupo (regra tradicional).
-  const flowerTypes = T.flowers;
-  const seasonTypes = T.seasons;
 
+  // Tempo total em segundos (5 minutos).
+  const TOTAL_TIME = 300;
+
+  // Layout um pouco menor que o clássico para caber no tempo.
   const layout = [
-    // Camada base: formato inspirado na clássica "tartaruga"
     ...rect(4, 0, 4, 1, 0),
     ...rect(2, 1, 8, 1, 0),
     ...rect(0, 2, 12, 4, 0),
     ...rect(2, 6, 8, 1, 0),
     ...rect(4, 7, 4, 1, 0),
-    // Camada intermediária.
     ...rect(3, 2, 6, 1, 1),
     ...rect(2, 3, 8, 2, 1),
     ...rect(3, 5, 6, 1, 1),
-    // Topo.
     ...rect(4, 3, 4, 2, 2),
     ...rect(5, 3, 2, 2, 3)
   ];
@@ -53,8 +51,9 @@
   let selected = null;
   let moves = 0;
   let removedPairs = 0;
-  let startedAt = null;
+  let timeLeft = TOTAL_TIME;
   let timer = null;
+  let gameOver = false;
 
   function rect(startX, startY, cols, rows, z) {
     const cells = [];
@@ -74,8 +73,6 @@
     return array;
   }
 
-  // Duas peças combinam se têm o mesmo id, ou se ambas são flores, ou se ambas
-  // são estações (regra clássica chinesa para os grupos especiais).
   function matches(a, b) {
     if (a.id === b.id) return true;
     if (a.suit === "flor" && b.suit === "flor") return true;
@@ -86,7 +83,6 @@
   function buildDeck(count) {
     const pairsNeeded = Math.floor(count / 2);
     const deck = [];
-    // Cada tipo aparece em quantidade suficiente para formar pares.
     for (let i = 0; i < pairsNeeded; i++) {
       const type = tileTypes[i % tileTypes.length];
       deck.push(type, type);
@@ -100,7 +96,9 @@
     selected = null;
     moves = 0;
     removedPairs = 0;
-    startedAt = Date.now();
+    timeLeft = TOTAL_TIME;
+    gameOver = false;
+    if (bannerEl) bannerEl.classList.remove("urgent", "over");
     const deck = buildDeck(layout.length);
 
     tiles = layout.map((cell, index) => ({
@@ -114,8 +112,32 @@
 
     render();
     updateStats();
-    setMessage("Combine duas peças iguais e livres para remover. Flores combinam entre si, estações entre si. Boa sorte!");
-    timer = setInterval(updateTime, 1000);
+    setMessage("Corra contra o tempo! Combine peças iguais e livres antes que o relógio zere.");
+    timer = setInterval(tick, 1000);
+  }
+
+  function tick() {
+    timeLeft--;
+    if (timeLeft <= 0) {
+      timeLeft = 0;
+      endGame(false);
+    }
+    updateStats();
+  }
+
+  function endGame(won) {
+    clearInterval(timer);
+    gameOver = true;
+    if (bannerEl) {
+      bannerEl.classList.add("over");
+      bannerEl.classList.remove("urgent");
+    }
+    if (won) {
+      setMessage(` Vitória! Você limpou o tabuleiro com ${timeLeft}s sobrando. Mandou bem!`);
+    } else {
+      setMessage(`Tempo esgotado! Você removeu ${removedPairs} de ${Math.floor(layout.length / 2)} pares. Tente de novo!`);
+      document.querySelectorAll(".tile").forEach(el => { el.disabled = true; });
+    }
   }
 
   function render() {
@@ -132,7 +154,7 @@
         button.style.left = `${offsetX + tile.x * (tileW + gapX) + tile.z * layerShift}px`;
         button.style.top = `${offsetY + tile.y * (tileH * rowFactor + gapY) - tile.z * layerShift}px`;
         button.style.zIndex = `${tile.z * 100 + tile.y * 10 + tile.x}`;
-        button.disabled = !isFree(tile);
+        button.disabled = !isFree(tile) || gameOver;
         button.setAttribute("aria-label", `${tile.type.name} (${tile.type.cn})`);
         button.innerHTML =
           `<span class="tile-symbol">${tile.type.symbol}</span>` +
@@ -162,6 +184,7 @@
   }
 
   function selectTile(uid) {
+    if (gameOver) return;
     const tile = tiles.find(item => item.uid === uid);
     if (!tile || tile.removed || !isFree(tile)) return;
 
@@ -170,19 +193,20 @@
     if (!selected) {
       selected = tile;
       markSelected();
-      setMessage("Agora encontre a peça igual que também esteja livre.");
+      setMessage("Rápido! Encontre a peça igual que também esteja livre.");
       return;
     }
 
     if (selected.uid === tile.uid) {
       selected = null;
       markSelected();
-      setMessage("Seleção removida. Continue com calma.");
       return;
     }
 
     moves++;
     if (matches(selected.type, tile.type)) {
+      // Bônus de tempo por acerto consecutivo.
+      timeLeft = Math.min(TOTAL_TIME, timeLeft + 2);
       selected.removed = true;
       tile.removed = true;
       removedPairs++;
@@ -190,18 +214,18 @@
       render();
       updateStats();
       if (tiles.every(item => item.removed)) {
-        setMessage("Parabéns! Você limpou o tabuleiro! Que tal tentar vencer em menos tempo?");
-        clearInterval(timer);
+        endGame(true);
       } else {
-        const pair = findHintPair();
-        setMessage(pair ? "Par removido! Continue encontrando combinações." : "Sem pares livres agora. Use embaralhar para continuar.");
+        setMessage("Par removido! +2 segundos. Continue rápido!");
       }
     } else {
+      // Penalidade leve por erro.
+      timeLeft = Math.max(0, timeLeft - 1);
       selected = tile;
       render();
       markSelected();
       updateStats();
-      setMessage("Essas peças não combinam. Tente outra.");
+      setMessage("Peças não combinam. -1 segundo. Tente outra!");
     }
   }
 
@@ -229,46 +253,46 @@
   }
 
   function showHint() {
+    if (gameOver) return;
     clearHints();
+    // No modo cronometrado, a dica custa 3 segundos.
+    timeLeft = Math.max(0, timeLeft - 3);
+    updateStats();
     const pair = findHintPair();
     if (!pair) {
-      setMessage("Não há pares livres neste momento. Embaralhe para continuar.");
+      setMessage("Não há pares livres. Use embaralhar para continuar (-3s pela dica).");
       return;
     }
     pair.forEach(tile => {
       const el = document.querySelector(`.tile[data-uid="${tile.uid}"]`);
       if (el) el.classList.add("hint");
     });
-    setMessage("Dica: tente combinar as duas peças destacadas.");
+    setMessage("Dica usada: -3 segundos. Combine as peças destacadas.");
   }
 
   function shuffleRemaining() {
+    if (gameOver) return;
     const active = tiles.filter(tile => !tile.removed);
     const types = shuffle(active.map(tile => tile.type));
-    active.forEach((tile, index) => {
-      tile.type = types[index];
-    });
+    active.forEach((tile, index) => { tile.type = types[index]; });
     selected = null;
+    timeLeft = Math.max(0, timeLeft - 5);
     render();
     updateStats();
-    setMessage("Peças restantes embaralhadas. Boa sorte!");
+    setMessage("Peças embaralhadas: -5 segundos. Mãos à obra!");
   }
 
   function updateStats() {
     movesEl.textContent = moves;
     pairsEl.textContent = `${removedPairs}/${Math.floor(layout.length / 2)}`;
-    updateTime();
-  }
-
-  function updateTime() {
-    if (!startedAt) {
-      timeEl.textContent = "00:00";
-      return;
-    }
-    const total = Math.floor((Date.now() - startedAt) / 1000);
-    const minutes = String(Math.floor(total / 60)).padStart(2, "0");
-    const seconds = String(total % 60).padStart(2, "0");
+    const minutes = String(Math.floor(timeLeft / 60)).padStart(2, "0");
+    const seconds = String(timeLeft % 60).padStart(2, "0");
     timeEl.textContent = `${minutes}:${seconds}`;
+    if (cdTimeEl) cdTimeEl.textContent = `${minutes}:${seconds}`;
+    if (bannerEl) {
+      if (timeLeft <= 30 && timeLeft > 0) bannerEl.classList.add("urgent");
+      else if (timeLeft > 0) bannerEl.classList.remove("urgent");
+    }
   }
 
   function setMessage(text) {
