@@ -36,7 +36,7 @@ body {
   color: var(--ink);
   background-color: #f7f0e3;
   background-image:
-    url("/assets/bg-pattern.png"),
+    url("/assets/bg-tile.png"),
     radial-gradient(circle at 12% 10%, rgba(201, 151, 42, .22), transparent 28rem),
     radial-gradient(circle at 92% 18%, rgba(15, 107, 88, .15), transparent 26rem),
     radial-gradient(circle at 50% 80%, rgba(185, 28, 28, .06), transparent 30rem),
