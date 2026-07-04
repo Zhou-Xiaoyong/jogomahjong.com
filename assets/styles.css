@@ -481,7 +481,7 @@ button {
 
 .tile-symbol {
   font-family: "I.Mahjong", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
-  font-size: 6.2rem;
+  font-size: 6.75rem;
   line-height: 1;
   font-weight: normal;
   display: block;
@@ -532,7 +532,7 @@ button {
 }
 .tile-face .tile-symbol {
   font-family: "I.Mahjong", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
-  font-size: 6.2rem;
+  font-size: 6.75rem;
   line-height: 1;
   font-weight: normal;
   color: inherit;
