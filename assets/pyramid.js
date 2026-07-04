@@ -128,6 +128,7 @@
         button.type = "button";
         button.dataset.uid = tile.uid;
         button.dataset.suit = tile.type.suit;
+        button.dataset.id = tile.type.id;
         button.style.left = `${offsetX + tile.x * colStride + tile.z * layerShift}px`;
         button.style.top = `${offsetY + tile.y * (tileH * rowFactor + gapY) - tile.z * layerShift}px`;
         button.style.zIndex = `${tile.z * 100 + tile.y * 10 + tile.x}`;

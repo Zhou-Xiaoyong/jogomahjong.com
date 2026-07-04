@@ -116,6 +116,7 @@
           btn.disabled = true;
         } else {
           btn.dataset.suit = cell.type.suit;
+          btn.dataset.id = cell.type.id;
           btn.setAttribute("aria-label", `${cell.type.name} (${cell.type.cn})`);
           btn.innerHTML =
             `<span class="tile-symbol">${cell.type.symbol}</span>` +

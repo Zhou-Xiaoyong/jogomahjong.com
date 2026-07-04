@@ -69,6 +69,7 @@
       const el = document.createElement("div");
       el.className = "tile slide-tile";
       el.dataset.suit = tile.type.suit;
+      el.dataset.id = tile.type.id;
       el.dataset.index = index;
       el.style.position = "absolute";
       el.style.left = (index * 80) + "px";

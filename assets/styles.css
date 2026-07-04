@@ -260,6 +260,11 @@ h3 {
 .mini-tile[data-suit="círculo"]   { color: #1a1a1a; }
 .mini-tile[data-suit="vento"]     { color: #1a3a6e; }
 
+/* mini-tile 三箭牌单独着色 */
+.mini-tile[data-id="dragon_red"]   { color: var(--chinese-red); }
+.mini-tile[data-id="dragon_green"] { color: var(--chinese-green); }
+.mini-tile[data-id="dragon_white"] { color: #1a3a6e; }
+
 /* I.Mahjong font provides built-in tile colors */
 
 
@@ -444,14 +449,18 @@ button {
 }
 
 /* 传统麻将牌颜色 — 按花色分类 */
-.tile[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }   /* 中 — 红色 */
-.tile[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }   /* 红中 */
+.tile[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }   /* 红中 — 红色 */
 .tile[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }   /* 万子 — 红色 */
 .tile[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); } /* 索子 — 绿色 */
 .tile[data-suit="círculo"]   .tile-symbol { color: #1a1a1a; }              /* 筒子 — 黑色 */
 .tile[data-suit="vento"]     .tile-symbol { color: #1a3a6e; }              /* 风牌 — 蓝色 */
 .tile[data-suit="flor"]      .tile-symbol { color: #d94f8a; }              /* 花牌 — 粉色 */
 .tile[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }              /* 季牌 — 紫色 */
+
+/* 三箭牌单独着色：红中红色、发财绿色、白板蓝色 */
+.tile[data-id="dragon_red"]   .tile-symbol { color: var(--chinese-red); }   /* 中 — 红色 */
+.tile[data-id="dragon_green"] .tile-symbol { color: var(--chinese-green); } /* 發 — 绿色 */
+.tile[data-id="dragon_white"] .tile-symbol { color: #1a3a6e; }              /* 白 — 蓝色 */
 
 .tile:hover:not(:disabled) {
   transform: translateY(-5px) scale(1.03);
@@ -503,7 +512,7 @@ button {
   font-weight: normal;
   display: block;
   color: inherit;
-  transform: translate(-2px, -6px);
+  transform: translate(-2px, -12px);
 }
 
 .tile-name {
@@ -554,7 +563,7 @@ button {
   line-height: 1;
   font-weight: normal;
   color: inherit;
-  transform: translate(-2px, -6px);
+  transform: translate(-2px, -12px);
 }
 .tile-face .tile-name {
   position: absolute;
@@ -583,6 +592,11 @@ button {
 .tile[data-suit="vento"]     .tile-face .tile-symbol { color: #1a3a6e; }
 .tile[data-suit="flor"]      .tile-face .tile-symbol { color: #d94f8a; }
 .tile[data-suit="estação"]   .tile-face .tile-symbol { color: #8b5cf6; }
+
+/* tile-face 三箭牌单独着色 */
+.tile[data-id="dragon_red"]   .tile-face .tile-symbol { color: var(--chinese-red); }
+.tile[data-id="dragon_green"] .tile-face .tile-symbol { color: var(--chinese-green); }
+.tile[data-id="dragon_white"] .tile-face .tile-symbol { color: #1a3a6e; }
 
 .tile-face[data-suit="vento"]     .tile-name { color: #1f6feb; background: rgba(31, 111, 235, .15); }
 .tile-face[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
@@ -867,6 +881,11 @@ button {
 .memory-card-back[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
 .memory-card-back[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
 
+/* memory-card-back 三箭牌单独着色 */
+.memory-card-back[data-id="dragon_red"]   .tile-symbol { color: var(--chinese-red); }
+.memory-card-back[data-id="dragon_green"] .tile-symbol { color: var(--chinese-green); }
+.memory-card-back[data-id="dragon_white"] .tile-symbol { color: #1a3a6e; }
+
 /* .tile-name keeps naipe accent */
 .memory-card-back[data-suit="vento"]     .tile-name { color: #1f6feb; background: rgba(31, 111, 235, .15); }
 .memory-card-back[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
@@ -1120,6 +1139,11 @@ button {
 .legend-tile[data-suit="vento"]     .tile-symbol { color: #1a3a6e; }
 .legend-tile[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
 .legend-tile[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
+
+/* legend-tile 三箭牌单独着色 */
+.legend-tile[data-id="dragon_red"]   .tile-symbol { color: var(--chinese-red); }
+.legend-tile[data-id="dragon_green"] .tile-symbol { color: var(--chinese-green); }
+.legend-tile[data-id="dragon_white"] .tile-symbol { color: #1a3a6e; }
 
 .legend-tile .legend-name {
   font: 800 .58rem Arial, sans-serif;

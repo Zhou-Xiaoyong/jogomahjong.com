@@ -92,6 +92,7 @@
       const back = document.createElement("div");
       back.className = "memory-card-back";
       back.dataset.suit = card.type.suit;
+      back.dataset.id = card.type.id;
       back.setAttribute("aria-label", `${card.type.name} (${card.type.cn})`);
       back.innerHTML =
         `<span class="tile-symbol">${card.type.symbol}</span>` +

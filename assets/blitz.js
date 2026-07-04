@@ -125,7 +125,7 @@
       const el = document.createElement("div");
       el.className = "tile";
       el.dataset.suit = tile.type.suit;
-      el.dataset.id = tile.id;
+      el.dataset.id = tile.type.id;
       el.style.position = "absolute";
       el.style.width = tileW + "px";
       el.style.height = tileH + "px";
