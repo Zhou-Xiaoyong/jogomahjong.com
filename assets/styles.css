@@ -631,6 +631,27 @@ button {
 
 .article strong { color: var(--ink); }
 
+.highlight-box {
+  margin: 22px 0;
+  padding: 18px 22px;
+  background: linear-gradient(135deg, rgba(201, 151, 42, .12), rgba(15, 107, 88, .08));
+  border-left: 4px solid var(--gold);
+  border-radius: 0 16px 16px 0;
+  line-height: 1.7;
+}
+
+.cta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.cta-grid .btn {
+  justify-content: center;
+  text-align: center;
+}
+
 .sidebox {
   position: sticky;
   top: 84px;
