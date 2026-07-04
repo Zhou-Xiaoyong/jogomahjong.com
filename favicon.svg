@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="16" fill="#0f6b58"/>
-  <rect x="14" y="10" width="36" height="44" rx="8" fill="#fffaf0"/>
-  <path d="M22 24h20M22 34h20M22 44h20" stroke="#b3472f" stroke-width="4" stroke-linecap="round"/>
-  <text x="32" y="22" text-anchor="middle" font-size="15" font-family="serif" fill="#0f6b58">麻</text>
+  <rect x="12" y="8" width="40" height="48" rx="6" fill="#fffaf0"/>
+  <rect x="14" y="10" width="36" height="44" rx="4" fill="none" stroke="#dcc9a9" stroke-width="1"/>
+  <text x="32" y="42" text-anchor="middle" font-size="32" font-weight="bold" font-family="serif" fill="#b91c1c">中</text>
 </svg>
