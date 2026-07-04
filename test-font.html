@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Test I.Mahjong Font</title>
+<style>
+@font-face {
+  font-family: "I.Mahjong";
+  src: url("/assets/I.Mahjong-TW.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+body { background: #f7f0e3; padding: 40px; font-family: Arial, sans-serif; }
+h2 { margin-top: 40px; }
+
+/* Test 1: Raw font rendering at various sizes */
+.raw { font-family: "I.Mahjong"; font-size: 4rem; line-height: 1; }
+.raw-sm { font-family: "I.Mahjong"; font-size: 2rem; line-height: 1; }
+
+/* Test 2: Current tile container style */
+.tile-test {
+  position: relative;
+  width: 72px;
+  height: 98px;
+  background: transparent;
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 6px 0 #9a7b4a, 0 12px 18px rgba(69, 40, 15, .24);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  overflow: hidden;
+}
+.tile-test .tile-symbol {
+  font-family: "I.Mahjong";
+  font-size: 4rem;
+  line-height: 1;
+  font-weight: normal;
+  display: block;
+  color: inherit;
+}
+.tile-test .tile-name {
+  display: block;
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, .06);
+  font: 800 .55rem Arial, sans-serif;
+  color: rgba(0, 0, 0, .55);
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  white-space: normal;
+  overflow: visible;
+  max-width: 68px;
+  line-height: 1.15;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 2px;
+}
+
+/* Test 3: Font-only approach (no container decoration) */
+.tile-font-only {
+  display: inline-block;
+  font-family: "I.Mahjong";
+  font-size: 4rem;
+  line-height: 1;
+}
+
+/* Test 4: Adjusted container matching 4:3 ratio */
+.tile-4x3 {
+  position: relative;
+  width: 72px;
+  height: 54px;
+  background: transparent;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.tile-4x3 .tile-symbol {
+  font-family: "I.Mahjong";
+  font-size: 3.2rem;
+  line-height: 1;
+  font-weight: normal;
+}
+
+.flex-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: end; margin: 16px 0; }
+</style>
+</head>
+<body>
+<h1>I.Mahjong Font Test</h1>
+
+<h2>1. Raw font at 4rem</h2>
+<div class="raw">
+  🀀🀁🀂🀃🀄🀅🀆🀇🀈🀉
+</div>
+<div class="raw">
+  🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓
+</div>
+<div class="raw">
+  🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝
+</div>
+<div class="raw">
+  🀞🀟🀠🀡🀢🀣🀤🀥🀦🀧
+</div>
+<div class="raw">
+  🀨🀩🀪🀫
+</div>
+
+<h2>2. Current tile container (72×98px)</h2>
+<div class="flex-row">
+  <div class="tile-test" data-suit="vento">
+    <span class="tile-symbol">🀀</span>
+    <span class="tile-name">Leste</span>
+  </div>
+  <div class="tile-test" data-suit="dragão">
+    <span class="tile-symbol">🀄</span>
+    <span class="tile-name">Dragão Verm.</span>
+  </div>
+  <div class="tile-test" data-suit="caractere">
+    <span class="tile-symbol">🀇</span>
+    <span class="tile-name">1 Caractere</span>
+  </div>
+  <div class="tile-test" data-suit="bambu">
+    <span class="tile-symbol">🀐</span>
+    <span class="tile-name">1 Bambu</span>
+  </div>
+  <div class="tile-test" data-suit="círculo">
+    <span class="tile-symbol">🀙</span>
+    <span class="tile-name">1 Círculo</span>
+  </div>
+</div>
+
+<h2>3. Font-only (no container)</h2>
+<div class="flex-row">
+  <span class="tile-font-only">🀀</span>
+  <span class="tile-font-only">🀄</span>
+  <span class="tile-font-only">🀇</span>
+  <span class="tile-font-only">🀐</span>
+  <span class="tile-font-only">🀙</span>
+</div>
+
+<h2>4. 4:3 ratio container (72×54px)</h2>
+<div class="flex-row">
+  <div class="tile-4x3">
+    <span class="tile-symbol">🀀</span>
+  </div>
+  <div class="tile-4x3">
+    <span class="tile-symbol">🀄</span>
+  </div>
+  <div class="tile-4x3">
+    <span class="tile-symbol">🀇</span>
+  </div>
+  <div class="tile-4x3">
+    <span class="tile-symbol">🀐</span>
+  </div>
+  <div class="tile-4x3">
+    <span class="tile-symbol">🀙</span>
+  </div>
+</div>
+
+<h2>5. Raw font at 2rem (small)</h2>
+<div class="raw-sm">
+  🀀🀁🀂🀃🀄🀅🀆🀇🀈🀉🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝🀞🀟🀠🀡
+</div>
+</body>
+</html>

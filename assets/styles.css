@@ -17,6 +17,15 @@
   --chinese-ink: #1a1a1a;
 }
 
+/* I.Mahjong 字体 — 开源麻将牌面字体 (M+ License) */
+@font-face {
+  font-family: "I.Mahjong";
+  src: url("/assets/I.Mahjong-TW.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -232,26 +241,20 @@ h3 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  background: linear-gradient(145deg, #fffdf5, #f0e4c8);
-  border: 1px solid rgba(160, 128, 80, .3);
-  box-shadow: inset 0 2px 0 rgba(255,255,255,.9), 0 5px 0 #a08050, 0 10px 16px rgba(70, 38, 12, .14);
-  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  box-shadow: 0 5px 0 #a08050, 0 10px 16px rgba(70, 38, 12, .14);
+  font-family: "I.Mahjong", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
   font-weight: normal;
-  font-variation-settings: 'wght' 400;
-  font-size: 2.6rem;
+  font-size: 2.8rem;
   line-height: 1;
-  filter: drop-shadow(0 1px 0 rgba(255,255,255,.5));
-  padding: 4px 2px;
+  padding: 0;
   overflow: hidden;
 }
 
-/* Cores por naipe — igual ao jogo */
-.mini-tile[data-suit="vento"]     { color: #1f6feb; }
-.mini-tile[data-suit="dragão"]    { color: #b91c1c; }
-.mini-tile[data-suit="caractere"] { color: #b91c1c; }
-.mini-tile[data-suit="bambu"]     { color: #2d5a27; }
-.mini-tile[data-suit="círculo"]   { color: #1a1a1a; }
+/* I.Mahjong font provides built-in tile colors */
+
 
 .section {
   padding: 62px 0;
@@ -412,38 +415,30 @@ button {
   width: 72px;
   height: 98px;
   border: 0;
-  border-radius: 12px;
-  background: linear-gradient(145deg, #fffdf5 0%, #f6eed9 42%, #efe2c7 100%);
-  box-shadow:
-    inset 0 2px 0 rgba(255,255,255,.9),
-    0 6px 0 #9a7b4a,
-    0 12px 18px rgba(69, 40, 15, .24);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: 0 6px 0 #9a7b4a, 0 12px 18px rgba(69, 40, 15, .24);
   color: var(--ink);
   cursor: pointer;
   transition: transform .14s ease, filter .14s ease, box-shadow .14s ease, opacity .2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 8px 4px;
-  overflow: visible;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
 }
 
+/* I.Mahjong: full tile face rendered by the font glyph itself.
+   Container only provides layout position and 3-D depth shadow. */
+
 .tile::before {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border-radius: 8px;
-  border: 1px solid rgba(160, 128, 80, .25);
-  pointer-events: none;
+  display: none;
 }
 
 .tile:hover:not(:disabled) {
   transform: translateY(-5px) scale(1.03);
-  box-shadow:
-    inset 0 3px 0 rgba(255,255,255,.9),
-    0 13px 0 #9a7b4a,
-    0 28px 34px rgba(69, 40, 15, .28);
+  box-shadow: 0 13px 0 #9a7b4a, 0 28px 34px rgba(69, 40, 15, .28);
 }
 
 .tile.selected {
@@ -485,53 +480,88 @@ button {
 }
 
 .tile-symbol {
-  font-size: 4rem;
+  font-family: "I.Mahjong", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
+  font-size: 6.2rem;
   line-height: 1;
-  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
   font-weight: normal;
-  font-variation-settings: 'wght' 400;
   display: block;
-  filter: drop-shadow(0 1px 0 rgba(255,255,255,.5));
-  margin-bottom: 2px;
-  margin-top: 4px;
+  color: inherit;
 }
 
 .tile-name {
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  transform: translateX(-50%);
   display: block;
-  padding: 1px 6px;
-  border-radius: 6px;
-  background: rgba(0, 0, 0, .06);
-  font: 800 .55rem Arial, sans-serif;
-  color: rgba(0, 0, 0, .55);
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(255, 250, 240, .88);
+  font: 800 .48rem Arial, sans-serif;
+  color: rgba(0, 0, 0, .65);
   text-transform: uppercase;
-  letter-spacing: .02em;
+  letter-spacing: .01em;
   white-space: normal;
   overflow: visible;
   text-overflow: clip;
-  max-width: 68px;
-  line-height: 1.15;
+  max-width: 66px;
+  line-height: 1.1;
   text-align: center;
-  margin-top: auto;
-  margin-bottom: 2px;
+  z-index: 1;
 }
 
-/* Cores do símbolo por naipe - tradição do Mahjong chinês */
-.tile[data-suit="vento"]     .tile-symbol { color: #1f6feb; }
-.tile[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }
-.tile[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }
-.tile[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); }
-.tile[data-suit="círculo"]   .tile-symbol { color: #1a1a1a; }
-.tile[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
-.tile[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
+/* I.Mahjong font provides built-in tile colors; .tile-name keeps naipe accent */
+.tile[data-suit="vento"]     .tile-name { color: #1f6feb; background: rgba(31, 111, 235, .15); }
+.tile[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
+.tile[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
+.tile[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .15); }
+.tile[data-suit="círculo"]   .tile-name { color: #1a1a1a; background: rgba(0, 0, 0, .12); }
+.tile[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .15); }
+.tile[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .15); }
 
-/* Nome em português segue a cor do naipe para consistência */
-.tile[data-suit="vento"]     .tile-name { color: #1f6feb; background: rgba(31, 111, 235, .1); }
-.tile[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
-.tile[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
-.tile[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .12); }
-.tile[data-suit="círculo"]   .tile-name { color: #1a1a1a; background: rgba(0, 0, 0, .08); }
-.tile[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .12); }
-.tile[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .12); }
+/* .tile-face wrapper used by tower, blitz, slide games */
+.tile-face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.tile-face .tile-symbol {
+  font-family: "I.Mahjong", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
+  font-size: 6.2rem;
+  line-height: 1;
+  font-weight: normal;
+  color: inherit;
+}
+.tile-face .tile-name {
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(255, 250, 240, .88);
+  font: 800 .48rem Arial, sans-serif;
+  color: rgba(0, 0, 0, .65);
+  text-transform: uppercase;
+  letter-spacing: .01em;
+  white-space: normal;
+  max-width: 66px;
+  line-height: 1.1;
+  text-align: center;
+  z-index: 1;
+}
+.tile-face[data-suit="vento"]     .tile-name { color: #1f6feb; background: rgba(31, 111, 235, .15); }
+.tile-face[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
+.tile-face[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
+.tile-face[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .15); }
+.tile-face[data-suit="círculo"]   .tile-name { color: #1a1a1a; background: rgba(0, 0, 0, .12); }
+.tile-face[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .15); }
+.tile-face[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .15); }
 
 .message {
   min-height: 28px;
@@ -756,54 +786,49 @@ button {
 
 .memory-card-front::before {
   content: "🀫";
-  font-size: 2.2rem;
+  font-family: "I.Mahjong", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
+  font-size: 2.8rem;
   opacity: .7;
 }
 
 .memory-card-back {
-  background: linear-gradient(145deg, #fffdf5 0%, #f5ecd8 40%, #efe2c7 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.8),
-    0 5px 0 #a08050,
-    0 12px 20px rgba(69, 40, 15, .22);
+  background: transparent;
+  box-shadow: 0 5px 0 #a08050, 0 12px 20px rgba(69, 40, 15, .22);
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8px 6px;
+  padding: 0;
+  position: relative;
 }
 
 .memory-card-back::before {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border-radius: 9px;
-  border: 1px solid rgba(160, 128, 80, .25);
-  pointer-events: none;
+  display: none;
 }
 
 .memory-card-back .tile-symbol {
-  font-size: 3.2rem;
-  margin-bottom: 2px;
+  font-family: "I.Mahjong", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
+  font-size: 4.2rem;
+  line-height: 1;
+  color: inherit;
 }
 
 .memory-card-back .tile-name {
-  font-size: .55rem;
-  max-width: 64px;
-  margin-top: 0;
-  padding: 1px 6px;
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: .45rem;
+  max-width: 60px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(255, 250, 240, .88);
+  color: rgba(0, 0, 0, .65);
+  z-index: 1;
 }
 
-/* Cores por naipe na memória também */
-.memory-card-back[data-suit="vento"]     .tile-symbol { color: #1f6feb; }
-.memory-card-back[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }
-.memory-card-back[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }
-.memory-card-back[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); }
-.memory-card-back[data-suit="círculo"]   .tile-symbol { color: #1a1a1a; }
-.memory-card-back[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
-.memory-card-back[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
-
+/* I.Mahjong font provides built-in colors; .tile-name keeps naipe accent */
 .memory-card-back[data-suit="vento"]     .tile-name { color: #1f6feb; background: rgba(31, 111, 235, .1); }
 .memory-card-back[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
 .memory-card-back[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
@@ -813,11 +838,9 @@ button {
 .memory-card-back[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .12); }
 
 .memory-card.matched .memory-card-back {
-  background: linear-gradient(145deg, #d9eadf 0%, #b8d4c4 100%) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.8),
-    0 5px 0 #7aad8e,
-    0 12px 20px rgba(69, 40, 15, .22);
+  background: transparent !important;
+  box-shadow: 0 5px 0 #7aad8e, 0 12px 20px rgba(69, 40, 15, .22);
+  filter: brightness(1.08);
 }
 
 /* ========== Timed game: countdown banner ========== */
@@ -1036,15 +1059,16 @@ button {
   align-items: center;
   gap: 4px;
   width: 60px;
-  padding: 8px 4px 6px;
-  border-radius: 10px;
-  background: linear-gradient(145deg, #fffdf5 0%, #f5ecd8 40%, #efe2c7 100%);
-  border: 1px solid rgba(160, 128, 80, .35);
+  padding: 4px 2px 4px;
+  border-radius: 0;
+  background: transparent;
+  border: none;
   box-shadow: 0 4px 0 #a08050, 0 8px 12px rgba(69, 40, 15, .14);
 }
 
 .legend-tile .tile-symbol {
-  font-size: 1.6rem;
+  font-family: "I.Mahjong", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
+  font-size: 2rem;
   line-height: 1;
 }
 
@@ -1159,10 +1183,10 @@ button {
   .memory-board { grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .memory-card { width: 64px; height: 80px; }
   .connect-tile { width: 44px; height: 56px; }
-  .connect-tile .tile-symbol { font-size: 1.2rem; }
+  .connect-tile .tile-symbol { font-size: 2.8rem; }
   .countdown-banner .cd-time { font-size: 1.5rem; }
-  .tile-name { font-size: .46rem; }
-  .tile-symbol { font-size: 1.5rem; }
-  .mini-tile { font-size: 1.4rem; border-radius: 6px; }
+  .tile-name { font-size: .38rem; }
+  .tile-symbol { font-size: 3.5rem; }
+  .mini-tile { font-size: 1.6rem; border-radius: 0; background: transparent; border: none; }
   .hero-card { padding: 16px; }
 }
