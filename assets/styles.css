@@ -34,24 +34,9 @@ body {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
   color: var(--ink);
-  background:
-    radial-gradient(circle at 12% 10%, rgba(201, 151, 42, .22), transparent 28rem),
-    radial-gradient(circle at 92% 18%, rgba(15, 107, 88, .15), transparent 26rem),
-    radial-gradient(circle at 50% 80%, rgba(185, 28, 28, .06), transparent 30rem),
-    linear-gradient(135deg, #f7f0e3 0%, #f3e4c8 46%, #fff6e4 100%);
-}
-
-/* 背景图片 */
-body::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: .5;
-  background-image: url("/assets/bg.jpg");
-  background-size: 300px 300px;
+  background-color: #f7f0e3;
+  background-image: url("/assets/bg.png");
   background-repeat: repeat;
-  z-index: -1;
 }
 
 
