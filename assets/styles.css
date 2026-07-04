@@ -1129,7 +1129,7 @@ button {
   font-family: "I.Mahjong", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
   font-size: 2rem;
   line-height: 1;
-  transform: translateY(4px);
+  transform: translateY(2px);
 }
 
 /* legend-tile 颜色 */
@@ -1151,7 +1151,7 @@ button {
   color: var(--ink);
   text-align: center;
   line-height: 1.15;
-  margin-top: 1px;
+  margin-top: 2px;
 }
 
 .legend-tile .legend-cn {
