@@ -41,15 +41,18 @@ body {
     linear-gradient(135deg, #f7f0e3 0%, #f3e4c8 46%, #fff6e4 100%);
 }
 
-/* Chinese traditional pattern overlay — 传统回纹无缝底纹 */
+/* 背景图片 */
 body::before {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: .4;
-  background-image: url("/assets/cloud-pattern.svg");
-  background-size: 200px 200px;
+  opacity: .3;
+  background-image: url("https://img08.tooopen.com/20211208/tooopen_v1452375237e5302cca-8875-494a-862b-85772133f26a.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
 }
 
 
