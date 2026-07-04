@@ -1129,6 +1129,7 @@ button {
   font-family: "I.Mahjong", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
   font-size: 2rem;
   line-height: 1;
+  transform: translateY(6px);
 }
 
 /* legend-tile 颜色 */
