@@ -241,9 +241,9 @@ h3 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 0;
-  background: transparent;
-  border: none;
+  border-radius: 6px;
+  background: linear-gradient(145deg, #fff8f0 0%, #f5e8d8 50%, #efe0c8 100%);
+  border: 2px solid #d4c4a8;
   box-shadow: 0 5px 0 #a08050, 0 10px 16px rgba(70, 38, 12, .14);
   font-family: "I.Mahjong", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", Arial, sans-serif;
   font-weight: normal;
@@ -252,6 +252,13 @@ h3 {
   padding: 0;
   overflow: hidden;
 }
+
+/* mini-tile 颜色 */
+.mini-tile[data-suit="dragão"]    { color: var(--chinese-red); }
+.mini-tile[data-suit="caractere"] { color: var(--chinese-red); }
+.mini-tile[data-suit="bambu"]     { color: var(--chinese-green); }
+.mini-tile[data-suit="círculo"]   { color: #1a3a6e; }
+.mini-tile[data-suit="vento"]     { color: #1a3a6e; }
 
 /* I.Mahjong font provides built-in tile colors */
 
@@ -414,9 +421,9 @@ button {
   position: absolute;
   width: 72px;
   height: 98px;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
+  border: 2px solid #d4c4a8;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #fff8f0 0%, #f5e8d8 50%, #efe0c8 100%);
   box-shadow: 0 6px 0 #9a7b4a, 0 12px 18px rgba(69, 40, 15, .24);
   color: var(--ink);
   cursor: pointer;
@@ -430,11 +437,21 @@ button {
 }
 
 /* I.Mahjong: full tile face rendered by the font glyph itself.
-   Container only provides layout position and 3-D depth shadow. */
+   Container provides ivory background and 3-D depth shadow. */
 
 .tile::before {
   display: none;
 }
+
+/* 传统麻将牌颜色 — 按花色分类 */
+.tile[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }   /* 中 — 红色 */
+.tile[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }   /* 红中 */
+.tile[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }   /* 万子 — 红色 */
+.tile[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); } /* 索子 — 绿色 */
+.tile[data-suit="círculo"]   .tile-symbol { color: #1a3a6e; }              /* 筒子 — 蓝色 */
+.tile[data-suit="vento"]     .tile-symbol { color: #1a3a6e; }              /* 风牌 — 蓝色 */
+.tile[data-suit="flor"]      .tile-symbol { color: #d94f8a; }              /* 花牌 — 粉色 */
+.tile[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }              /* 季牌 — 紫色 */
 
 .tile:hover:not(:disabled) {
   transform: translateY(-5px) scale(1.03);
@@ -515,7 +532,7 @@ button {
 .tile[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
 .tile[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
 .tile[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .15); }
-.tile[data-suit="círculo"]   .tile-name { color: #1a1a1a; background: rgba(0, 0, 0, .12); }
+.tile[data-suit="círculo"]   .tile-name { color: #1a3a6e; background: rgba(26, 58, 110, .12); }
 .tile[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .15); }
 .tile[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .15); }
 
@@ -555,11 +572,21 @@ button {
   text-align: center;
   z-index: 1;
 }
+
+/* tile-face 颜色 — 继承外层tile的颜色 */
+.tile[data-suit="dragão"]    .tile-face .tile-symbol { color: var(--chinese-red); }
+.tile[data-suit="caractere"] .tile-face .tile-symbol { color: var(--chinese-red); }
+.tile[data-suit="bambu"]     .tile-face .tile-symbol { color: var(--chinese-green); }
+.tile[data-suit="círculo"]   .tile-face .tile-symbol { color: #1a3a6e; }
+.tile[data-suit="vento"]     .tile-face .tile-symbol { color: #1a3a6e; }
+.tile[data-suit="flor"]      .tile-face .tile-symbol { color: #d94f8a; }
+.tile[data-suit="estação"]   .tile-face .tile-symbol { color: #8b5cf6; }
+
 .tile-face[data-suit="vento"]     .tile-name { color: #1f6feb; background: rgba(31, 111, 235, .15); }
 .tile-face[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
 .tile-face[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
 .tile-face[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .15); }
-.tile-face[data-suit="círculo"]   .tile-name { color: #1a1a1a; background: rgba(0, 0, 0, .12); }
+.tile-face[data-suit="círculo"]   .tile-name { color: #1a3a6e; background: rgba(26, 58, 110, .12); }
 .tile-face[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .15); }
 .tile-face[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .15); }
 
@@ -792,7 +819,8 @@ button {
 }
 
 .memory-card-back {
-  background: transparent;
+  background: linear-gradient(145deg, #fff8f0 0%, #f5e8d8 50%, #efe0c8 100%);
+  border: 2px solid #d4c4a8;
   box-shadow: 0 5px 0 #a08050, 0 12px 20px rgba(69, 40, 15, .22);
   transform: rotateY(180deg);
   display: flex;
@@ -828,17 +856,27 @@ button {
   z-index: 1;
 }
 
-/* I.Mahjong font provides built-in colors; .tile-name keeps naipe accent */
-.memory-card-back[data-suit="vento"]     .tile-name { color: #1f6feb; background: rgba(31, 111, 235, .1); }
-.memory-card-back[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
-.memory-card-back[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .1); }
-.memory-card-back[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .12); }
-.memory-card-back[data-suit="círculo"]   .tile-name { color: #1a1a1a; background: rgba(0, 0, 0, .08); }
-.memory-card-back[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .12); }
-.memory-card-back[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .12); }
+/* memory-card-back 颜色 */
+.memory-card-back[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }
+.memory-card-back[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }
+.memory-card-back[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); }
+.memory-card-back[data-suit="círculo"]   .tile-symbol { color: #1a3a6e; }
+.memory-card-back[data-suit="vento"]     .tile-symbol { color: #1a3a6e; }
+.memory-card-back[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
+.memory-card-back[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
+
+/* .tile-name keeps naipe accent */
+.memory-card-back[data-suit="vento"]     .tile-name { color: #1f6feb; background: rgba(31, 111, 235, .15); }
+.memory-card-back[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
+.memory-card-back[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
+.memory-card-back[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .15); }
+.memory-card-back[data-suit="círculo"]   .tile-name { color: #1a3a6e; background: rgba(26, 58, 110, .12); }
+.memory-card-back[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .15); }
+.memory-card-back[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .15); }
 
 .memory-card.matched .memory-card-back {
-  background: transparent !important;
+  background: linear-gradient(145deg, #e8f5e9 0%, #c8e6c9 100%) !important;
+  border-color: #7aad8e !important;
   box-shadow: 0 5px 0 #7aad8e, 0 12px 20px rgba(69, 40, 15, .22);
   filter: brightness(1.08);
 }
@@ -1060,9 +1098,9 @@ button {
   gap: 4px;
   width: 60px;
   padding: 4px 2px 4px;
-  border-radius: 0;
-  background: transparent;
-  border: none;
+  border-radius: 6px;
+  background: linear-gradient(145deg, #fff8f0 0%, #f5e8d8 50%, #efe0c8 100%);
+  border: 2px solid #d4c4a8;
   box-shadow: 0 4px 0 #a08050, 0 8px 12px rgba(69, 40, 15, .14);
 }
 
@@ -1071,6 +1109,15 @@ button {
   font-size: 2rem;
   line-height: 1;
 }
+
+/* legend-tile 颜色 */
+.legend-tile[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }
+.legend-tile[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }
+.legend-tile[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); }
+.legend-tile[data-suit="círculo"]   .tile-symbol { color: #1a3a6e; }
+.legend-tile[data-suit="vento"]     .tile-symbol { color: #1a3a6e; }
+.legend-tile[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
+.legend-tile[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
 
 .legend-tile .legend-name {
   font: 800 .58rem Arial, sans-serif;
