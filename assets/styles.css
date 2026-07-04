@@ -257,7 +257,7 @@ h3 {
 .mini-tile[data-suit="dragão"]    { color: var(--chinese-red); }
 .mini-tile[data-suit="caractere"] { color: var(--chinese-red); }
 .mini-tile[data-suit="bambu"]     { color: var(--chinese-green); }
-.mini-tile[data-suit="círculo"]   { color: #1a3a6e; }
+.mini-tile[data-suit="círculo"]   { color: #1a1a1a; }
 .mini-tile[data-suit="vento"]     { color: #1a3a6e; }
 
 /* I.Mahjong font provides built-in tile colors */
@@ -448,7 +448,7 @@ button {
 .tile[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }   /* 红中 */
 .tile[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }   /* 万子 — 红色 */
 .tile[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); } /* 索子 — 绿色 */
-.tile[data-suit="círculo"]   .tile-symbol { color: #1a3a6e; }              /* 筒子 — 蓝色 */
+.tile[data-suit="círculo"]   .tile-symbol { color: #1a1a1a; }              /* 筒子 — 黑色 */
 .tile[data-suit="vento"]     .tile-symbol { color: #1a3a6e; }              /* 风牌 — 蓝色 */
 .tile[data-suit="flor"]      .tile-symbol { color: #d94f8a; }              /* 花牌 — 粉色 */
 .tile[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }              /* 季牌 — 紫色 */
@@ -503,6 +503,7 @@ button {
   font-weight: normal;
   display: block;
   color: inherit;
+  transform: translate(-1px, -3px);
 }
 
 .tile-name {
@@ -532,7 +533,7 @@ button {
 .tile[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
 .tile[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
 .tile[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .15); }
-.tile[data-suit="círculo"]   .tile-name { color: #1a3a6e; background: rgba(26, 58, 110, .12); }
+.tile[data-suit="círculo"]   .tile-name { color: #1a1a1a; background: rgba(0, 0, 0, .12); }
 .tile[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .15); }
 .tile[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .15); }
 
@@ -553,6 +554,7 @@ button {
   line-height: 1;
   font-weight: normal;
   color: inherit;
+  transform: translate(-1px, -3px);
 }
 .tile-face .tile-name {
   position: absolute;
@@ -577,7 +579,7 @@ button {
 .tile[data-suit="dragão"]    .tile-face .tile-symbol { color: var(--chinese-red); }
 .tile[data-suit="caractere"] .tile-face .tile-symbol { color: var(--chinese-red); }
 .tile[data-suit="bambu"]     .tile-face .tile-symbol { color: var(--chinese-green); }
-.tile[data-suit="círculo"]   .tile-face .tile-symbol { color: #1a3a6e; }
+.tile[data-suit="círculo"]   .tile-face .tile-symbol { color: #1a1a1a; }
 .tile[data-suit="vento"]     .tile-face .tile-symbol { color: #1a3a6e; }
 .tile[data-suit="flor"]      .tile-face .tile-symbol { color: #d94f8a; }
 .tile[data-suit="estação"]   .tile-face .tile-symbol { color: #8b5cf6; }
@@ -586,7 +588,7 @@ button {
 .tile-face[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
 .tile-face[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
 .tile-face[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .15); }
-.tile-face[data-suit="círculo"]   .tile-name { color: #1a3a6e; background: rgba(26, 58, 110, .12); }
+.tile-face[data-suit="círculo"]   .tile-name { color: #1a1a1a; background: rgba(0, 0, 0, .12); }
 .tile-face[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .15); }
 .tile-face[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .15); }
 
@@ -860,7 +862,7 @@ button {
 .memory-card-back[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }
 .memory-card-back[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }
 .memory-card-back[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); }
-.memory-card-back[data-suit="círculo"]   .tile-symbol { color: #1a3a6e; }
+.memory-card-back[data-suit="círculo"]   .tile-symbol { color: #1a1a1a; }
 .memory-card-back[data-suit="vento"]     .tile-symbol { color: #1a3a6e; }
 .memory-card-back[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
 .memory-card-back[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
@@ -870,7 +872,7 @@ button {
 .memory-card-back[data-suit="dragão"]    .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
 .memory-card-back[data-suit="caractere"] .tile-name { color: var(--chinese-red); background: rgba(185, 28, 28, .15); }
 .memory-card-back[data-suit="bambu"]     .tile-name { color: var(--chinese-green); background: rgba(45, 90, 39, .15); }
-.memory-card-back[data-suit="círculo"]   .tile-name { color: #1a3a6e; background: rgba(26, 58, 110, .12); }
+.memory-card-back[data-suit="círculo"]   .tile-name { color: #1a1a1a; background: rgba(0, 0, 0, .12); }
 .memory-card-back[data-suit="flor"]      .tile-name { color: #d94f8a; background: rgba(217, 79, 138, .15); }
 .memory-card-back[data-suit="estação"]   .tile-name { color: #8b5cf6; background: rgba(139, 92, 246, .15); }
 
@@ -1114,7 +1116,7 @@ button {
 .legend-tile[data-suit="dragão"]    .tile-symbol { color: var(--chinese-red); }
 .legend-tile[data-suit="caractere"] .tile-symbol { color: var(--chinese-red); }
 .legend-tile[data-suit="bambu"]     .tile-symbol { color: var(--chinese-green); }
-.legend-tile[data-suit="círculo"]   .tile-symbol { color: #1a3a6e; }
+.legend-tile[data-suit="círculo"]   .tile-symbol { color: #1a1a1a; }
 .legend-tile[data-suit="vento"]     .tile-symbol { color: #1a3a6e; }
 .legend-tile[data-suit="flor"]      .tile-symbol { color: #d94f8a; }
 .legend-tile[data-suit="estação"]   .tile-symbol { color: #8b5cf6; }
