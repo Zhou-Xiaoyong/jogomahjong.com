@@ -1116,7 +1116,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   width: 60px;
   padding: 4px 2px 4px;
   border-radius: 6px;
