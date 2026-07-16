@@ -5,14 +5,6 @@ type = "pages"
 command = ""
 publish = "."
 
-[env]
-ASSETS = { binding = "ASSETS", type = "pages_assets" }
-
 [pages]
 build_command = ""
 destination_dir = "."
-preview = true
-
-[[pages.routes]]
-pattern = "/*"
-function = "functions/[[path]].ts"
