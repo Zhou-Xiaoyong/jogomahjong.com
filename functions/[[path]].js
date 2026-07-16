@@ -32,7 +32,7 @@ export async function onRequest(context) {
   enUrl.pathname = enPath;
 
   const enResponse = await env.ASSETS.fetch(enUrl.toString());
-  if (enResponse.status === 200) {
+  if (enResponse.status !== 404) {
     return enResponse;
   }
 
@@ -40,11 +40,11 @@ export async function onRequest(context) {
   if (!enPath.endsWith('index.html')) {
     enUrl.pathname = enPath + '/index.html';
     const fallbackResponse = await env.ASSETS.fetch(enUrl.toString());
-    if (fallbackResponse.status === 200) {
+    if (fallbackResponse.status !== 404) {
       return fallbackResponse;
     }
   }
 
-  // Final fallback: serve from root (shared content)
-  return env.ASSETS.fetch(request);
+  // No English version found - return the original response (not root)
+  return enResponse;
 }
