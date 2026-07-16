@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mahjong Blitz - 60 Seconds of Fast Action</title>
+  <meta name="description" content="Mahjong Blitz: 60 seconds to make as many pairs as possible! Fast reflex and speed game with traditional mahjong tiles in English.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://en.jogomahjong.com/mahjong-blitz/">
+  <link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-blitz/">
+  <link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-blitz/">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Mahjong Blitz - 60 Seconds">
+  <meta property="og:description" content="Race against time! 60 seconds to make as many mahjong pairs as possible. Speed and reflex challenge.">
+  <meta property="og:url" content="https://en.jogomahjong.com/mahjong-blitz/">
+  <meta property="og:image" content="https://en.jogomahjong.com/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0f6b58">
+  <link rel="preload" href="/assets/I.Mahjong-TW.otf" as="font" type="font/otf" crossorigin>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css?v=20260704">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Mahjong Blitz Online Free",
+    "alternateName": ["Mahjong Blitz", "Fast Mahjong"],
+    "url": "https://en.jogomahjong.com/mahjong-blitz/",
+    "description": "Mahjong Blitz: 60 seconds to make as many pairs as possible. Speed challenge in English.",
+    "genre": ["Puzzle", "Mahjong", "Arcade", "Time Attack"],
+    "gamePlatform": "Web browser",
+    "operatingSystem": "Web",
+    "inLanguage": "en-US",
+    "isAccessibleForFree": true,
+    "applicationCategory": "Game"
+  }
+  </script>
+</head>
+<body class="game-page">
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="logo" href="/" aria-label="Mahjong Game">
+        <span class="logo-mark">中</span>
+        <span>Mahjong Game</span>
+      </a>
+      <nav class="nav-links" aria-label="Main menu">
+        <a href="/jogar-mahjong/">Solitaire</a>
+        <a href="/mahjong-classico/">Classic</a>
+        <a href="/mahjong-connect/">Connect</a>
+        <a href="/mahjong-cadeia/">Chain</a>
+        <a href="/mahjong-piramide/">Pyramid</a>
+        <a href="/mahjong-torre/">Tower</a>
+        <a href="/mahjong-blitz/">Blitz</a>
+        <a href="/mahjong-deslize/">Slide</a>
+        <a href="/cultura-mahjong/">Culture</a>
+        <a href="/como-jogar-mahjong/">How to Play</a>
+        <a href="https://jogomahjong.com/mahjong-blitz/" style="font-size: 0.85rem; opacity: 0.8;">Português</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap">
+        <span class="eyebrow">Race mode</span>
+        <h1>Mahjong Blitz: 60 seconds of pure speed</h1>
+        <p class="lead">In a hurry? This game is fast! In 60 seconds, make as many pairs as you can. Each pair is worth points, and the board renews automatically. Test your reflexes and beat your record!</p>
+
+        <div class="ad-slot" aria-label="Top ad space">
+          Responsive ad space reserved. Recommended: activate only after AdSense approval.
+        </div>
+
+        <section class="game-shell" aria-labelledby="game-title">
+          <div class="game-toolbar">
+            <div>
+              <h2 id="game-title" style="font-size:1.45rem;margin:0;">Mahjong Blitz</h2>
+              <p style="margin:4px 0 0;color:var(--muted);font-family:Arial,sans-serif;">60 seconds, how many pairs can you make?</p>
+            </div>
+            <div class="game-stats" aria-label="Game statistics">
+              <span class="stat">Score: <strong id="score">0</strong></span>
+              <span class="stat">Pairs: <strong id="pairs">0</strong></span>
+              <span class="stat">Time: <strong id="time">60</strong>s</span>
+              <span class="stat">Best: <strong id="best">0</strong></span>
+            </div>
+            <div class="game-actions">
+              <button class="btn secondary" id="hint" type="button">Hint</button>
+              <button class="btn" id="new-game" type="button">New game</button>
+            </div>
+          </div>
+          <div class="board-wrap" aria-label="Mahjong Blitz board">
+            <div id="blitz-board"></div>
+          </div>
+          <p class="message" id="game-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <div class="ad-slot" aria-label="Bottom ad space">
+          Ad space reserved below the game. Avoid ads that cover the board.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap content-grid">
+        <article class="article">
+          <h2>How Mahjong Blitz works</h2>
+          <p><strong>Mahjong Blitz</strong> is the fastest and most exciting online mahjong mode. The rule is simple: you have 60 seconds to make as many pairs as possible. The board has 48 tiles (24 pairs) and, as you remove them, new tiles appear to keep the pace.</p>
+          <h3>Basic rules</h3>
+          <ul>
+            <li><strong>60 seconds</strong> on the clock — every second counts!</li>
+            <li><strong>Match equal pairs</strong> of tiles that are free (no tiles above and with one side free).</li>
+            <li><strong>Each pair is worth 10 points</strong>. The faster you are, the more total points.</li>
+            <li><strong>Board renews</strong>: when few tiles remain, new ones automatically appear.</li>
+            <li><strong>Best score saved</strong>: your high score is saved in the browser.</li>
+          </ul>
+          <h3>Tips to score more</h3>
+          <ul>
+            <li><strong>Look at the whole board</strong>: don't stay in one area — scan the entire board quickly.</li>
+            <li><strong>Obvious pairs first</strong>: start with easy-to-see pairs to build rhythm.</li>
+            <li><strong>Use hints sparingly</strong>: they help but waste precious time.</li>
+            <li><strong>Don't hesitate</strong>: if you make a wrong click, keep going — time is the enemy.</li>
+          </ul>
+          <h3>Who this mode is for</h3>
+          <p>Perfect for those who have only 1 or 2 minutes free and want a quick fun break. Also great for training reasoning speed and visual perception — skills that help in all other mahjong modes!</p>
+          <a class="btn" href="/jogar-mahjong/">Play classic solitaire</a>
+        </article>
+        <aside class="sidebox">
+          <h3>Other games</h3>
+          <ul>
+            <li><a href="/jogar-mahjong/">Classic Mahjong Solitaire</a></li>
+            <li><a href="/mahjong-connect/">Mahjong Connect</a></li>
+            <li><a href="/mahjong-cadeia/">Mahjong Chain</a></li>
+            <li><a href="/mahjong-piramide/">Mahjong Pyramid</a></li>
+            <li><a href="/mahjong-torre/">Mahjong Tower</a></li>
+            <li><a href="/mahjong-cronometrado/">Timed Mahjong</a></li>
+            <li><a href="/mahjong-relaxante/">Relaxing Mahjong</a></li>
+            <li><a href="/memoria-mahjong/">Mahjong Memory</a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="logo" href="/"><span class="logo-mark">中</span><span>Mahjong Game</span></a>
+        <p>Play free online Mahjong in English.</p>
+      </div>
+      <nav class="nav-links" aria-label="Footer links">
+        <a href="/">Home</a>
+        <a href="/cultura-mahjong/">Culture</a>
+        <a href="/como-jogar-mahjong/">How to Play</a>
+        <a href="/politica-de-privacidade/">Privacy</a>
+        <a href="https://jogomahjong.com/mahjong-blitz/">Português</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/assets/sound.js"></script>
+  <script src="/assets/tiles-data-en.js"></script>
+  <script src="/assets/blitz.js"></script>
+</body>
+</html>

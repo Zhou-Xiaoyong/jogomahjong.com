@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://en.jogomahjong.com/sitemap.xml

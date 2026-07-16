@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mahjong Chain Free Online - Connect Pairs in Sequence</title>
+  <meta name="description" content="Play Mahjong Chain free in English. Connect matching pairs in rapid sequence to form combos and multiply points. Adrenaline and strategy.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://en.jogomahjong.com/mahjong-cadeia/">
+  <link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-cadeia/">
+  <link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-cadeia/">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Mahjong Chain Free Online">
+  <meta property="og:description" content="Connect pairs in rapid sequence, build combos and beat your high score.">
+  <meta property="og:url" content="https://en.jogomahjong.com/mahjong-cadeia/">
+  <meta property="og:image" content="https://en.jogomahjong.com/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0f6b58">
+  <link rel="preload" href="/assets/I.Mahjong-TW.otf" as="font" type="font/otf" crossorigin>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css?v=20260704">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Mahjong Chain Online Free",
+    "alternateName": ["Mahjong Combo", "Mahjong Chain"],
+    "url": "https://en.jogomahjong.com/mahjong-cadeia/",
+    "description": "Mahjong Connect mode with combo system (chain), in English, that rewards rapid sequences of pairs.",
+    "genre": ["Puzzle", "Mahjong", "Combo"],
+    "gamePlatform": "Web browser",
+    "operatingSystem": "Web",
+    "inLanguage": "en-US",
+    "isAccessibleForFree": true,
+    "applicationCategory": "Game"
+  }
+  </script>
+</head>
+<body class="game-page">
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="logo" href="/" aria-label="Mahjong Game">
+        <span class="logo-mark">中</span>
+        <span>Mahjong Game</span>
+      </a>
+      <nav class="nav-links" aria-label="Main menu">
+        <a href="/jogar-mahjong/">Solitaire</a>
+        <a href="/mahjong-classico/">Classic</a>
+        <a href="/mahjong-connect/">Connect</a>
+        <a href="/mahjong-cadeia/">Chain</a>
+        <a href="/mahjong-piramide/">Pyramid</a>
+        <a href="/mahjong-torre/">Tower</a>
+        <a href="/mahjong-blitz/">Blitz</a>
+        <a href="/mahjong-deslize/">Slide</a>
+        <a href="/cultura-mahjong/">Culture</a>
+        <a href="/como-jogar-mahjong/">How to Play</a>
+        <a href="https://jogomahjong.com/mahjong-cadeia/" style="font-size: 0.85rem; opacity: 0.8;">Português</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap">
+        <span class="eyebrow">Chain mode</span>
+        <h1>Mahjong Chain: connect fast and make combos</h1>
+        <p class="lead">Each pair connected within 4.5 seconds extends the chain and multiplies your points. Wrong or too slow? The chain resets. It's the balance between speed, visual memory and the courage to risk the next pair before time runs out.</p>
+
+        <div class="ad-slot" aria-label="Top ad space">
+          Responsive ad space reserved. Recommended: activate only after AdSense approval.
+        </div>
+
+        <div class="chain-progress">
+          <span>Score: <strong id="score">0</strong></span>
+          <span class="chain-combo" id="combo">Chain x0</span>
+          <span>Time: <strong id="time">00:00</strong></span>
+        </div>
+
+        <section class="game-shell" aria-labelledby="game-title">
+          <div class="game-toolbar">
+            <div>
+              <h2 id="game-title" style="font-size:1.45rem;margin:0;">Mahjong Chain</h2>
+              <p style="margin:4px 0 0;color:var(--muted);font-family:Arial,sans-serif;">Connect pairs in sequence to build combos. Errors break the chain.</p>
+            </div>
+            <div class="game-stats" aria-label="Game statistics">
+              <span class="stat">Pairs: <strong id="pairs">0/0</strong></span>
+            </div>
+            <div class="game-actions">
+              <button class="btn secondary" id="hint" type="button">Hint (resets chain)</button>
+              <button class="btn" id="new-game" type="button">New game</button>
+            </div>
+          </div>
+          <div class="board-wrap" aria-label="Mahjong Chain board">
+            <div id="connect-board"></div>
+          </div>
+          <p class="message" id="game-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <div class="ad-slot" aria-label="Bottom ad space">
+          Ad space reserved below the game. Avoid ads that cover the board.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap content-grid">
+        <article class="article">
+          <h2>How the chain system works</h2>
+          <p><strong>Mahjong Chain</strong> is a competitive Connect mode. The basic mechanics are the same as Connect: connect two matching tiles by a free path, with at most two curves. The difference is the <strong>chain combo</strong>.</p>
+          <h3>Scoring rules</h3>
+          <ul>
+            <li><strong>Connected pair:</strong> +10 points multiplied by current chain size.</li>
+            <li><strong>Chain x2:</strong> +20 points. <strong>x3:</strong> +30. <strong>x5:</strong> +50 per pair.</li>
+            <li><strong>Chain window:</strong> 4.5 seconds between one pair and the next. Took longer? Chain resets.</li>
+            <li><strong>Error:</strong> clicking different tiles or pairs with no possible connection resets the chain.</li>
+            <li><strong>Hint:</strong> reveals a valid pair, but also restarts the chain as penalty.</li>
+          </ul>
+          <h3>Strategy for players</h3>
+          <p>Those who enjoy fast-paced games — like classic arcade games — will relate to the combo timer tension. The tip is not to think too much: memorize the most common Chinese symbols (萬, 筒, 条, 風, 龍) and attack the obvious edge pairs first, leaving the center for when the chain is already hot. When the chain reaches <strong>x3 or more</strong>, the indicator highlights — it's the signal to accelerate.</p>
+          <h3>Traditional Chinese symbols</h3>
+          <p>All tiles use traditional Mahjong Chinese characters and designs: <strong>Wan</strong> (万, characters 1-9), <strong>Sou</strong> (条, bamboos), <strong>Pin</strong> (筒, circles), plus winds (東南西北) and dragons (中發白). Below each symbol appears the English name, so you learn as you play.</p>
+          <a class="btn" href="/como-jogar-mahjong/">Learn all symbols</a>
+        </article>
+        <aside class="sidebox">
+          <h3>Other games</h3>
+          <ul>
+            <li><a href="/jogar-mahjong/">Classic Mahjong Solitaire</a></li>
+            <li><a href="/mahjong-connect/">Mahjong Connect</a></li>
+            <li><a href="/mahjong-cronometrado/">Timed Mahjong</a></li>
+            <li><a href="/mahjong-relaxante/">Relaxing Mahjong</a></li>
+            <li><a href="/mahjong-piramide/">Mahjong Pyramid</a></li>
+            <li><a href="/mahjong-torre/">Mahjong Tower</a></li>
+            <li><a href="/mahjong-blitz/">Mahjong Blitz</a></li>
+            <li><a href="/mahjong-deslize/">Mahjong Slide</a></li>
+            <li><a href="/memoria-mahjong/">Mahjong Memory</a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="logo" href="/"><span class="logo-mark">中</span><span>Mahjong Game</span></a>
+        <p>Play free online Mahjong in English.</p>
+      </div>
+      <nav class="nav-links" aria-label="Footer links">
+        <a href="/">Home</a>
+        <a href="/cultura-mahjong/">Culture</a>
+        <a href="/como-jogar-mahjong/">How to Play</a>
+        <a href="/politica-de-privacidade/">Privacy</a>
+        <a href="https://jogomahjong.com/mahjong-cadeia/">Português</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/assets/sound.js"></script>
+  <script src="/assets/tiles-data-en.js"></script>
+  <script src="/assets/chain.js"></script>
+</body>
+</html>

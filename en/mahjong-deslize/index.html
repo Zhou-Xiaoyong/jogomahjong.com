@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mahjong Slide - Drag and Match Tiles</title>
+  <meta name="description" content="Mahjong Slide: drag tiles sideways and match equal ones to eliminate. New and addictive game with traditional mahjong tiles in English.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://en.jogomahjong.com/mahjong-deslize/">
+  <link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-deslize/">
+  <link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-deslize/">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Mahjong Slide - Drag and Match">
+  <meta property="og:description" content="Drag mahjong tiles sideways and match equal ones. New and addictive game in English.">
+  <meta property="og:url" content="https://en.jogomahjong.com/mahjong-deslize/">
+  <meta property="og:image" content="https://en.jogomahjong.com/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0f6b58">
+  <link rel="preload" href="/assets/I.Mahjong-TW.otf" as="font" type="font/otf" crossorigin>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css?v=20260704">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Mahjong Slide Online Free",
+    "alternateName": ["Mahjong Slide", "Mahjong Match"],
+    "url": "https://en.jogomahjong.com/mahjong-deslize/",
+    "description": "Drag and match equal mahjong tiles. New and addictive game in English.",
+    "genre": ["Puzzle", "Mahjong", "Slide", "Match"],
+    "gamePlatform": "Web browser",
+    "operatingSystem": "Web",
+    "inLanguage": "en-US",
+    "isAccessibleForFree": true,
+    "applicationCategory": "Game"
+  }
+  </script>
+</head>
+<body class="game-page">
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="logo" href="/" aria-label="Mahjong Game">
+        <span class="logo-mark">中</span>
+        <span>Mahjong Game</span>
+      </a>
+      <nav class="nav-links" aria-label="Main menu">
+        <a href="/jogar-mahjong/">Solitaire</a>
+        <a href="/mahjong-classico/">Classic</a>
+        <a href="/mahjong-connect/">Connect</a>
+        <a href="/mahjong-cadeia/">Chain</a>
+        <a href="/mahjong-piramide/">Pyramid</a>
+        <a href="/mahjong-torre/">Tower</a>
+        <a href="/mahjong-blitz/">Blitz</a>
+        <a href="/mahjong-deslize/">Slide</a>
+        <a href="/cultura-mahjong/">Culture</a>
+        <a href="/como-jogar-mahjong/">How to Play</a>
+        <a href="https://jogomahjong.com/mahjong-deslize/" style="font-size: 0.85rem; opacity: 0.8;">Português</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap">
+        <span class="eyebrow">New mode</span>
+        <h1>Mahjong Slide: drag, match, eliminate!</h1>
+        <p class="lead">A completely new way to play mahjong! Drag tiles left or right — when two identical tiles meet, they combine and disappear. Clear the row before it gets too full!</p>
+
+        <div class="ad-slot" aria-label="Top ad space">
+          Responsive ad space reserved. Recommended: activate only after AdSense approval.
+        </div>
+
+        <section class="game-shell" aria-labelledby="game-title">
+          <div class="game-toolbar">
+            <div>
+              <h2 id="game-title" style="font-size:1.45rem;margin:0;">Mahjong Slide</h2>
+              <p style="margin:4px 0 0;color:var(--muted);font-family:Arial,sans-serif;">Drag sideways and match equal tiles!</p>
+            </div>
+            <div class="game-stats" aria-label="Game statistics">
+              <span class="stat">Score: <strong id="score">0</strong></span>
+              <span class="stat">Pairs: <strong id="pairs">0</strong></span>
+              <span class="stat">Level: <strong id="level">1</strong></span>
+              <span class="stat">Best: <strong id="best">0</strong></span>
+            </div>
+            <div class="game-actions">
+              <button class="btn" id="new-game" type="button">New game</button>
+            </div>
+          </div>
+          <div class="board-wrap" aria-label="Mahjong Slide board">
+            <div id="slide-board">
+              <div class="slide-track" id="slide-track"></div>
+              <div class="slide-controls">
+                <button class="slide-btn" id="slide-left" type="button">← Left</button>
+                <span class="slide-hint">Click or use ← → on keyboard</span>
+                <button class="slide-btn" id="slide-right" type="button">Right →</button>
+              </div>
+            </div>
+          </div>
+          <p class="message" id="game-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <div class="ad-slot" aria-label="Bottom ad space">
+          Ad space reserved below the game. Avoid ads that cover the board.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap content-grid">
+        <article class="article">
+          <h2>How to play Mahjong Slide</h2>
+          <p><strong>Mahjong Slide</strong> is a new and addictive mode, inspired by tile-matching games. The rule is super simple — but mastering it requires strategy and speed!</p>
+          <h3>Basic rules</h3>
+          <ul>
+            <li><strong>Drag sideways</strong>: click the ← and → buttons or use arrow keys.</li>
+            <li><strong>Match equal tiles</strong>: when two tiles of the same type meet, they combine and disappear.</li>
+            <li><strong>New tiles arrive</strong>: with each move, a new tile may appear in the row.</li>
+            <li><strong>Don't let it fill up</strong>: if the row gets full and no matches are possible, the game ends.</li>
+            <li><strong>Level up</strong>: every 10 pairs, the level increases and tiles arrive faster.</li>
+          </ul>
+          <h3>Tips to go far</h3>
+          <ul>
+            <li><strong>Plan ahead</strong>: look at all tiles in the row before moving.</li>
+            <li><strong>Create chain reactions</strong>: sometimes one move can cause multiple consecutive matches.</li>
+            <li><strong>Keep the row organized</strong>: try to group similar types close together.</li>
+            <li><strong>Don't rush</strong>: it's better to think a second than make a bad move.</li>
+          </ul>
+          <h3>Why this game is different</h3>
+          <p>Unlike other mahjong modes on this site, Slide isn't about patience or long-term strategy — it's about quick reasoning and the ability to see matches. Perfect for those who enjoy games like 2048, match-3 and other tile-combining puzzles.</p>
+          <a class="btn" href="/jogar-mahjong/">Back to classic solitaire</a>
+        </article>
+        <aside class="sidebox">
+          <h3>Other games</h3>
+          <ul>
+            <li><a href="/jogar-mahjong/">Classic Mahjong Solitaire</a></li>
+            <li><a href="/mahjong-connect/">Mahjong Connect</a></li>
+            <li><a href="/mahjong-cadeia/">Mahjong Chain</a></li>
+            <li><a href="/mahjong-piramide/">Mahjong Pyramid</a></li>
+            <li><a href="/mahjong-torre/">Mahjong Tower</a></li>
+            <li><a href="/mahjong-blitz/">Mahjong Blitz</a></li>
+            <li><a href="/mahjong-cronometrado/">Timed Mahjong</a></li>
+            <li><a href="/mahjong-relaxante/">Relaxing Mahjong</a></li>
+            <li><a href="/memoria-mahjong/">Mahjong Memory</a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="logo" href="/"><span class="logo-mark">中</span><span>Mahjong Game</span></a>
+        <p>Play free online Mahjong in English.</p>
+      </div>
+      <nav class="nav-links" aria-label="Footer links">
+        <a href="/">Home</a>
+        <a href="/cultura-mahjong/">Culture</a>
+        <a href="/como-jogar-mahjong/">How to Play</a>
+        <a href="/politica-de-privacidade/">Privacy</a>
+        <a href="https://jogomahjong.com/mahjong-deslize/">Português</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/assets/sound.js"></script>
+  <script src="/assets/tiles-data-en.js"></script>
+  <script src="/assets/slide.js"></script>
+</body>
+</html>
