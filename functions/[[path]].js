@@ -13,8 +13,6 @@ export async function onRequest(context) {
   if (path.startsWith('/assets/') ||
       path.startsWith('/favicon') ||
       path.startsWith('/ads.txt') ||
-      path.startsWith('/robots.txt') ||
-      path.startsWith('/sitemap.xml') ||
       path.startsWith('/mahjong-classico/mah-app/')) {
     return env.ASSETS.fetch(request);
   }
