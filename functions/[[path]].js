@@ -8,7 +8,7 @@ export async function onRequest(context) {
     filePath += 'index.html';
   }
 
-  if (hostname === 'en.jogomahjong.com') {
+  if (hostname === 'en.jogomahjong.com' || hostname.includes('en.jogomahjong')) {
     filePath = '/en' + filePath;
   }
 
@@ -19,7 +19,7 @@ export async function onRequest(context) {
     }
   } catch (e) {}
 
-  if (hostname === 'en.jogomahjong.com') {
+  if (hostname === 'en.jogomahjong.com' || hostname.includes('en.jogomahjong')) {
     try {
       const fallback = await env.ASSETS.fetch(new Request('/en/index.html', { headers: request.headers }));
       if (fallback.status === 200) {
