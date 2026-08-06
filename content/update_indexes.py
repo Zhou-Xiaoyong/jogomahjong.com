@@ -58,15 +58,16 @@ def inject_hub_index(hub_file, art_url, title):
     print("OK hub index:", hub_file)
     return True
 
-def add_sitemap(sitemap_file, loc_pt, loc_en, date):
+def add_sitemap(sitemap_file, loc_primary, loc_pt, loc_en, date):
+    """loc_primary e a URL que pertence ao dominio deste sitemap."""
     if not os.path.isfile(sitemap_file):
         print("WARN sitemap ausente:", sitemap_file); return False
     s = open(sitemap_file, encoding="utf-8").read()
-    if loc_pt in s:
+    if loc_primary in s:
         print("SKIP sitemap (ja existe):", sitemap_file); return False
     block = (
         "  <url>\n"
-        f"    <loc>{loc_pt}</loc>\n"
+        f"    <loc>{loc_primary}</loc>\n"
         f'    <xhtml:link rel="alternate" hreflang="pt-BR" href="{loc_pt}"/>\n'
         f'    <xhtml:link rel="alternate" hreflang="en" href="{loc_en}"/>\n'
         f'    <xhtml:link rel="alternate" hreflang="x-default" href="{loc_pt}"/>\n'
@@ -78,10 +79,10 @@ def add_sitemap(sitemap_file, loc_pt, loc_en, date):
     print("OK sitemap:", sitemap_file)
     return True
 
-def inject_link_from(game_url, art_url, title):
+def inject_link_from(game_url, art_url, title, prefix=""):
     if game_url.rstrip("/").endswith("cultura-mahjong") or game_url.rstrip("/").endswith("como-jogar-mahjong"):
         return False  # hub já tratado pelo índice
-    path = os.path.join(ROOT, url_to_path(game_url))
+    path = os.path.join(ROOT, prefix, url_to_path(game_url)) if prefix else os.path.join(ROOT, url_to_path(game_url))
     if not os.path.isfile(path):
         print("WARN link_from ausente:", game_url); return False
     s = open(path, encoding="utf-8").read()
@@ -132,9 +133,9 @@ def main():
     art_en_url = "https://en.jogomahjong.com/" + cfg["art_en_dir"].format(slug=a.slug_en) + "/"
 
     inject_hub_index(cfg["hub_pt"], art_pt_url, a.title_pt)
-    inject_hub_index(cfg["hub_en"], art_pt_url, a.title_pt)
-    add_sitemap(SITEMAP_PT, art_pt_url, art_en_url, a.date)
-    add_sitemap(SITEMAP_EN, art_pt_url, art_en_url, a.date)
+    inject_hub_index(cfg["hub_en"], art_en_url, a.title_en)
+    add_sitemap(SITEMAP_PT, art_pt_url, art_pt_url, art_en_url, a.date)
+    add_sitemap(SITEMAP_EN, art_en_url, art_pt_url, art_en_url, a.date)
 
     # link_from a partir do CSV
     with open(CSV_PATH, encoding="utf-8", newline="") as f:
@@ -144,6 +145,7 @@ def main():
                     g = g.strip()
                     if g:
                         inject_link_from(g, art_pt_url, a.title_pt)
+                        inject_link_from(g, art_en_url, a.title_en, prefix="en")
                 break
 
     update_csv(a.slug_pt, a.date)

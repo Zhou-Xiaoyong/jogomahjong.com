@@ -136,17 +136,24 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/privacy-policy/"/>
   </url>
   <url>
-    <loc>https://jogomahjong.com/cultura-mahjong/historia-do-mahjong/</loc>
+    <loc>https://en.jogomahjong.com/culture-mahjong/history-of-mahjong/</loc>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/cultura-mahjong/historia-do-mahjong/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/culture-mahjong/history-of-mahjong/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://jogomahjong.com/cultura-mahjong/historia-do-mahjong/"/>
     <lastmod>2026-07-27</lastmod>
   </url>
   <url>
-    <loc>https://jogomahjong.com/cultura-mahjong/origem-do-mahjong-na-china/</loc>
+    <loc>https://en.jogomahjong.com/culture-mahjong/origin-of-mahjong-in-china/</loc>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/cultura-mahjong/origem-do-mahjong-na-china/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/culture-mahjong/origin-of-mahjong-in-china/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://jogomahjong.com/cultura-mahjong/origem-do-mahjong-na-china/"/>
     <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://en.jogomahjong.com/how-to-play-mahjong/how-to-play-mahjong-beginners/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/como-jogar-mahjong/como-jogar-mahjong-iniciantes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/how-to-play-mahjong/how-to-play-mahjong-beginners/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jogomahjong.com/como-jogar-mahjong/como-jogar-mahjong-iniciantes/"/>
+    <lastmod>2026-08-06</lastmod>
   </url>
 </urlset>
