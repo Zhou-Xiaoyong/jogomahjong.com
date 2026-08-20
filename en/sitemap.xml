@@ -1,168 +1,184 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ns0:urlset xmlns:ns0="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
+    <url>
     <loc>https://en.jogomahjong.com/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/"/>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/culture-mahjong/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/culture-mahjong/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/cultura-mahjong/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/culture-mahjong/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/cultura-mahjong/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/culture-mahjong/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/culture-mahjong/"/>
     <lastmod>2026-08-13</lastmod>
-  </url>
-  <url>
-    <loc>https://en.jogomahjong.com/how-to-play-mahjong/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/how-to-play-mahjong/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/como-jogar-mahjong/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/how-to-play-mahjong/" />
-    <lastmod>2026-08-13</lastmod>
-  </url>
-  <url>
-    <loc>https://en.jogomahjong.com/privacy-policy/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/privacy-policy/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/politica-de-privacidade/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/privacy-policy/" />
-    <lastmod>2026-07-04</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/culture-mahjong/history-of-mahjong/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/culture-mahjong/history-of-mahjong/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/cultura-mahjong/history-of-mahjong/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/culture-mahjong/history-of-mahjong/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/cultura-mahjong/historia-do-mahjong/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/culture-mahjong/history-of-mahjong/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/culture-mahjong/history-of-mahjong/"/>
     <lastmod>2026-07-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/culture-mahjong/origin-of-mahjong-in-china/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/culture-mahjong/origin-of-mahjong-in-china/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/cultura-mahjong/origin-of-mahjong-in-china/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/culture-mahjong/origin-of-mahjong-in-china/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/cultura-mahjong/origem-do-mahjong-na-china/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/culture-mahjong/origin-of-mahjong-in-china/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/culture-mahjong/origin-of-mahjong-in-china/"/>
     <lastmod>2026-07-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://en.jogomahjong.com/culture-mahjong/who-invented-mahjong/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/cultura-mahjong/quem-inventou-o-mahjong/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/culture-mahjong/who-invented-mahjong/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/culture-mahjong/who-invented-mahjong/"/>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://en.jogomahjong.com/how-to-play-mahjong/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/como-jogar-mahjong/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/how-to-play-mahjong/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/how-to-play-mahjong/"/>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://en.jogomahjong.com/how-to-play-mahjong/how-to-play-mahjong-beginners/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/how-to-play-mahjong/how-to-play-mahjong-beginners/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/como-jogar-mahjong/how-to-play-mahjong-beginners/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/how-to-play-mahjong/how-to-play-mahjong-beginners/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/como-jogar-mahjong/como-jogar-mahjong-iniciantes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/how-to-play-mahjong/how-to-play-mahjong-beginners/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/how-to-play-mahjong/how-to-play-mahjong-beginners/"/>
     <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/how-to-play-mahjong/mahjong-rules-step-by-step/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/how-to-play-mahjong/mahjong-rules-step-by-step/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/como-jogar-mahjong/mahjong-rules-step-by-step/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/how-to-play-mahjong/mahjong-rules-step-by-step/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/como-jogar-mahjong/regras-do-mahjong-passo-a-passo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/how-to-play-mahjong/mahjong-rules-step-by-step/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/how-to-play-mahjong/mahjong-rules-step-by-step/"/>
     <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/jogar-mahjong/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/jogar-mahjong/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/jogar-mahjong/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/jogar-mahjong/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/jogar-mahjong/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/jogar-mahjong/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/jogar-mahjong/"/>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/mahjong-blitz/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-blitz/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-blitz/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-blitz/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-blitz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-blitz/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-blitz/"/>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/mahjong-cadeia/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-cadeia/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-cadeia/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-cadeia/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-cadeia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-cadeia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-cadeia/"/>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/mahjong-classico/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-classico/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-classico/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-classico/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-classico/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-classico/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-classico/"/>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/mahjong-connect/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-connect/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-connect/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-connect/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-connect/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-connect/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-connect/"/>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/mahjong-cronometrado/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-cronometrado/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-cronometrado/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-cronometrado/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-cronometrado/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-cronometrado/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-cronometrado/"/>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/mahjong-deslize/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-deslize/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-deslize/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-deslize/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-deslize/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-deslize/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-deslize/"/>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/mahjong-piramide/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-piramide/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-piramide/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-piramide/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-piramide/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-piramide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-piramide/"/>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/mahjong-relaxante/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-relaxante/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-relaxante/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-relaxante/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-relaxante/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-relaxante/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-relaxante/"/>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/mahjong-torre/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-torre/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-torre/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-torre/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/mahjong-torre/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/mahjong-torre/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/mahjong-torre/"/>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://en.jogomahjong.com/memoria-mahjong/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/memoria-mahjong/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/memoria-mahjong/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/memoria-mahjong/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/memoria-mahjong/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/memoria-mahjong/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/memoria-mahjong/"/>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://en.jogomahjong.com/privacy-policy/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://jogomahjong.com/politica-de-privacidade/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://en.jogomahjong.com/privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://en.jogomahjong.com/privacy-policy/"/>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
 </ns0:urlset>
